@@ -94,30 +94,38 @@ body{
   margin-right:5em;
 }
 
-article{
-  display: block;
+.container#self1,.container#self2{
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-left:15em;
+  width: 55%;
 }
+
+
+.container#self1{
+  margin-top:8em;
+}
+
 
 .container#self1 .text p{
   color: rgb(220, 203, 203);
   font-size: 1.5em;
-  margin-top:8em;
-  width: 75%;
+  flex:50%;
 }
 
-.container#self1{
-  margin:10em auto;
-  width: 65%;
+
+.container#self1 #img1 p{
+  padding-top: 22em;
+
 }
 
-.container#self2{
-  margin:10em auto;
-  margin-left:23em;
-  width:50%;
+.container#self2 .text p{
+  color: rgb(220, 203, 203);
+  font-size: 1.5em;
+  margin-bottom: 8em;
+  flex:45%;
 }
+
 
 .container#self1 .text a{
   color: rgb(220, 203, 203);
@@ -134,9 +142,13 @@ article{
 #self2 img{
   max-width: 20em;
   float:right;
-  margin-left:0em;
+  margin-left:5em;
+
+}
 
 
+article .container#self2 #img2{
+  padding-bottom: 8.5em;
 }
 
 .container#self2 .text a{
@@ -146,20 +158,6 @@ article{
   font-style: italic;
 }
 
-
-.container#self2 .text p{
-  color: rgb(220, 203, 203);
-  font-size: 1.5em;
-  padding-top: 2em;
-}
-
-.container#self2 .text{
-  width:50%;
-}
-
-.container#self2{
-  margin-top:0.5em;
-}
 
 .container#self1{
   margin-bottom:0;
@@ -175,6 +173,7 @@ article{
   color: rgb(220, 203, 203);
   float: right;
   margin-right: 3.5em;
+  margin-top: 1em;
 
 }
 
