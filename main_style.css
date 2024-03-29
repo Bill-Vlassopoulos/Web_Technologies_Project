@@ -177,6 +177,17 @@ article .container#self2 #img2{
 
 }
 
+@media screen and (max-width: 800px){
+  .container#self1,.container#self2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+
+}
+
 .column{
   flex:33.33%;
   padding:0px;
