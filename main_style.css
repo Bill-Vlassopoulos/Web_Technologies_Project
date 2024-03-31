@@ -1,8 +1,9 @@
 body{
-  margin:0;
+  margin:0 auto;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: rgb(12, 11, 11) !important;
   min-height: 100%;
+  width: 100%;
   
 }
 
@@ -88,11 +89,6 @@ body{
   filter: brightness(0.6);
 }
 
-#self1 img{
-  max-width: 18em;
-  float:left;
-  margin-right:5em;
-}
 
 /*About us*/
 #us{
@@ -211,6 +207,12 @@ body{
   float:right;
   margin-left:5em;
 
+}
+
+#self1 img{
+  max-width: 18em;
+  float:left;
+  margin-right:5em;
 }
 
 
@@ -379,7 +381,8 @@ article .container#self2 #img2{
 @media screen and (max-width: 1000px){
   .container#events-body{
     display:block;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .container#events-body #sec-exhibition{
