@@ -270,3 +270,153 @@ nav a:hover::after {
         height: 200vh;
     }
 }
+
+/*bio first page*/
+
+.bio_first{
+    height: 170vh;
+    background-color: black;
+    padding-top: 2%;
+}
+
+.genika{
+    display: grid;
+    grid-template: 1fr 5fr/1fr;
+    align-items: center;
+    padding-left: 15%;
+
+}
+
+.first{
+    display: grid;
+    grid-template: 1fr/1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 75%;
+    margin:0 auto;
+}
+
+.genika h2{
+    color: black;
+    padding-left: 1.5%;
+    font-style: italic;
+    width: 8em;
+    background-color: navajowhite;
+    margin-left: 2%;
+    border-radius: 10%;
+    padding-top:0.5%;
+    justify-self: start;
+}
+
+.genika p{
+    color: #f2f2f2;
+    font-size: 1.4em;
+    padding-left: 2%;
+}
+
+.image1 img{
+    width: 40em;
+    height: 30vh;
+    margin-right: 5%;
+}
+
+.image1 h4,.early_img h4{
+    color: #f2f2f2;
+    padding-top: 1%;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.early_img img{
+    height: 70vh;
+}
+
+.early_txt h2{
+    color: black;
+    font-style: italic;
+    width: 6em;
+    background-color:navajowhite;
+    border-radius: 10%;
+    padding-top:0.5%;
+}
+
+.early{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    width: 65%;
+    margin-top: 5%;
+}
+
+.early_txt p{
+    color: #f2f2f2;
+    font-size: 1.4em;
+}
+
+.early_txt{
+    width: 65%;
+    padding-left: 3%;
+}
+
+.early_img{
+    margin-top: 6%;
+}
+
+@media screen and (max-width: 900px){
+    .bio_first{
+        height: 300vh;
+    }
+
+    .first{
+        width: 100%;
+        grid-template: 1fr/1fr;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .genika{
+        padding-left: 0;
+    }
+
+    .early{
+        width: 100%;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+
+    }
+
+    .early_txt{
+        width: 100%;
+    }
+
+    .early_img{
+        align-self: center;
+    }
+
+
+}
+
+@media screen and (max-width: 1500px) and (min-width:1100px){
+
+    .bio_first{
+        height: 190vh;
+    }
+
+    .first,.early{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1101px) and (min-width:901px){
+    .bio_first{
+        height: 180vh;
+    }
+
+    .first, .early{
+        width: 100%;
+    }
+
+}
