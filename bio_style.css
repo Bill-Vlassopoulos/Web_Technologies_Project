@@ -420,3 +420,89 @@ nav a:hover::after {
     }
 
 }
+
+/*bio page 2*/
+
+.sec_pag{
+    height: 200vh;
+    background-color: black;
+
+}
+
+.farmers-plant{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3%;
+}
+
+.farmers-plant img{
+    height: 50vh;
+    width: 70%;
+    margin-bottom: 2em;
+}
+
+.farmers-plant p,.potato-eaters p{
+    color: #f2f2f2;
+    font-size: 1.5em;
+    width: 70%;
+}
+
+.potato-eaters{
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.potato-progress{
+    display: grid;
+    grid-template: 1fr/1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-top: 3%;
+    width: 80%;
+}
+
+.potato-progress img{
+    width: 90%;
+}
+
+.study,.potato-1,.potato-2{
+    padding-left: 15%;
+}
+
+.potato-progress h5{
+    padding-top: 2%;
+    color: #f2f2f2;
+    font-style: italic;
+    font-weight: 200;
+}
+
+
+@media screen and (max-width: 950px){
+    .sec_pag{
+        height: 330vh;
+    }
+
+    .farmers-plant img{
+        height: 30vh;
+        width: 90%;
+    }
+
+    .farmers-plant p,.potato-eaters p{
+        width: 90%;
+    }
+
+    .potato-progress{
+        grid-template: 1fr 1fr 1fr/1fr;
+        justify-items: center;
+        align-items: center;
+        margin-top: 3%;
+        width: 80%;
+    }
+
+
+}
