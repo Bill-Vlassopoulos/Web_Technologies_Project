@@ -506,3 +506,281 @@ nav a:hover::after {
 
 
 }
+
+/*bio page 3*/
+
+.parisi{
+    height: 160vh;
+    background-color: black;
+
+}
+
+.carousel-louvre,.japan{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+    padding-top: 3%;
+}
+
+.carousel-louvre p{
+    color: #f2f2f2;
+    font-size: 1.5em;
+    margin-right: 2%;
+}
+
+.carousel-louvre h4, .japan h4{
+    color: #f2f2f2;
+    font-weight: 200;
+    font-style: italic;
+    margin-top: 1%;
+}
+
+.japan p{
+    color: #f2f2f2;
+    font-size: 1.5em;
+    margin-left: 2%;
+}
+
+.japan_img img{
+    height: 60vh;
+}
+
+@media screen and (max-width: 1000px){
+
+    .parisi{
+        height: 325vh;
+    }
+    .carousel-louvre{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img_paris img{
+        width: 80%;
+    }
+
+    .japan{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .japan_img img{
+        height: 40vh;
+        padding-left: 25%;
+        margin-top: 2%;
+    }
+
+    .japan_img h4{
+        width: 80%;
+        padding-left: 23%;
+    }
+
+    @media screen and (min-width: 640px){
+        .parisi{
+            height: 280vh;
+        }
+    }
+
+
+}
+
+@media screen and (min-width: 1001px) and (max-width:1300px){
+
+    .parisi{
+        height: 190vh;
+    }
+
+    .carousel-louvre,.japan{
+        width: 100%;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1500px){
+
+    .parisi{
+        height: 230vh;
+    }
+}
+
+/*bio page 4 arles*/
+.arles-body{
+    height: 320vh;
+    background-color: black;
+}
+
+.topio,.yellow-house,.sunflowers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3%;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.yellow-house{
+    flex-direction:column-reverse;
+}
+
+.topio p{
+    color: #f2f2f2;
+    font-size: 1.5em;
+    width: 40%;
+    padding-right: 3%;
+}
+
+.topio-img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.topio-img img{
+    height: 35vh;
+}
+
+img#palia-photo{
+    width: 92%;
+    margin-bottom: 2%;
+}
+
+.arles-house img{
+    height: 40vh;
+}
+
+.arles-house h4,.sunflowers-img h4{
+    color: #f2f2f2;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.yellow-house p,.sunflowers p{
+    color: #f2f2f2;
+    font-size: 1.5em;
+    margin-left: 3%;
+    width: 75%;
+}
+
+.sunflowers-img img{
+    height:60vh;
+}
+
+.arles-house{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.arles-atnight h4{
+    width: 75%;
+}
+
+.arles-atnight{
+    margin-left: 15%;
+    margin-top: 2%;
+}
+
+
+.letter{
+    color:#f2f2f2;
+    width: 75%;
+    border: 0.6em double;
+    margin: 0 auto;
+    font-size: 1.5em;
+    margin-top: 3%;
+    font-style: italic;
+    padding: 1%;
+}
+
+.letter h5{
+    font-style: italic;
+    font-weight: 700;
+}
+
+
+@media screen and (max-width: 900px){
+    .arles-body{
+        height:750vh;
+    }
+
+    .topio{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .topio p, .yellow-house p{
+        width: 100%;
+    }
+
+    .arles-house{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arles-atnight img{
+        height: 50vh;
+        margin-left: 1%;
+        margin-top: 2%;
+    }
+
+    .sunflowers{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sunflowers p{
+        width: 100%;
+    }
+
+    @media screen and (min-width: 650px){
+        .arles-body{
+            height: 600vh;
+        }
+
+    }
+
+
+}
+
+@media screen and (max-width: 1200px) and (min-width:901px){
+    .arles-body{
+        height: 400vh;
+    }
+
+    .sunflowers,.yellow-house,.topio{
+        width: 100%;
+    }
+
+    .yellow-house p{
+        width: 85%;
+    }
+
+    .sunflowers{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sunflowers p{
+        width: 90%;
+    }
+
+
+}
+
+@media screen and (min-width: 1201px) and (max-width:1500px){
+    .arles-body{
+        height: 380vh;
+    }
+}
+
+
