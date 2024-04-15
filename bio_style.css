@@ -206,15 +206,18 @@ nav a:hover::after {
 }
 
 .bio_main img{
-    width: 28em;
-    height: 50vh;
+    width: 32em;
+    height: 55vh;
     border-radius:5%;
+}
+
+.bio_main div{
     object-fit: cover;
     transition: 0.3s ease-in-out;
 }
 
 
-.bio_main img:hover{
+.bio_main div:hover{
     transform: scale(1.05);
     object-fit: cover;
 }
@@ -320,7 +323,7 @@ nav a:hover::after {
     margin-right: 5%;
 }
 
-.image1 h4,.early_img h4{
+.image1 h5,.early_img h5{
     color: #f2f2f2;
     padding-top: 1%;
     font-style: italic;
@@ -530,7 +533,7 @@ nav a:hover::after {
     margin-right: 2%;
 }
 
-.carousel-louvre h4, .japan h4{
+.carousel-louvre h5, .japan h5{
     color: #f2f2f2;
     font-weight: 200;
     font-style: italic;
@@ -574,7 +577,7 @@ nav a:hover::after {
         margin-top: 2%;
     }
 
-    .japan_img h4{
+    .japan_img h5{
         width: 80%;
         padding-left: 23%;
     }
@@ -654,10 +657,11 @@ img#palia-photo{
     height: 40vh;
 }
 
-.arles-house h4,.sunflowers-img h4{
+.arles-house h5,.sunflowers-img h5{
     color: #f2f2f2;
     font-weight: 200;
     font-style: italic;
+    margin-top: 2%;
 }
 
 .yellow-house p,.sunflowers p{
@@ -677,7 +681,7 @@ img#palia-photo{
     align-items: center;
 }
 
-.arles-atnight h4{
+.arles-atnight h5{
     width: 75%;
 }
 
@@ -784,3 +788,207 @@ img#palia-photo{
 }
 
 
+/*bio page 5*/
+
+.hospital{
+    height: 170vh;
+    background-color: black;
+}
+
+.starry-night,.hospital-room{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0 auto;
+    padding-top: 4%;
+    width: 65%;
+}
+
+.hospital-room{
+    flex-direction:column-reverse;
+}
+
+.hospital p{
+    font-size: 1.5em;
+    color: #f2f2f2;
+    padding-right: 3%;
+}
+
+.hospital h5{
+    color: #f2f2f2;
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 2%;
+}
+
+.hospital img{
+    height:42vh;
+}
+
+@media screen and (max-width: 680px){
+
+    .hospital{
+        height: 300vh;
+    }
+
+    .starry-night{
+        flex-direction: column;
+    }
+
+    .starry-night,.hospital-room{
+        width: 95%;
+        margin: 0 auto;
+    }
+
+
+}
+
+@media screen and (max-width: 900px) and (min-width:681px){
+
+    .hospital{
+        height: 300vh;
+    }
+    .starry-night{
+        flex-direction: column;
+    }
+
+    .hospital p{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 901px) and (max-width:1200px){
+    .hospital{
+        height: 200vh;
+    }
+
+    .starry-night,.hospital-room{
+        width: 95%;
+        margin:0 auto;
+    }
+}
+
+@media screen and (min-width:1201px) and (max-width:1500px){
+    .hospital{
+        height: 230vh;
+    }
+}
+
+/*bio page 6*/
+
+.last{
+    height: 320vh;
+    background-color: black;
+}
+
+.doctor,.last-painting,.last-moments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 3%;
+    width: 75%;
+    margin:0 auto;
+}
+
+.last p{
+    color: #f2f2f2;
+    font-size: 1.5em;
+
+}
+
+.doctor-img{
+    display: grid;
+    grid-template:1fr/1fr 1fr;
+    grid-gap:10em;
+    justify-items:center;
+    align-content: center;
+    margin-top: 2%;
+}
+
+.last img{
+    height: 50vh;
+} 
+
+.last h5{
+    color: #f2f2f2;
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 2%;
+}
+
+.garden h5{
+    font-weight: normal;
+}
+
+.last-painting{
+    margin-top: 2%;
+}
+
+.garden img{
+    margin-top: 2%;
+}
+
+.self-portraits{
+    display: grid;
+    grid-template: 1fr/1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 2em;
+}
+
+.self-portraits img{
+    height: 35vh;
+    border-radius: 40%;
+}
+
+#self{
+    text-decoration: underline;
+    font-style: italic;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+@media screen and (max-width: 700px){
+
+    .last{
+        height: 780vh;
+    }
+
+    .doctor-img{
+        grid-template:1fr 1fr/1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .self-portraits{
+        grid-template:1fr 1fr 1fr 1fr 1fr 1fr/1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .garden img{
+        height: 30vh;
+    }
+
+}
+
+@media screen and (max-width: 1350px) and (min-width:701px){
+
+    .last{
+        height: 470vh;
+    }
+
+    .self-portraits{
+        grid-template: 1fr 1fr/1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (min-width:951px){
+
+        .last{
+            height: 400vh;
+        }
+    }
+}
