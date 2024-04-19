@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Gogh Art Gallery</title>
+    <link rel="stylesheet" href="forma_epikoin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+    <header class="header">
+        <a href="" class="logo">LOGO</a>
+
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class="bx bx-menu" id="menu-icon"></i>
+            <i class="bx bx-x" id="close-icon"></i>
+        </label>
+        <nav>
+            <a href="">βιογραφια</a>
+            <a href="">συλλογη</a>
+            <a href="">εισιτηρια</a>
+            <a href="">εκθεσεις</a>
+            <a href="">επικοινωνια</a>
+        </nav>
+    </header>
+
+    <section class="forma">
+        <div class="templ">
+            <form method="get" class="txt">
+                <h2>Επικοινωνήστε μαζί μας</h2>
+                    <div class="onoma">
+                        <label for="name">Όνομα</label>
+                        <input type="text" id="name" name="user_name" placeholder="Πληκτρολογήστε το όνομά σας.." required>
+                    </div>
+                    <div class="epwnimo">
+                        <label for="surname">Επώνυμο</label>
+                        <input type="text" id="surname" name="user_surname" placeholder="Πληκτρολογήστε το επώνυμό σας.." required>
+                    </div>
+                    <div class="email">
+                        <label for="mail">E-mail</label>
+                        <input type="email" id="mail" name="user_mail" placeholder="example@gmail.com" required>
+                    </div>
+                    <div class="thema">
+                        <label for="topic">Θέμα Κειμένου</label>
+                        <input type="text" id="topic" name="user_topic" placeholder="Πληκτρολογήστε το θέμα της ερώτησής σας.." required>
+                    </div>
+
+                    <div class="erwtisi">
+                        <label for="question">Περιέχομενο</label>
+                        <textarea rows="5" id="question" name="user_question" placeholder="Αναπτύξτε την ερώτησή σας.." required></textarea>
+                    </div>
+
+                    <input type="submit" id="subm" value="Υποβολή">
+                </form>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
