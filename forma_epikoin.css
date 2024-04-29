@@ -246,6 +246,7 @@ nav a:hover::after {
 
 #name,#surname,#mail,#topic,#question{
     background-color: black;
+    color: white;
     border: 0.05em solid white;
 }
 
