@@ -193,10 +193,13 @@ nav a:hover::after {
 
 /*bio_main*/
 
+body{
+    background-color: black;
+}
+
 .bio_main{
     display: grid;
-    height: 130vh;
-    background-color: black;
+    height: 140vh;
     padding-top:5%;
     padding-left:5%;
     padding-right: 5%;
@@ -262,15 +265,17 @@ nav a:hover::after {
         align-items: center;
         height: 320vh;
         padding-top:8%;
+        grid-gap:1.5em;
     }
 }
 
-@media screen and (max-width: 850px) and (min-width:601px){
+@media screen and (max-width: 1000px) and (min-width:601px){
     .bio_main{
         grid-template: 1fr 1fr 1fr/1fr 1fr;
         justify-items: center;
         align-items: center;
         height: 200vh;
+        grid-gap:1.5em;
     }
 }
 
@@ -278,7 +283,6 @@ nav a:hover::after {
 
 .bio_first{
     height: 170vh;
-    background-color: black;
     padding-top: 2%;
 }
 
@@ -428,7 +432,6 @@ nav a:hover::after {
 
 .sec_pag{
     height: 200vh;
-    background-color: black;
 
 }
 
@@ -514,7 +517,6 @@ nav a:hover::after {
 
 .parisi{
     height: 160vh;
-    background-color: black;
 
 }
 
@@ -613,8 +615,7 @@ nav a:hover::after {
 
 /*bio page 4 arles*/
 .arles-body{
-    height: 320vh;
-    background-color: black;
+    height: 340vh;
 }
 
 .topio,.yellow-house,.sunflowers{
@@ -791,8 +792,7 @@ img#palia-photo{
 /*bio page 5*/
 
 .hospital{
-    height: 170vh;
-    background-color: black;
+    height: 190vh;
 }
 
 .starry-night,.hospital-room{
@@ -878,7 +878,6 @@ img#palia-photo{
 
 .last{
     height: 320vh;
-    background-color: black;
 }
 
 .doctor,.last-painting,.last-moments{
@@ -976,7 +975,7 @@ img#palia-photo{
 @media screen and (max-width: 1350px) and (min-width:701px){
 
     .last{
-        height: 470vh;
+        height: 480vh;
     }
 
     .self-portraits{
