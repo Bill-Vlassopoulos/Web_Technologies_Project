@@ -144,7 +144,7 @@ nav a:hover::after {
     position: fixed;
     background-color: black;
     height: 100%;
-    width: 0;
+    width: 30%;
     overflow-x: hidden;
     z-index: 1;
     top: 0;
@@ -379,8 +379,94 @@ select[name="aithousa"]{
 
 }
 
-@media (max-width:800px){
+/*collection filter*/
+
+@media (max-width:680px){
     .filter{
+        width: 80%;
+    }
+
+    input[type="text"]{
+        width: 80%;
+    }
+
+    .filter-menu{
+        width: 90%;
+    }
+
+    .collection-filter{
+        width: 50%;
+    }
+
+    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+        width: 100%;
+    }
+
+
+}
+
+@media (min-width:681px) and (max-width:900px){
+
+    .filter{
+        width: 50%;
+    }
+
+    input[type="text"]{
+        width: 70%;
+    }
+
+    .filter-menu{
+        width: 90%;
+    }
+
+    .collection-filter{
+        width: 40%;
+    }
+
+    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+        width: 100%;
+    }
+
+
+
+}
+
+@media (min-width:901px) and (max-width:1100px){
+
+    .filter{
+        width: 30%;
+    }
+
+    input[type="text"]{
+        width: 60%;
+    }
+
+    .filter-menu{
+        width: 90%;
+    }
+
+    .collection-filter{
+        width: 40%;
+    }
+
+    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+        width: 100%;
+    }
+
+
+}
+
+@media (min-width:1101px) and (max-width:1400px){
+
+    .filter{
+        width: 25%;
+    }
+
+    input[type="text"]{
+        width: 60%;
+    }
+
+    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
         width: 100%;
     }
 }
