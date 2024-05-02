@@ -81,6 +81,10 @@ router.get("/communication", (req, res) => {
     res.render('epikoinwnia', { layout: 'index' });
 });
 
+//Δημιουργώ διαδρομή για την συλλογή
+router.get("/collection", (req, res) => {
+    res.render('collection', { layout: 'index' });
+});
 
 
 

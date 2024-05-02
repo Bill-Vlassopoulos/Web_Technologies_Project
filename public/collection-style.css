@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+:root {
+    font-size: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, sans-serif;
+
+}
+
+body {
+     background-color: rgb(35, 35, 35); 
+}
+
+
+/*navbar*/
+
+
+.logo {
+    flex-grow: 1;
+    background-color: rgb(24, 24, 24);
+    color: white;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    font-size: 16px;
+    background-color: rgb(24, 24, 24);
+}
+
+nav a {
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0%;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    transition: 0.5s ease 0s, left 0.5s ease 0s;
+}
+
+nav a:hover {
+    text-decoration: none;
+    /* Remove default underline */
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    /* Adjust the distance of the underline from the text */
+    width: 100%;
+    height: 2px;
+    /* Adjust the thickness of the underline */
+    background-color: white;
+    /* Set the color of the underline */
+    visibility: hidden;
+    /* Initially hide the underline */
+    transform: scaleX(0);
+    /* Initially scale the underline to 0 */
+    transition: all 0.3s ease;
+    /* Add a smooth transition effect */
+}
+
+nav a:hover::after {
+    visibility: visible;
+    /* Show the underline on hover */
+    transform: scaleX(1);
+    /* Scale the underline to full width on hover */
+}
+
+#check {
+    display: none;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background: rgb(24, 24, 24);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* box-shadow: 10px 5px 20px 1px black; */
+    border-bottom: 0.1px solid white;
+    font-size: 16px;
+
+}
+
+/*collection*/
+
+.collection {
+
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.collection img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    transition: transform 0.5s;
+    padding: 10%;
+    margin: auto;
+
+}
+
+.collection img:hover {
+    transform: scale(1.1);
+
+}
+
+  .collection-filter {
+    display: none;
+    grid-template:1fr 1fr 1fr 1fr/2fr 1fr;
+    grid-template-areas: "ma me"
+                         "mb mf"
+                         "mc mg"
+                         "md mh";
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
+    position: fixed;
+    background-color: black;
+    height: 100%;
+    width: 0;
+    overflow-x: hidden;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+
+}
+
+#periodiki{
+    display: flex;
+    flex-direction:column-reverse;
+}
+
+#kallitexnis{
+    margin-bottom: 10%;
+    width: 70%;
+    font-size: 1.5em;
+    margin-left: 7%;
+}
+
+.closebtn{
+    color:rgb(187, 180, 180);
+    text-decoration: none;
+    font-size: 4em;
+    grid-area: me;
+    justify-self: center;
+    align-self: flex-end;
+}
+
+.clear-filter{
+    grid-area:md;
+    width: 50%;
+    margin-left: 10%;
+    font-size: 1.5em;
+    height: 4vh;
+    padding-left:2%;
+    padding-right: 2%;
+    background-color: black;
+    color: white;
+    border: 0.1em solid white;
+    justify-self: flex-start;
+}
+
+
+
+.main-radio,.periodiko-radio{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
+.radio{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    grid-area: mb;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin-left: 7%;
+}
+
+
+form label {
+    color: white;
+    font-size: 1.8em;
+    width: 10em;
+}
+
+input[type="text"] {
+    width: 40%;
+    height: 2.5em;
+    background: none;
+    border: 0.1em solid  whitesmoke;
+    color: white;
+    font-size: 1.8rem;
+    padding-left: 0.5em;
+    grid-area:mk;
+    justify-self: flex-end;
+
+}
+
+input[type="text"]::placeholder{
+    color: white;
+}
+
+form select{
+    height: 3.5em;
+    font-size: 1.5em;
+    width: 70%;
+    background-color: rgb(35, 35, 35);
+    color: white;
+    border: 0.1em solid whitesmoke;
+}
+
+select[name="xronologiki-periodos"]{
+    grid-area:mc;
+    margin-left: 7%;
+}
+
+select[name="aithousa"]{
+    grid-area: mb;
+    margin-left: 7%;
+}
+
+.txt{
+    color:white;
+    font-size: 1.5em;
+    padding:0 1em;
+}
+
+#additionalPeriodiki{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: mc;
+}
+
+#xronologiki{
+    width: 80%;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+.value{
+    color: #d3d3d3;
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.filter{
+    height: 7vh;
+    width: 15%;
+    font-size: 2em;
+    background-color:rgb(35, 35, 35) ;
+    color:#dc614c;
+    border: 0.1em solid #dc614c;
+    border-radius: 20%;
+    justify-self: flex-start;
+}
+
+.filter-menu{
+    display: grid;
+    grid-template-areas: "mm mk";
+    align-items: center;
+    width: 75%;
+    margin:3% auto;
+}
+
+
+@media (max-width:1000px) {
+    nav a {
+        text-transform: uppercase;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 4%;
+    }
+}
+
+@media (max-width:800px) {
+    .icons {
+        display: inline-flex;
+    }
+
+    .icons #close-icon {
+        display: none;
+    }
+
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    #check:checked~.header>.logo {
+        display: none;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0vh;
+        background-color: rgb(24, 24, 24);
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: .3s ease;
+
+    }
+
+    nav a {
+        display: none;
+
+    }
+
+    #check:checked~nav a {
+        padding-top: 5%;
+        font-size: 150%;
+        display: block;
+    }
+
+    #check:checked~nav {
+        height: 88vh;
+    }
+
+    /* nav a {
+        padding-top: 5%;
+        font-size: 150%;
+    } */
+
+    nav a:first-child {
+        padding-top: 0%;
+    }
+
+    #check:checked~.header>.logo {
+        content: none;
+    }
+
+    .see-more {
+        margin-top: 15%;
+        transform: scale(0.9);
+    }
+
+}
+
+@media (max-width:800px){
+    .filter{
+        width: 100%;
+    }
+}

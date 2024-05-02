@@ -1,0 +1,161 @@
+<head>
+    <link rel="stylesheet" href="collection-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<section>
+
+    <div class="filter-menu">
+
+        <input type="button" value="Φίλτρα" class="filter" onclick="openNav()">
+        <input type="text" class="search" placeholder="Αναζητήστε κωδικό έργου...">
+
+    </div>
+
+    <form action="/collection/" class="collection-filter">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        <div class="radio" id="radioDiv">
+            <div class="main-radio">
+                <input type="radio" name="collection" value="mainInput" onclick="showInput('mainInput')">
+                <label for="main">Μόνιμη Έκθεση</label>
+            </div>
+            <div class="periodiko-radio">
+                <input type="radio" name="collection" value="periodiki" onclick="showInput('periodiki')">
+                <label for="periodiki">Περιοδικές Εκθέσεις</label>
+            </div>
+        </div>
+
+        <select name="xronologiki-periodos" class="hidden" id="mainInput" style="display:none;">
+            <option value="">Χρονολογική Περίοδος</option>
+            <option value="early">Earliest Paintings</option>
+            <option value="nuenen">Nuenen/Antwerp</option>
+            <option value="paris">Paris</option>
+            <option value="arles">Arles</option>
+            <option value="saint">Saint-Remy</option>
+            <option value="auvers">Auvers-sur-Oise</option>
+        </select>
+
+        <div class="hidden" id="periodiki" style="display:none;">
+            <select name="aithousa">
+                <option value="">Αίθουσα Διεξαγωγής</option>
+                <option value="one">1</option>
+                <option value="two">2</option>
+                <option value="three">3</option>
+            </select>
+
+            <input type="text" class="search" id="kallitexnis" placeholder="Αναζητήστε καλλιτέχνη...">
+        </div>
+
+        <div class="hidden" id="additionalPeriodiki" style="display:none;">
+            <label id="xronologiki" for="time">Χρονολογική περίοδος</label>
+            <div class="range">
+                <span class="txt">1900</span>
+                <input type="range" id="time" name="time" min="1900" max="2020">
+                <span class="txt">2020</span>
+            </div>
+            <span class="value">Επιλογή: <span id="value"></span></span>
+
+        </div>
+
+        <input type="button" value="Καθαρισμός Φίλτρων" class="clear-filter" onclick="clearFilter()">
+
+
+    </form>
+
+</section>
+
+    <section class="collection">
+        <img src="https://iiif.micr.io/qDCTO/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/yzksg/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/PoVJv/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/HDzja/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/fhXoU/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/AIlXy/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/WPTWb/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/YMakn/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/rzhJC/full/1800,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/rAERt/full/900,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/QHzII/full/600,/0/default.webp" alt="">
+        <img src="https://iiif.micr.io/gzrkN/full/600,/0/default.webp" alt="">
+    </section>
+
+    <script>
+        function showInput(inputId) {
+        let input = document.getElementById(inputId);
+
+        //Hide all input fields first
+        let inputs = document.querySelectorAll('.hidden');
+        inputs.forEach(function(inputElement) {
+           inputElement.style.display = 'none';
+        });
+
+        // Show the input field corresponding to the selected radio button
+        if (input) {
+           input.style.display = 'flex';
+        }
+
+        if(inputId==='mainInput'){
+            document.querySelector(".radio").style.gridArea='mb';
+        }
+
+
+        // Additional logic to show both elements with id 'periodiki'
+        if (inputId === 'periodiki') {
+            let additionalInput = document.getElementById('additionalPeriodiki');
+            if (additionalInput) {
+                additionalInput.style.display = 'flex';
+                document.querySelector(".radio").style.gridArea='ma';
+                document.querySelector(".radio").style.alignSelf='flex-end';
+            }
+        }
+    }
+
+    //display slider value
+
+    let slider=document.getElementById("time");
+    let output=document.getElementById("value");
+    output.innerHTML=slider.value;
+    slider.oninput=function(){
+        output.innerHTML=this.value;
+    }
+
+    //sidenav for filters
+
+    function openNav() {
+    document.querySelector(".collection-filter").style.display = 'grid';
+    document.querySelector(".collection-filter").style.width = '30%';
+    document.querySelector(".filter").style.display = 'none';
+    }
+
+    function closeNav() {
+     document.querySelector(".collection-filter").style.display = 'none';
+     document.querySelector(".filter").style.display = 'grid';
+     clearFilter()
+    }
+
+    function clearFilter() {
+        let radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(function(radioButton) {
+        radioButton.checked = false;
+
+        let inputs = document.querySelectorAll('.hidden');
+        inputs.forEach(function(inputElement) {
+        inputElement.style.display = 'none';
+        });
+
+        document.querySelector('select[name="xronologiki-periodos"]').value="";
+        document.querySelector('select[name="aithousa"]').value="";
+        document.querySelector('#kallitexnis').value="";
+        document.getElementById("time").value = 1960;
+        document.getElementById("value").innerHTML=1960;
+
+        document.querySelector(".radio").style.gridArea='mb';
+        document.querySelector(".radio").style.justifySelf='flex-start';
+        document.querySelector(".radio").style.alignSelf='flex-start';
+
+    });
+    }
+
+
+    </script>
