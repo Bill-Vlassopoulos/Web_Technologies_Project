@@ -1,0 +1,89 @@
+<head>
+    <link rel="stylesheet" href="tickets_style.css">
+</head>
+
+<section class="eisitiria">
+
+    <section class="tickets">
+
+        <section class="orario">
+            <h2>Ωράριο Λειτουργίας</h2>
+            <h4>Δευτέρα: 9:00-14:00 &amp; 17:00-21:00</h4>
+            <h4>Τρίτη: 9:00-14:00 &amp; 17:00-21:00</h4>
+            <h4>Τετάρτη: 9:00-14:00 &amp; 17:00-21:00</h4>
+            <h4>Πέμπτη: 9:00-14:00 &amp; 17:00-21:00</h4>
+            <h4>Παρασκευή: 9:00-14:00 &amp; 17:00-21:00</h4>
+            <h4>Σάββατο: Κλειστά</h4>
+            <h4>Κυριακή: Κλειστά</h4>
+            
+        </section>
+
+        <section class="kratisi">
+            <h2>Αγορά Εισιτηρίων</h2>
+
+            <form method="get" action="/buy-tickets" class="kratisi-eis">
+                <div class="plithos">
+                    <label for="name">Πλήθος Εισιτηρίων:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="5" placeholder="1" required>
+                </div>
+
+                <div class="imerominia">
+                    <label for="imerom">Ημερομηνία:</label>
+                    <input type="date" id="imerom" name="imerom" required>
+                </div>
+
+                <div class="hour">
+                    <label for="ora">Ώρα:</label>
+                    <select name="ora" id="ora" required>
+                    <option value="1">9:00-10:00</option>
+                    <option value="2">10:00-11:00</option>
+                    <option value="3">11:00-12:00</option>
+                    <option value="4">12:00-13:00</option>
+                    <option value="5">13:00-14:00</option>
+                    <option value="6">17:00-18:00</option>
+                    <option value="7">18:00-19:00</option>
+                    <option value="8">19:00-20:00</option>
+                    <option value="9">20:00-21:00</option>
+                    </select>
+                </div>
+
+                 <div class="ektheseis">
+                    <label for="ekthesi">Έκθεση:</label>
+                    <select name="ekthesi" id="ekthesi" required>
+                    <option value="main">Μόνιμη Έκθεση</option>
+                    <option value="periodiki1">Περιοδική Έκθεση/Αίθουσα 1</option>
+                    <option value="periodiki2">Περιοδική Έκθεση/Αίθουσα 2</option>
+                    <option value="periodiki3">Περιοδική Έκθεση/Αίθουσα 3</option>
+                    </select>
+                </div>
+
+                <input type="submit" id="elegxos" value="Έλεγχος Διαθεσιμότητας" onclick="buyTickets()">
+            </form>
+        </section>
+
+        
+    </section>
+
+    <img src="http://www.vggallery.com/painting/f_0526.jpg" title="Self-Portrait with Straw Hat">
+
+</section>
+
+<script>
+    buyTickets(){
+
+        // Get form data
+        const quantity = document.getElementById('quantity').value;
+        const date = document.getElementById('imerom').value;
+        const time = document.getElementById('ora').value;
+        const exhibition = document.getElementById('ekthesi').value;
+
+        // Perform validation if needed
+        
+        // Construct the URL for the next page
+        const nextPageUrl = `/buy-tickets?quantity=${quantity}&date=${date}&time=${time}&exhibition=${exhibition}`;
+
+        // Navigate to the next page
+        window.location.href = nextPageUrl;
+
+    }
+</script>

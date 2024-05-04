@@ -86,6 +86,27 @@ router.get("/collection", (req, res) => {
     res.render('collection', { layout: 'index' });
 });
 
+//Δημιουργώ διαδρομή για τα εισιτήρια
+router.get("/tickets", (req, res) => {
+    res.render('tickets', { layout: 'index' });
+});
+
+//Δημουργώ διαδρομή για την αγορά εισιτηρίων
+
+router.get("/buy-tickets", (req, res) => {
+    const quantity = parseInt(req.query.quantity); // Convert the quantity to an integer
+    const tickets = []; // Array to store the rendered multiple ticket templates
+
+    // Loop to render the multiple_tickets template based on the quantity
+    for (let i = 1; i < quantity; i++) {
+        const uniqueId = `_${i}`; // Generate a unique identifier for each ticket
+        tickets.push({ layout: 'buy-tickets', uniqueId: uniqueId });
+    }
+
+    // Render the buy-tickets template and pass the array of tickets
+    res.render('buy-tickets', { layout: 'index', tickets: tickets });
+});
+
 
 
 
