@@ -17,9 +17,9 @@ def main():
     # or webdriver.Chrome()
     driver.get("https://www.vangoghmuseum.nl/en/collection")
 
-    for _ in range(2):  # Adjust this value based on your needs
+    for _ in range(5):  # Adjust this value based on your needs
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(0)
+        time.sleep(2)
 
     soup = BeautifulSoup(driver.page_source, "lxml")
     divs = soup.find_all("div", class_="collection-art-object-list-item")
@@ -60,7 +60,9 @@ def scrape_image_info(art_id):
     else:
         description = "No description available"
 
-    list = soup.find("p", class_="art-object-page-content-creator-info")
+    list = soup.select_one(
+        ".art-object-page-content-section  p.art-object-page-content-creator-info"
+    )
     if list is not None:
         list = list.text.split(", ")
         artist = list[0]
@@ -71,16 +73,19 @@ def scrape_image_info(art_id):
         artist = "No artist available"
         date = "No date available"
 
-    list1 = soup.find("p", class_="art-object-page-content-details")
+    list1 = soup.select_one(
+        ".art-object-page-content-section p.art-object-page-content-details"
+    )
     if list1 is not None:
         list1 = list1.text.split(", ")
-        dimensions = list1[0]
-        art_type = list1[-1]
+        art_type = list1[0].strip()
+        dimensions = list1[-1].strip()
     else:
         dimensions = "No dimensions available"
         art_type = "No art type available"
 
     driver.quit()
+    print([artist, dimensions, date, art_type, description])
     return [artist, dimensions, date, art_type, description]
 
 

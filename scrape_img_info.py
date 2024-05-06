@@ -9,19 +9,20 @@ import numpy as np
 
 def main():
     driver = webdriver.Chrome()
-    driver.get(f"https://www.vangoghmuseum.nl/en/collection/s0005V1962")
+    driver.get(f"https://www.vangoghmuseum.nl/en/collection/d0386M1977")
     soup = BeautifulSoup(driver.page_source, "lxml")
-
     description = soup.select_one(
         "section.art-object-page-content-section div.markdown p"
     )
     if description is not None:
         description = description.text.strip()
-        print(description)
+        # print(description)
     else:
         description = "No description available"
 
-    list = soup.find("p", class_="art-object-page-content-creator-info")
+    list = soup.select_one(
+        ".art-object-page-content-section  p.art-object-page-content-creator-info"
+    )
     if list is not None:
         list = list.text.split(", ")
         artist = list[0]
@@ -32,16 +33,19 @@ def main():
         artist = "No artist available"
         date = "No date available"
 
-    list1 = soup.find("p", class_="art-object-page-content-details")
+    list1 = soup.select_one(
+        ".art-object-page-content-section p.art-object-page-content-details"
+    )
     if list1 is not None:
         list1 = list1.text.split(", ")
-        dimensions = list1[0]
-        art_type = list1[-1]
+        art_type = list1[0]
+        dimensions = list1[-1]
     else:
         dimensions = "No dimensions available"
         art_type = "No art type available"
 
     driver.quit()
+    print(artist, dimensions, date, art_type, description)
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ let tables = [`CREATE TABLE EPISKEPTIS (
         FOREIGN KEY (id_ekthesis) REFERENCES EKTHESI(id_ekthesis)
     );`,
     `CREATE TABLE ERGO (
-        arithmos_ergou INTEGER PRIMARY KEY,
+        arithmos_ergou CHAR(15) PRIMARY KEY,
         link TEXT,
         xronologia CHAR(20),
         diastaseis CHAR(20),
