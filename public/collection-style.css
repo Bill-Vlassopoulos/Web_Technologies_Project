@@ -470,3 +470,70 @@ select[name="aithousa"]{
         width: 100%;
     }
 }
+
+/*COLLECTION TEMPLATE*/
+
+.details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex:55%
+}
+
+
+.collection-temp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    margin: 3% auto;
+}
+
+.collection-temp h1{
+    color: white;
+    margin-bottom: 2%;
+    font-style: italic;
+}
+
+.collection-temp img{
+    max-height: 40em;
+    max-width: 50em;
+    object-fit: contain;
+    margin-bottom: 2%;
+}
+
+.collection-temp h4{
+    color: white;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.collection-temp .xronologia, .collection-temp .painter, .collection-temp .typos, .collection-temp .diastaseis{
+    font-family: inherit;
+    font-weight: 300;
+}
+
+.perigrafi{
+    font-size: 1.5em;
+    color: white;
+    flex:45%
+}
+
+.perigrafi p{
+    padding-left: 8%;
+}
+
+@media (max-width:1200px){
+
+    .collection-temp{
+        flex-direction: column;
+    }
+
+    .perigrafi{
+        margin-top: 10%;
+        width: 100%;
+    }
+
+}

@@ -34,6 +34,18 @@ app.get('/biography/bio_style.css', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'bio_style.css'));
 });
 
+app.get('/collection/style.css', (req, res) => {
+    res.set('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, 'public', 'style.css'));
+});
+
+
+app.get('/collection/collection-style.css', (req, res) => {
+    res.set('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, 'public', 'collection-style.css'));
+});
+
+
 
 //Open Main Page
 router.get('/', (req, res) => {
@@ -106,6 +118,17 @@ router.get("/buy-tickets", (req, res) => {
     // Render the buy-tickets template and pass the array of tickets
     res.render('buy-tickets', { layout: 'index', tickets: tickets });
 });
+
+//Δημιουργώ διαδρομή για τις λεπτομέρειες της συλλογής
+router.get("/collection/leptomereies", (req, res) => {
+    res.render('collection-template', { layout: 'index' });
+});
+
+//Δημιουργώ διαδρομή για τις εκθέσεις
+router.get("/exhibitions", (req, res) => {
+    res.render('ektheseis', { layout: 'index' });
+});
+
 
 
 

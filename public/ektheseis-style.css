@@ -1,0 +1,68 @@
+body{
+    background-color: black;
+}
+
+:root{
+    font-size: 10px;
+}
+
+.protes-aithouses{
+    display: flex;
+    flex-direction: row;
+}
+
+.ektheseis{
+    margin:3% auto;
+    width: 90%;
+}
+
+.ektheseis h1{
+    color: white;
+    padding-bottom: 0.2em;
+    border-bottom: 0.1em solid #dc614c;
+    font-style: italic;
+}
+
+.aithousa{
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aithousa h3{
+    color: white;
+    margin-bottom: 2%;
+}
+
+.aithousa img{
+    max-width: 30em;
+    max-height: 40em;
+    object-fit: contain;
+    margin-bottom: 2%;
+}
+
+.aithousa h5{
+    color: white;
+    font-style: italic;
+}
+
+.aithousa .imerominia,.aithousa .arithmos-aithousas{
+    font-weight: 200;
+}
+
+#perigrafi-ekthesis{
+    margin-top: 1%;
+    text-decoration: underline;
+}
+
+.aithousa p{
+    color: white;
+    width: 60%;
+    font-size: 1.2em;
+}
+
+#prosexws{
+    margin-top: 3%;
+}
