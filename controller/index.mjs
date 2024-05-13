@@ -28,6 +28,11 @@ app.set('view engine', 'hbs');
 // Δηλώνουμε πως ο φάκελος "public" θα περιέχει τα στατικά αρχεία
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+});
+
 
 app.use(router);
 
@@ -47,17 +52,6 @@ app.get('/collection/collection-style.css', (req, res) => {
     res.set('Content-Type', 'text/css');
     res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
 });
-
-app.get('/collection/:arithmos_ergou/style.css', (req, res) => {
-    res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, '../public', 'style.css'));
-});
-
-app.get('/collection/:arithmos_ergou/collection-style.css', (req, res) => {
-    res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
-});
-
 
 
 
@@ -113,10 +107,36 @@ router.get("/collection", (req, res) => {
     res.render('collection', { layout: 'index', links: links });
 });
 
+
+// Serve style.css for collection/:arithmos_ergou route
+router.get("/collection/:arithmos_ergou/style.css", (req, res) => {
+    const arithmos_ergou = req.params.arithmos_ergou;
+    const cssFilePath = path.join(__dirname, `../public/collection/${arithmos_ergou}/style.css`);
+    res.sendFile(cssFilePath);
+});
+
+// Serve collection-style.css for collection/:arithmos_ergou route
+router.get("/collection/:arithmos_ergou/collection-style.css", (req, res) => {
+    const arithmos_ergou = req.params.arithmos_ergou;
+    const cssFilePath = path.join(__dirname, `../public/collection/${arithmos_ergou}/collection-style.css`);
+    res.sendFile(cssFilePath);
+});
+
+
+//Δημιουργώ διαδρομή για τις λεπτομέρειες της συλλογής
+router.get("/collection/:arithmos_ergou", (req, res) => {
+    let ergo_info = model.getErgo(req.params.arithmos_ergou);
+
+    res.render('collection-template', { layout: 'index', info: ergo_info });
+});
+
+
 //Δημιουργώ διαδρομή για τα εισιτήρια
 router.get("/tickets", (req, res) => {
     res.render('tickets', { layout: 'index' });
 });
+
+
 
 //Δημουργώ διαδρομή για την αγορά εισιτηρίων
 
@@ -134,12 +154,6 @@ router.get("/buy-tickets", (req, res) => {
     res.render('buy-tickets', { layout: 'index', tickets: tickets });
 });
 
-//Δημιουργώ διαδρομή για τις λεπτομέρειες της συλλογής
-router.get("/collection/:arithmos_ergou", (req, res) => {
-    let ergo_info = model.getErgo(req.params.arithmos_ergou);
-
-    res.render('collection-template', { layout: 'index', info: ergo_info });
-});
 
 //Δημιουργώ διαδρομή για τις εκθέσεις
 router.get("/exhibitions", (req, res) => {
