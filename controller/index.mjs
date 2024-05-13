@@ -3,6 +3,9 @@ import { dirname } from 'path';
 import express from 'express'
 import { engine } from 'express-handlebars'
 import path from 'path'
+import { info } from 'console';
+
+const model = await import('../model/queries.mjs')
 
 const app = express()
 const port = process.env.PORT || '3000';
@@ -15,43 +18,54 @@ const __dirname = dirname(__filename);
 app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'index', // Specify the default layout template
-    layoutsDir: path.join(__dirname, 'views/layouts'), // Specify the directory for layout templates
-    partialsDir: path.join(__dirname, 'views/partials')//Specify the directory for navbar templates
- }));
+    layoutsDir: path.join(__dirname, '../views/layouts'), // Specify the directory for layout templates
+    partialsDir: path.join(__dirname, '../views/partials')//Specify the directory for navbar templates
+}));
 
 // Ορίζουμε πως η 'hbs' θα είναι η μηχανή template (δηλ. θα ενεργοποιείται με την res.render()) 
 app.set('view engine', 'hbs');
 
 // Δηλώνουμε πως ο φάκελος "public" θα περιέχει τα στατικά αρχεία
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 
-app.use(router); 
+app.use(router);
 
 //Φτιάχνω το Content-Type γιατί το Chrome έχει stict MIME checking
 app.get('/biography/bio_style.css', (req, res) => {
     res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, 'public', 'bio_style.css'));
+    res.sendFile(path.join(__dirname, '../public', 'bio_style.css'));
 });
 
 app.get('/collection/style.css', (req, res) => {
     res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, 'public', 'style.css'));
+    res.sendFile(path.join(__dirname, '../public', 'style.css'));
 });
 
 
 app.get('/collection/collection-style.css', (req, res) => {
     res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, 'public', 'collection-style.css'));
+    res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
 });
+
+app.get('/collection/:arithmos_ergou/style.css', (req, res) => {
+    res.set('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, '../public', 'style.css'));
+});
+
+app.get('/collection/:arithmos_ergou/collection-style.css', (req, res) => {
+    res.set('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
+});
+
 
 
 
 //Open Main Page
 router.get('/', (req, res) => {
-    res.render('main', {layout : 'index'});
-    });
-    
+    res.render('main', { layout: 'index' });
+});
+
 
 //Δημιουργώ διαδρομή για την βιογραφία
 router.get('/biography', (req, res) => {
@@ -95,7 +109,8 @@ router.get("/communication", (req, res) => {
 
 //Δημιουργώ διαδρομή για την συλλογή
 router.get("/collection", (req, res) => {
-    res.render('collection', { layout: 'index' });
+    let links = model.getAllErga();
+    res.render('collection', { layout: 'index', links: links });
 });
 
 //Δημιουργώ διαδρομή για τα εισιτήρια
@@ -120,8 +135,10 @@ router.get("/buy-tickets", (req, res) => {
 });
 
 //Δημιουργώ διαδρομή για τις λεπτομέρειες της συλλογής
-router.get("/collection/leptomereies", (req, res) => {
-    res.render('collection-template', { layout: 'index' });
+router.get("/collection/:arithmos_ergou", (req, res) => {
+    let ergo_info = model.getErgo(req.params.arithmos_ergou);
+
+    res.render('collection-template', { layout: 'index', info: ergo_info });
 });
 
 //Δημιουργώ διαδρομή για τις εκθέσεις

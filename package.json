@@ -4,12 +4,15 @@
   "description": "Vincent Van Gogh Gallery",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node ./node_modules/nodemon/bin/nodemon.js ./controller/index.mjs"
   },
   "author": "Georgia Vasilis",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^10.0.0",
     "express": "^4.19.2",
-    "express-handlebars": "^7.1.2"
+    "express-handlebars": "^7.1.2",
+    "nodemon": "^3.1.0"
   }
 }

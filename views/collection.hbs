@@ -14,7 +14,7 @@
 
     <form action="/collection/" class="collection-filter">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
+
         <div class="radio" id="radioDiv">
             <div class="main-radio">
                 <input type="radio" name="collection" value="mainInput" onclick="showInput('mainInput')">
@@ -65,38 +65,29 @@
 
 </section>
 
-    <section class="collection">
-        <a href="/collection/leptomereies"><img src="https://iiif.micr.io/qDCTO/full/900,/0/default.webp" alt=""></a>
-        <img src="https://iiif.micr.io/yzksg/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/PoVJv/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/HDzja/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/fhXoU/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/AIlXy/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/WPTWb/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/YMakn/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/rzhJC/full/1800,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/rAERt/full/900,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/QHzII/full/600,/0/default.webp" alt="">
-        <img src="https://iiif.micr.io/gzrkN/full/600,/0/default.webp" alt="">
-    </section>
+<section class="collection">
+    {{#each links}}
+    <a href="/collection/{{this.arithmos_ergou}}"><img src="{{this.link}}" alt=""></a>
+    {{/each}}
+</section>
 
-    <script>
-        function showInput(inputId) {
+<script>
+    function showInput(inputId) {
         let input = document.getElementById(inputId);
 
         //Hide all input fields first
         let inputs = document.querySelectorAll('.hidden');
-        inputs.forEach(function(inputElement) {
-           inputElement.style.display = 'none';
+        inputs.forEach(function (inputElement) {
+            inputElement.style.display = 'none';
         });
 
         // Show the input field corresponding to the selected radio button
         if (input) {
-           input.style.display = 'flex';
+            input.style.display = 'flex';
         }
 
-        if(inputId==='mainInput'){
-            document.querySelector(".radio").style.gridArea='mb';
+        if (inputId === 'mainInput') {
+            document.querySelector(".radio").style.gridArea = 'mb';
         }
 
 
@@ -105,56 +96,56 @@
             let additionalInput = document.getElementById('additionalPeriodiki');
             if (additionalInput) {
                 additionalInput.style.display = 'flex';
-                document.querySelector(".radio").style.gridArea='ma';
-                document.querySelector(".radio").style.alignSelf='flex-end';
+                document.querySelector(".radio").style.gridArea = 'ma';
+                document.querySelector(".radio").style.alignSelf = 'flex-end';
             }
         }
     }
 
     //display slider value
 
-    let slider=document.getElementById("time");
-    let output=document.getElementById("value");
-    output.innerHTML=slider.value;
-    slider.oninput=function(){
-        output.innerHTML=this.value;
+    let slider = document.getElementById("time");
+    let output = document.getElementById("value");
+    output.innerHTML = slider.value;
+    slider.oninput = function () {
+        output.innerHTML = this.value;
     }
 
     //sidenav for filters
 
     function openNav() {
-    document.querySelector(".collection-filter").style.display = 'grid';
-    document.querySelector(".filter").style.display = 'none';
+        document.querySelector(".collection-filter").style.display = 'grid';
+        document.querySelector(".filter").style.display = 'none';
     }
 
     function closeNav() {
-     document.querySelector(".collection-filter").style.display = 'none';
-     document.querySelector(".filter").style.display = 'grid';
-     clearFilter()
+        document.querySelector(".collection-filter").style.display = 'none';
+        document.querySelector(".filter").style.display = 'grid';
+        clearFilter()
     }
 
     function clearFilter() {
         let radioButtons = document.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach(function(radioButton) {
-        radioButton.checked = false;
+        radioButtons.forEach(function (radioButton) {
+            radioButton.checked = false;
 
-        let inputs = document.querySelectorAll('.hidden');
-        inputs.forEach(function(inputElement) {
-        inputElement.style.display = 'none';
+            let inputs = document.querySelectorAll('.hidden');
+            inputs.forEach(function (inputElement) {
+                inputElement.style.display = 'none';
+            });
+
+            document.querySelector('select[name="xronologiki-periodos"]').value = "";
+            document.querySelector('select[name="aithousa"]').value = "";
+            document.querySelector('#kallitexnis').value = "";
+            document.getElementById("time").value = 1960;
+            document.getElementById("value").innerHTML = 1960;
+
+            document.querySelector(".radio").style.gridArea = 'mb';
+            document.querySelector(".radio").style.justifySelf = 'flex-start';
+            document.querySelector(".radio").style.alignSelf = 'flex-start';
+
         });
-
-        document.querySelector('select[name="xronologiki-periodos"]').value="";
-        document.querySelector('select[name="aithousa"]').value="";
-        document.querySelector('#kallitexnis').value="";
-        document.getElementById("time").value = 1960;
-        document.getElementById("value").innerHTML=1960;
-
-        document.querySelector(".radio").style.gridArea='mb';
-        document.querySelector(".radio").style.justifySelf='flex-start';
-        document.querySelector(".radio").style.alignSelf='flex-start';
-
-    });
     }
 
 
-    </script>
+</script>

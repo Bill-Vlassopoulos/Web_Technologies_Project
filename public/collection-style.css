@@ -14,7 +14,7 @@
 }
 
 body {
-     background-color: rgb(35, 35, 35); 
+    background-color: rgb(35, 35, 35);
 }
 
 
@@ -126,21 +126,25 @@ nav a:hover::after {
 
 }
 
+.collection a {
+    margin: auto;
+}
+
 .collection img:hover {
     transform: scale(1.1);
 
 }
 
-  .collection-filter {
+.collection-filter {
     display: none;
-    grid-template:1fr 1fr 1fr 1fr/2fr 1fr;
+    grid-template: 1fr 1fr 1fr 1fr/2fr 1fr;
     grid-template-areas: "ma me"
-                         "mb mf"
-                         "mc mg"
-                         "md mh";
-    justify-content:center;
-    align-items:center;
-    font-family:Arial, Helvetica, sans-serif;
+        "mb mf"
+        "mc mg"
+        "md mh";
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
     position: fixed;
     background-color: black;
     height: 100%;
@@ -153,20 +157,20 @@ nav a:hover::after {
 
 }
 
-#periodiki{
+#periodiki {
     display: flex;
-    flex-direction:column-reverse;
+    flex-direction: column-reverse;
 }
 
-#kallitexnis{
+#kallitexnis {
     margin-bottom: 10%;
     width: 70%;
     font-size: 1.5em;
     margin-left: 7%;
 }
 
-.closebtn{
-    color:rgb(187, 180, 180);
+.closebtn {
+    color: rgb(187, 180, 180);
     text-decoration: none;
     font-size: 4em;
     grid-area: me;
@@ -174,13 +178,13 @@ nav a:hover::after {
     align-self: flex-end;
 }
 
-.clear-filter{
-    grid-area:md;
+.clear-filter {
+    grid-area: md;
     width: 50%;
     margin-left: 10%;
     font-size: 1.5em;
     height: 4vh;
-    padding-left:2%;
+    padding-left: 2%;
     padding-right: 2%;
     background-color: black;
     color: white;
@@ -190,14 +194,15 @@ nav a:hover::after {
 
 
 
-.main-radio,.periodiko-radio{
+.main-radio,
+.periodiko-radio {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-bottom: 2%;
 }
 
-.radio{
+.radio {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -219,20 +224,20 @@ input[type="text"] {
     width: 40%;
     height: 2.5em;
     background: none;
-    border: 0.1em solid  whitesmoke;
+    border: 0.1em solid whitesmoke;
     color: white;
     font-size: 1.8rem;
     padding-left: 0.5em;
-    grid-area:mk;
+    grid-area: mk;
     justify-self: flex-end;
 
 }
 
-input[type="text"]::placeholder{
+input[type="text"]::placeholder {
     color: white;
 }
 
-form select{
+form select {
     height: 3.5em;
     font-size: 1.5em;
     width: 70%;
@@ -241,23 +246,23 @@ form select{
     border: 0.1em solid whitesmoke;
 }
 
-select[name="xronologiki-periodos"]{
-    grid-area:mc;
+select[name="xronologiki-periodos"] {
+    grid-area: mc;
     margin-left: 7%;
 }
 
-select[name="aithousa"]{
+select[name="aithousa"] {
     grid-area: mb;
     margin-left: 7%;
 }
 
-.txt{
-    color:white;
+.txt {
+    color: white;
     font-size: 1.5em;
-    padding:0 1em;
+    padding: 0 1em;
 }
 
-#additionalPeriodiki{
+#additionalPeriodiki {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -265,35 +270,35 @@ select[name="aithousa"]{
     grid-area: mc;
 }
 
-#xronologiki{
+#xronologiki {
     width: 80%;
     margin-bottom: 0.5em;
     font-weight: 700;
 }
 
-.value{
+.value {
     color: #d3d3d3;
     font-size: 1.5em;
     font-style: italic;
 }
 
-.filter{
+.filter {
     height: 7vh;
     width: 15%;
     font-size: 2em;
-    background-color:rgb(35, 35, 35) ;
-    color:#dc614c;
+    background-color: rgb(35, 35, 35);
+    color: #dc614c;
     border: 0.1em solid #dc614c;
     border-radius: 20%;
     justify-self: flex-start;
 }
 
-.filter-menu{
+.filter-menu {
     display: grid;
     grid-template-areas: "mm mk";
     align-items: center;
     width: 75%;
-    margin:3% auto;
+    margin: 3% auto;
 }
 
 
@@ -381,49 +386,55 @@ select[name="aithousa"]{
 
 /*collection filter*/
 
-@media (max-width:680px){
-    .filter{
+@media (max-width:680px) {
+    .filter {
         width: 80%;
     }
 
-    input[type="text"]{
+    input[type="text"] {
         width: 80%;
     }
 
-    .filter-menu{
+    .filter-menu {
         width: 90%;
     }
 
-    .collection-filter{
+    .collection-filter {
         width: 50%;
     }
 
-    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+    #kallitexnis,
+    .clear-filter,
+    form select,
+    #additionalPeriodiki {
         width: 100%;
     }
 
 
 }
 
-@media (min-width:681px) and (max-width:900px){
+@media (min-width:681px) and (max-width:900px) {
 
-    .filter{
+    .filter {
         width: 50%;
     }
 
-    input[type="text"]{
+    input[type="text"] {
         width: 70%;
     }
 
-    .filter-menu{
+    .filter-menu {
         width: 90%;
     }
 
-    .collection-filter{
+    .collection-filter {
         width: 40%;
     }
 
-    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+    #kallitexnis,
+    .clear-filter,
+    form select,
+    #additionalPeriodiki {
         width: 100%;
     }
 
@@ -431,59 +442,65 @@ select[name="aithousa"]{
 
 }
 
-@media (min-width:901px) and (max-width:1100px){
+@media (min-width:901px) and (max-width:1100px) {
 
-    .filter{
+    .filter {
         width: 30%;
     }
 
-    input[type="text"]{
+    input[type="text"] {
         width: 60%;
     }
 
-    .filter-menu{
+    .filter-menu {
         width: 90%;
     }
 
-    .collection-filter{
+    .collection-filter {
         width: 40%;
     }
 
-    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+    #kallitexnis,
+    .clear-filter,
+    form select,
+    #additionalPeriodiki {
         width: 100%;
     }
 
 
 }
 
-@media (min-width:1101px) and (max-width:1400px){
+@media (min-width:1101px) and (max-width:1400px) {
 
-    .filter{
+    .filter {
         width: 25%;
     }
 
-    input[type="text"]{
+    input[type="text"] {
         width: 60%;
     }
 
-    #kallitexnis,.clear-filter,form select,#additionalPeriodiki{
+    #kallitexnis,
+    .clear-filter,
+    form select,
+    #additionalPeriodiki {
         width: 100%;
     }
 }
 
 /*COLLECTION TEMPLATE*/
 
-.details{
+.details {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    flex:55%
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex: 55%
 }
 
 
-.collection-temp{
+.collection-temp {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -491,47 +508,50 @@ select[name="aithousa"]{
     margin: 3% auto;
 }
 
-.collection-temp h1{
+.collection-temp h1 {
     color: white;
     margin-bottom: 2%;
     font-style: italic;
 }
 
-.collection-temp img{
+.collection-temp img {
     max-height: 40em;
     max-width: 50em;
     object-fit: contain;
     margin-bottom: 2%;
 }
 
-.collection-temp h4{
+.collection-temp h4 {
     color: white;
     font-family: inherit;
     font-weight: 600;
 }
 
-.collection-temp .xronologia, .collection-temp .painter, .collection-temp .typos, .collection-temp .diastaseis{
+.collection-temp .xronologia,
+.collection-temp .painter,
+.collection-temp .typos,
+.collection-temp .diastaseis {
     font-family: inherit;
     font-weight: 300;
 }
 
-.perigrafi{
+.perigrafi {
     font-size: 1.5em;
     color: white;
-    flex:45%
+    flex: 45%
 }
 
-.perigrafi p{
+.perigrafi p {
     padding-left: 8%;
 }
 
-@media (max-width:1200px){
+@media (max-width:1200px) {
 
-    .collection-temp{
+    .collection-temp {
         flex-direction: column;
     }
 
-    .perigrafi{
+    .perigrafi {
         margin-top: 10%;
         width: 100%;
     }
