@@ -1,4 +1,4 @@
-import requests
+# import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
@@ -17,7 +17,7 @@ def main():
     # or webdriver.Chrome()
     driver.get("https://www.vangoghmuseum.nl/en/collection")
 
-    for _ in range(5):  # Adjust this value based on your needs
+    for _ in range(8):  # Adjust this value based on your needs
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(2)
 
