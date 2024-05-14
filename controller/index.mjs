@@ -43,20 +43,20 @@ app.get('/collection/style.css', (req, res) => {
 });
 
 
-app.get('/collection/collection-style.css', (req, res) => {
-    res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
-});
+// app.get('/collection/collection-style.css', (req, res) => {
+//     res.set('Content-Type', 'text/css');
+//     res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
+// });
 
-app.get('/collection/:arithmos_ergou/style.css', (req, res) => {
-    res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, '../public', 'style.css'));
-});
+// app.get('/collection/:arithmos_ergou/style.css', (req, res) => {
+//     res.set('Content-Type', 'text/css');
+//     res.sendFile(path.join(__dirname, '../public', 'style.css'));
+// });
 
-app.get('/collection/:arithmos_ergou/collection-style.css', (req, res) => {
-    res.set('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
-});
+// app.get('/collection/:arithmos_ergou/collection-style.css', (req, res) => {
+//     res.set('Content-Type', 'text/css');
+//     res.sendFile(path.join(__dirname, '../public', 'collection-style.css'));
+// });
 
 
 
