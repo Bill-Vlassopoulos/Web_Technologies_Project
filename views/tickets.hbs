@@ -11,16 +11,25 @@
             <h4>Παρασκευή: 9:00-15:00 &amp; 17:00-21:00</h4>
             <h4>Σάββατο: Κλειστά</h4>
             <h4>Κυριακή: Κλειστά</h4>
+            <h4 class="timi">Κόστος απλής εισόδου: 10 ευρώ(ολόκληρο).</h4>
+            <h4 class="timi2">Επιπλέον χρέωση για είσοδο σε περιοδική έκθεση: 4 ευρώ/αίθουσα.</h4>
 
         </section>
 
-        <section class="kratisi">
+        <img src="http://www.vggallery.com/painting/f_0526.jpg" title="Self-Portrait with Straw Hat">
+
+    </section>
+
+    <section class="tickets">
+
+
+        <div class="kratisi">
             <h2>Αγορά Εισιτηρίων</h2>
 
             <form method="get" action="/buy-tickets" class="kratisi-eis">
                 <div class="plithos">
-                    <label for="name">Πλήθος Εισιτηρίων:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="5" placeholder="1" required>
+                    <label for="quantity">Πλήθος Εισιτηρίων:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" required>
                 </div>
 
                 <input type="button" id="elegxos" value="Επεξεργασία Εισιτηρίων" onclick="editTickets()">
@@ -32,12 +41,12 @@
                     <h2>Εισιτήριο #1</h2>
                     <div class="imerominia">
                         <label for="imerom1">Ημερομηνία:</label>
-                        <input type="date" id="imerom1" name="imerom1" required>
+                        <input type="date" id="imerom1" name="imerom1" class="imerom" required>
                     </div>
 
                     <div class="hour">
                         <label for="ora1">Ώρα:</label>
-                        <select name="ora1" id="ora1" required>
+                        <select name="ora1" id="ora1" class="ora" required>
                             <option value="1">9:00-11:00</option>
                             <option value="2">11:00-13:00</option>
                             <option value="3">13:00-15:00</option>
@@ -58,7 +67,7 @@
                     </div>
 
                     <div class="ektheseis">
-                        <label for="ekthesi1">Έκθεση</label>
+                        <label>Έκθεση</label>
                         <div>
                             {{!-- <label for="ekthesi#1">Περιοδική Εκθεση 1</label>
                             <input type="checkbox" name="ekthesi#1" id="ekthesi#1"> --}}
@@ -77,14 +86,36 @@
                     </div>
                 </form>
             </div>
-        </section>
+        </div>
 
+        <div class="episkeptis">
+            <h2>Στοιχεία Επισκέπτη</h2>
+            <form method="get" action="/tickets" class="agora-ticket">
+                <div class="name">
+                    <label for="onoma">Ονοματεπώνυμο</label>
+                    <input type="text" id="onoma" name="onoma" placeholder="Oνοματεπώνυμo.." required>
+                </div>
+
+                <div class="email">
+                    <label for="mail">Email</label>
+                    <input type="email" id="mail" name="mail" placeholder="example@gmail.com" required>
+                </div>
+
+                <div class="phone-number">
+                    <label for="phone">Τηλέφωνο</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}" required>
+                </div>
+            </form>
+
+             <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας email
+            κατά την είσοδό σας στην πινακοθήκη.Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι απαραίτητη 
+            η υπόδειξη της φοιτητικής σας ταυτότητας. </p>
+        </div>
+        
+    </section>
 
     </section>
 
-    <img src="http://www.vggallery.com/painting/f_0526.jpg" title="Self-Portrait with Straw Hat">
-
-</section>
 
 <script>
 
@@ -107,6 +138,8 @@
             ticket.parentNode.appendChild(clone);
         }
 
+        let kratisi = document.querySelector(".episkeptis");
+        kratisi.style.display='flex';
         let tickets = document.querySelectorAll('.ksechoristo-ticket');
         tickets.forEach(ticket => {
             ticket.style.display = 'flex';

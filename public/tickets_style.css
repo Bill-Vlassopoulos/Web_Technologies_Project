@@ -10,7 +10,7 @@ body {
 
 .eisitiria {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 
 }
 
@@ -25,16 +25,16 @@ img {
 
 .tickets {
     display: flex;
-    margin: 3% 0;
-    width: 55%;
-    flex-direction: column;
+    width: 90%;
+    margin: 4% auto;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
 
 
 .kratisi h2,
-.orario h2 {
+.orario h2,.episkeptis h2 {
     color: white;
     font-weight: 200;
     font-style: italic;
@@ -44,11 +44,34 @@ img {
 }
 
 .kratisi {
-    width: 80%;
+    width: 50%;
 }
 
+.episkeptis{
+    width: 50%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.2%;
+} 
+
+.episkeptis h2{
+    align-self: flex-start;
+    margin-left: 25%;
+    border-bottom: none;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.episkeptis p{
+    width: 50%;
+    margin-top: 2%;
+}
+
+
 .orario {
-    width: 80%;
+    width: 50%;
     display: grid;
     grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr/1fr;
     height: 50vh;
@@ -57,6 +80,14 @@ img {
 
 .orario h4 {
     color: white;
+}
+
+.orario h4.timi{
+    margin-top: 5%;
+}
+
+.orario h4.timi,.orario h4.timi2{
+    font-weight: 300;
 }
 
 .kratisi-eis {
@@ -82,8 +113,8 @@ img {
 }
 
 .plithos #quantity,
-.imerominia #imerom,
-.hour #ora,
+.imerom,
+.ora,
 .ektheseis #ekthesi {
     background-color: black;
     color: white;
@@ -95,12 +126,12 @@ img {
     padding-left: 40%;
 }
 
-.imerominia #imerom::-webkit-calendar-picker-indicator {
+.imerom::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
 #elegxos {
-    width: 50%;
+    width: 60%;
     font-size: 1.5em;
     background-color: black;
     color: white;
@@ -112,7 +143,7 @@ img {
 
 }
 
-.ksechoristo-ticket {
+.ksechoristo-ticket{
     display: none;
     flex-direction: column;
     flex-wrap: wrap;
@@ -124,9 +155,19 @@ img {
     width: 80%;
 }
 
-.ksechoristo-ticket div {
-    width: 70%;
+.ektheseis p{
+    font-size: 1em;
+    margin-left: 1.5%;
+}
+
+.ksechoristo-ticket div, .episkeptis div {
+    width: 90%;
     margin: 3% 0%;
+}
+
+.final_cost {
+    margin-top: 2%;
+
 }
 
 .sticky-button {
@@ -141,7 +182,7 @@ img {
 
 .sticky-button input[type="button"] {
     color: white;
-    background-color: orange;
+    background-color: #dc614c;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -151,6 +192,10 @@ img {
 
 }
 
+.ektheseis h4{
+    color: white;
+}
+
 @media screen and (max-width: 800px) {
     img {
         height: 40vh;
@@ -158,20 +203,59 @@ img {
         margin-top: 12%;
     }
 
-    #elegxos {
+    #elegxos{
         width: 100%;
     }
-}
 
-@media screen and (min-width: 801px) and (max-width: 1150px) {
-    #elegxos {
+    .kratisi-eis {
+        display: grid;
+        grid-template: 1fr 1fr/1fr;
+    }
+
+    .ksechoristo-ticket{
+        margin-top: 15%;
         width: 100%;
     }
+
+    .ektheseis div{
+        width: 100% !important;
+    }
+
+    .episkeptis{
+        margin-top: 12%;
+        margin-left: 10%;
+    }
+
+    .episkeptis div{
+        width: 100%;
+    }
+
+    .episkeptis p{
+        width: 100%;
+    }
+
 }
 
-@media screen and (min-width: 1151px) and (max-width: 1400px) {
-    #elegxos {
-        width: 95%;
+@media screen and (min-width: 801px) and (max-width: 1100px) {
+    .episkeptis p{
+        width: 100%;
+    }
+
+    .kratisi-eis {
+        display: grid;
+        grid-template: 1fr 1fr/1fr;
+    }
+
+    .ektheseis div{
+        width: 100% !important;
+    }
+
+    .episkeptis div{
+        width: 100%;
+    }
+
+    #elegxos{
+        width: 60%;
     }
 }
 
@@ -226,17 +310,10 @@ img {
     background-color: black;
     color: white;
     border: 0.01em solid white;
-    width: 50%;
+     width: 100%;
     padding: 0.1em;
 }
 
-.ilikia #age {
-    width: 8%;
-}
-
-.ilikia #age::placeholder {
-    padding-left: 25%;
-}
 
 .eidiki #katigoria {
     width: 60%;
@@ -304,13 +381,6 @@ img {
     font-style: italic;
 }
 
-.final_cost {
-    margin-top: 2%;
-    border: 0.1em solid white;
-    width: 40%;
-    padding: 0.1em;
-}
-
 p {
     font-size: 1.2em;
     color: white;
@@ -320,13 +390,6 @@ p {
 @media screen and (max-width: 650px) {
     .agora-ticket {
         width: 100%;
-    }
-
-    .name #onoma,
-    .email #mail,
-    .phone-number #phone,
-    .name input[type="text"] {
-        width: 70%;
     }
 
     .eidiki #katigoria,
