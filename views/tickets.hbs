@@ -1,19 +1,17 @@
-
-
 <section class="eisitiria">
 
     <section class="tickets">
 
         <section class="orario">
             <h2>Ωράριο Λειτουργίας</h2>
-            <h4>Δευτέρα: 9:00-14:00 &amp; 17:00-21:00</h4>
-            <h4>Τρίτη: 9:00-14:00 &amp; 17:00-21:00</h4>
-            <h4>Τετάρτη: 9:00-14:00 &amp; 17:00-21:00</h4>
-            <h4>Πέμπτη: 9:00-14:00 &amp; 17:00-21:00</h4>
-            <h4>Παρασκευή: 9:00-14:00 &amp; 17:00-21:00</h4>
+            <h4>Δευτέρα: 9:00-15:00 &amp; 17:00-21:00</h4>
+            <h4>Τρίτη: 9:00-15:00 &amp; 17:00-21:00</h4>
+            <h4>Τετάρτη: 9:00-15:00 &amp; 17:00-21:00</h4>
+            <h4>Πέμπτη: 9:00-15:00 &amp; 17:00-21:00</h4>
+            <h4>Παρασκευή: 9:00-15:00 &amp; 17:00-21:00</h4>
             <h4>Σάββατο: Κλειστά</h4>
             <h4>Κυριακή: Κλειστά</h4>
-            
+
         </section>
 
         <section class="kratisi">
@@ -25,41 +23,63 @@
                     <input type="number" id="quantity" name="quantity" min="1" max="5" placeholder="1" required>
                 </div>
 
-                <div class="imerominia">
-                    <label for="imerom">Ημερομηνία:</label>
-                    <input type="date" id="imerom" name="imerom" required>
-                </div>
-
-                <div class="hour">
-                    <label for="ora">Ώρα:</label>
-                    <select name="ora" id="ora" required>
-                    <option value="1">9:00-10:00</option>
-                    <option value="2">10:00-11:00</option>
-                    <option value="3">11:00-12:00</option>
-                    <option value="4">12:00-13:00</option>
-                    <option value="5">13:00-14:00</option>
-                    <option value="6">17:00-18:00</option>
-                    <option value="7">18:00-19:00</option>
-                    <option value="8">19:00-20:00</option>
-                    <option value="9">20:00-21:00</option>
-                    </select>
-                </div>
-
-                 <div class="ektheseis">
-                    <label for="ekthesi">Έκθεση:</label>
-                    <select name="ekthesi" id="ekthesi" required>
-                    <option value="main">Μόνιμη Έκθεση</option>
-                    <option value="periodiki1">Περιοδική Έκθεση/Αίθουσα 1</option>
-                    <option value="periodiki2">Περιοδική Έκθεση/Αίθουσα 2</option>
-                    <option value="periodiki3">Περιοδική Έκθεση/Αίθουσα 3</option>
-                    </select>
-                </div>
-
-                <input type="submit" id="elegxos" value="Έλεγχος Διαθεσιμότητας" onclick="buyTickets()">
+                <input type="button" id="elegxos" value="Επεξεργασία Εισιτηρίων" onclick="editTickets()">
             </form>
+
+
+            <div class="ksechoristo-ticket">
+                <form method="post">
+                    <h2>Εισιτήριο #1</h2>
+                    <div class="imerominia">
+                        <label for="imerom1">Ημερομηνία:</label>
+                        <input type="date" id="imerom1" name="imerom1" required>
+                    </div>
+
+                    <div class="hour">
+                        <label for="ora1">Ώρα:</label>
+                        <select name="ora1" id="ora1" required>
+                            <option value="1">9:00-11:00</option>
+                            <option value="2">11:00-13:00</option>
+                            <option value="3">13:00-15:00</option>
+                            <option value="4">17:00-19:00</option>
+                            <option value="5">19:00-21:00</option>
+                        </select>
+                    </div>
+
+                    <div class="eidiki">
+                        <label for="katigoria1">Ειδική Κατηγορία:</label>
+                        <select name="katigoria1" id="katigoria1" onchange="calculate_cost(this)">
+                            <option value="">Καμία</option>
+                            <option value="foititis">Φοιτητής-50%</option>
+                            <option value="disabled">ΑΜΕΑ-50%</option>
+                            <option value="polyteknoi">Πολύτεκνοι-25%</option>
+                            <option value="paidia">Παιδιά κάτω των 12 ετών-Δωρεάν</option>
+                        </select>
+                    </div>
+
+                    <div class="ektheseis">
+                        <label for="ekthesi1">Έκθεση</label>
+                        <div>
+                            {{!-- <label for="ekthesi#1">Περιοδική Εκθεση 1</label>
+                            <input type="checkbox" name="ekthesi#1" id="ekthesi#1"> --}}
+                            <p>Περιοδική έκθεση 1</p>
+                        </div>
+                        <div>
+                            {{!-- <label for="ekthesi#2">Περιοδική Εκθεση 2</label>
+                            <input type="checkbox" name="ekthesi#2" id="ekthesi#2"> --}}
+                            <p>Περιοδική έκθεση 2</p>
+                        </div>
+                        <div>
+                            {{!-- <label for=" ekthesi#3">Περιοδική Έκθεση 3</label>
+                            <input type="checkbox" name="ekthesi#3" id="ekthesi#3"> --}}
+                            <p>Περιοδική έκθεση 3</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </section>
 
-        
+
     </section>
 
     <img src="http://www.vggallery.com/painting/f_0526.jpg" title="Self-Portrait with Straw Hat">
@@ -67,21 +87,49 @@
 </section>
 
 <script>
-    buyTickets(){
 
-        // Get form data
-        const quantity = document.getElementById('quantity').value;
-        const date = document.getElementById('imerom').value;
-        const time = document.getElementById('ora').value;
-        const exhibition = document.getElementById('ekthesi').value;
 
-        // Perform validation if needed
-        
-        // Construct the URL for the next page
-        const nextPageUrl = `/buy-tickets?quantity=${quantity}&date=${date}&time=${time}&exhibition=${exhibition}`;
 
-        // Navigate to the next page
-        window.location.href = nextPageUrl;
+    function editTickets() {
+        let quantity = document.getElementById('quantity').value;
+        for (let i = 2; i <= quantity; i++) {
+            let ticket = document.querySelector(`.ksechoristo-ticket`);
+            let clone = ticket.cloneNode(true);
+            //add event listener to the clone when i hit the checkbox the background color to become orange
+            clone.querySelector('h2').textContent = `Εισιτήριο #${i}`;
+            let inputs = clone.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                let newName = input.name + i;
+                let newId = input.id + i;
+                input.setAttribute('name', newName);
+                input.setAttribute('id', newId);
+            });
+            ticket.parentNode.appendChild(clone);
+        }
+
+        let tickets = document.querySelectorAll('.ksechoristo-ticket');
+        tickets.forEach(ticket => {
+            ticket.style.display = 'flex';
+            let ektheseisDivs = ticket.querySelectorAll('.ektheseis');
+            ektheseisDivs.forEach(ektheseisDiv => {
+                ektheseisDiv.addEventListener('click', function (event) {
+                    event.target.classList.toggle('selected');
+                });
+            });
+        });
 
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Create the input button
+        var stickyButton = document.createElement('div');
+        stickyButton.className = 'sticky-button';
+        stickyButton.innerHTML = '<input type="button" value="Ολοκλήρωση">';
+        document.body.appendChild(stickyButton);
+    });
+
+
+
+
+
 </script>

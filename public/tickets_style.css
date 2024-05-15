@@ -1,20 +1,20 @@
-body{
+body {
     background-color: black !important;
 }
 
-:root{
+:root {
     font-size: 10px;
 }
 
 /*eisitiria*/
 
-.eisitiria{
+.eisitiria {
     display: flex;
     flex-direction: row;
 
 }
 
-img{
+img {
     height: 60vh;
     justify-self: center;
     align-self: center;
@@ -23,9 +23,9 @@ img{
 
 }
 
-.tickets{
+.tickets {
     display: flex;
-    margin:3% 0;
+    margin: 3% 0;
     width: 55%;
     flex-direction: column;
     justify-content: flex-start;
@@ -33,7 +33,8 @@ img{
 }
 
 
-.kratisi h2,.orario h2{
+.kratisi h2,
+.orario h2 {
     color: white;
     font-weight: 200;
     font-style: italic;
@@ -42,45 +43,54 @@ img{
     margin-bottom: 5%;
 }
 
-.kratisi{
+.kratisi {
     width: 80%;
 }
 
-.orario{
+.orario {
     width: 80%;
     display: grid;
-    grid-template:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr/1fr;
+    grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr/1fr;
     height: 50vh;
     margin-bottom: 3%;
 }
 
-.orario h4{
+.orario h4 {
     color: white;
 }
 
-.kratisi-eis{
+.kratisi-eis {
     display: grid;
     grid-template: 1fr 1fr/1fr 1fr;
-    grid-gap:3em;
+    grid-gap: 3em;
     align-items: center;
 }
 
-.plithos,.imerominia,.hour,.ektheseis{
+.plithos,
+.imerominia,
+.hour,
+.ektheseis {
     font-size: 1.5em;
 }
 
-.plithos label,.imerominia label,.hour label,.ektheseis label{
+.plithos label,
+.imerominia label,
+.hour label,
+.ektheseis label {
     color: white;
     margin-right: 1%;
 }
 
-.plithos #quantity, .imerominia #imerom,.hour #ora, .ektheseis #ekthesi{
+.plithos #quantity,
+.imerominia #imerom,
+.hour #ora,
+.ektheseis #ekthesi {
     background-color: black;
     color: white;
-    border:0.01em solid white;
+    border: 0.01em solid white;
 }
 
-.plithos ::placeholder{
+.plithos ::placeholder {
     color: white;
     padding-left: 40%;
 }
@@ -89,35 +99,78 @@ img{
     filter: invert(1);
 }
 
-#elegxos{
-    width: 60%;
+#elegxos {
+    width: 50%;
     font-size: 1.5em;
     background-color: black;
-    color:white;
-    border:0.15em solid #dc614c;
-    border-radius: 20%;
+    color: white;
+    border: 0.15em solid #dc614c;
 }
 
-@media screen and (max-width: 800px){
-    img{
+#elegxos:hover {
+    background-color: #dc614c;
+
+}
+
+.ksechoristo-ticket {
+    display: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 5%;
+    border: 1px solid white;
+    padding: 5%;
+    width: 80%;
+}
+
+.ksechoristo-ticket div {
+    width: 70%;
+    margin: 3% 0%;
+}
+
+.sticky-button {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 10px;
+    z-index: 1;
+}
+
+.sticky-button input[type="button"] {
+    color: white;
+    background-color: orange;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 80%;
+
+
+}
+
+@media screen and (max-width: 800px) {
+    img {
         height: 40vh;
         align-self: flex-start;
         margin-top: 12%;
     }
 
-    #elegxos{
+    #elegxos {
         width: 100%;
     }
 }
 
-@media screen and (min-width: 801px) and (max-width: 1150px){
-    #elegxos{
+@media screen and (min-width: 801px) and (max-width: 1150px) {
+    #elegxos {
         width: 100%;
     }
 }
 
-@media screen and (min-width: 1151px) and (max-width: 1400px){
-    #elegxos{
+@media screen and (min-width: 1151px) and (max-width: 1400px) {
+    #elegxos {
         width: 95%;
     }
 }
@@ -125,19 +178,19 @@ img{
 
 /*BUY-TICKETS*/
 
-.agora{
+.agora {
     width: 90%;
-    margin:3% auto;
+    margin: 3% auto;
 }
 
-.agora-ticket{
+.agora-ticket {
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 
 
-.agora h2{
+.agora h2 {
     color: white;
     font-weight: 200;
     font-style: italic;
@@ -147,57 +200,85 @@ img{
     width: 40%;
 }
 
-.name,.email,.phone-number,.ilikia,.eidiki{
+.name,
+.email,
+.phone-number,
+.ilikia,
+.eidiki {
     font-size: 1.5em;
     margin-bottom: 2%;
 }
 
-.name label,.email label,.phone-number label,.ilikia label,.eidiki label{
+.name label,
+.email label,
+.phone-number label,
+.ilikia label,
+.eidiki label {
     color: white;
     margin-right: 1%;
 }
 
-.name #onoma,.email #mail, .phone-number #phone, .ilikia #age,.eidiki #katigoria{
+.name #onoma,
+.email #mail,
+.phone-number #phone,
+.ilikia #age,
+.eidiki #katigoria {
     background-color: black;
     color: white;
-    border:0.01em solid white;
+    border: 0.01em solid white;
     width: 50%;
     padding: 0.1em;
 }
 
-.ilikia #age{
+.ilikia #age {
     width: 8%;
 }
 
-.ilikia #age::placeholder{
+.ilikia #age::placeholder {
     padding-left: 25%;
 }
 
-.eidiki #katigoria{
-    width: 30%;
+.eidiki #katigoria {
+    width: 60%;
 }
 
-::placeholder{
+::placeholder {
     color: white;
+}
+
+.ektheseis div {
+    border: 1px solid white;
+    margin: 1% 0;
+    width: 50%;
+    height: 2em;
+}
+
+.ektheseis div input[type="checkbox"] {
+    opacity: 1;
+}
+
+.selected {
+    background-color: #dc614c;
 }
 
 /*MULTIPLE-TICKETS*/
 
-.name input[type="text"],.eidiki select{
+.name input[type="text"],
+.eidiki select {
     background-color: black;
     color: white;
-    border:0.01em solid white;
+    border: 0.01em solid white;
     width: 50%;
     padding: 0.1em;
 
 }
 
-.eidiki select{
+.eidiki select {
     width: 30%;
 }
 
-.multiple-ticket h4{
-    color:white;
+.multiple-ticket h4 {
+    color: white;
     text-decoration: underline;
     font-style: italic;
     margin-top: 3%;
@@ -205,95 +286,115 @@ img{
 }
 
 
-#kratisi{
+#kratisi {
     width: 30%;
     font-size: 1.5em;
     background-color: black;
-    color:white;
-    border:0.15em solid #dc614c;
+    color: white;
+    border: 0.15em solid #dc614c;
     border-radius: 20%;
     margin-top: 4%;
 }
 
-.kostos,.final_cost{
+.kostos,
+.final_cost {
     font-size: 1.5em;
     color: white;
     font-weight: 600;
     font-style: italic;
 }
 
-.final_cost{
+.final_cost {
     margin-top: 2%;
     border: 0.1em solid white;
     width: 40%;
-    padding:0.1em;
+    padding: 0.1em;
 }
 
-p{
+p {
     font-size: 1.2em;
     color: white;
     margin-top: 3%;
 }
 
-@media screen and (max-width: 650px){
-    .agora-ticket{
+@media screen and (max-width: 650px) {
+    .agora-ticket {
         width: 100%;
     }
 
-    .name #onoma,.email #mail, .phone-number #phone,.name input[type="text"]{
+    .name #onoma,
+    .email #mail,
+    .phone-number #phone,
+    .name input[type="text"] {
         width: 70%;
     }
 
-    .eidiki #katigoria,.eidiki select,.final_cost{
+    .eidiki #katigoria,
+    .eidiki select,
+    .final_cost {
         width: 60%;
     }
 
-    #kratisi{
+    #kratisi {
         width: 40%;
     }
 
 }
 
-@media screen and (min-width: 651px) and (max-width:800px){
+@media screen and (min-width: 651px) and (max-width:800px) {
 
-    .agora-ticket{
+    .agora-ticket {
         width: 100%;
     }
 
-    .name #onoma,.email #mail, .phone-number #phone,.name input[type="text"]{
+    .name #onoma,
+    .email #mail,
+    .phone-number #phone,
+    .name input[type="text"] {
         width: 50%;
     }
 
-    .eidiki #katigoria,.eidiki select,.final_cost{
+    .eidiki #katigoria,
+    .eidiki select,
+    .final_cost {
         width: 40%;
     }
 
-    #kratisi{
+    #kratisi {
         width: 30%;
     }
 
 }
 
-@media screen and (min-width: 801px) and (max-width:1200px){
-    .agora-ticket{
+@media screen and (min-width: 801px) and (max-width:1200px) {
+    .agora-ticket {
         width: 100%;
     }
 
-    .name #onoma,.email #mail, .phone-number #phone,.name input[type="text"]{
+    .name #onoma,
+    .email #mail,
+    .phone-number #phone,
+    .name input[type="text"] {
         width: 40%;
     }
 
-    .eidiki #katigoria,.eidiki select,.final_cost{
+    .eidiki #katigoria,
+    .eidiki select,
+    .final_cost {
         width: 30%;
     }
 
-    #kratisi{
+    #kratisi {
         width: 20%;
     }
 }
 
-@media screen and (min-width: 1201px) and (max-width:1400px){
-    .name #onoma,.email #mail, .phone-number #phone,.name input[type="text"]{
+@media screen and (min-width: 1201px) and (max-width:1400px) {
+
+    .name #onoma,
+    .email #mail,
+    .phone-number #phone,
+    .name input[type="text"] {
         width: 100%;
     }
 }

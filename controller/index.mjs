@@ -28,10 +28,7 @@ app.set('view engine', 'hbs');
 // Δηλώνουμε πως ο φάκελος "public" θα περιέχει τα στατικά αρχεία
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use((req, res, next) => {
-    console.log(`Incoming request: ${req.method} ${req.url}`);
-    next();
-});
+
 
 
 app.use(router);
@@ -42,90 +39,90 @@ app.use(router);
 router.get('/', (req, res) => {
     // Determine the CSS file path based on the route
     const cssFilePath = '/style.css'; // Adjust the path as needed
-    
+
     // Render the 'main' template with the CSS file path
     res.render('main', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την βιογραφία
 router.get('/biography', (req, res) => {
-    const cssFilePath='/bio_style.css';
+    const cssFilePath = '/bio_style.css';
 
-    res.render('biography', { layout: 'index', css:cssFilePath });
+    res.render('biography', { layout: 'index', css: cssFilePath });
 });
 
 
 
 //Δημιουργώ διαδρομή για την πρώτη σελίδα της βιογραφίας
 router.get("/biography/earliest-paintings", (req, res) => {
-    const cssFilePath='/bio_style.css';
+    const cssFilePath = '/bio_style.css';
 
-    res.render('bio_page1', { layout: 'index', css:cssFilePath });
+    res.render('bio_page1', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την δεύτερη σελίδα της βιογραφίας
 router.get("/biography/nuenen", (req, res) => {
-    const cssFilePath='/bio_style.css';
+    const cssFilePath = '/bio_style.css';
 
-    res.render('bio_page_2', { layout: 'index', css:cssFilePath });
+    res.render('bio_page_2', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την τρίτη σελίδα της βιογραφίας
 router.get("/biography/paris", (req, res) => {
-    const cssFilePath='/bio_style.css';
+    const cssFilePath = '/bio_style.css';
 
-    res.render('bio_page3', { layout: 'index', css:cssFilePath });
+    res.render('bio_page3', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την τέταρτη σελίδα της βιογραφίας
 router.get("/biography/arles", (req, res) => {
-    const cssFilePath='/bio_style.css';
+    const cssFilePath = '/bio_style.css';
 
-    res.render('bio_page4', { layout: 'index', css:cssFilePath });
+    res.render('bio_page4', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την πέμπτη σελίδα της βιογραφίας
 router.get("/biography/saint-remy", (req, res) => {
-    const cssFilePath='/bio_style.css';
+    const cssFilePath = '/bio_style.css';
 
-    res.render('bio_page5', { layout: 'index', css:cssFilePath });
+    res.render('bio_page5', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την έκτη σελίδα της βιογραφίας
 router.get("/biography/auvers-sur-oise", (req, res) => {
-    const cssFilePath='/bio_style.css'
-    res.render('bio_page6', { layout: 'index', css:cssFilePath });
+    const cssFilePath = '/bio_style.css'
+    res.render('bio_page6', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την επικοινωνία 
 router.get("/communication", (req, res) => {
-    const cssFilePath='/forma_epikoin.css'
+    const cssFilePath = '/forma_epikoin.css'
 
-    res.render('epikoinwnia', { layout: 'index', css:cssFilePath });
+    res.render('epikoinwnia', { layout: 'index', css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την συλλογή
 router.get("/collection", (req, res) => {
-    let links = model.getAllErga();
-    const cssFilePath='/collection-style.css'
+    let links = model.getErgaWithDescription();
+    const cssFilePath = '/collection-style.css'
 
-    res.render('collection', { layout: 'index', links: links, css:cssFilePath });
+    res.render('collection', { layout: 'index', links: links, css: cssFilePath });
 });
 
 
 //Δημιουργώ διαδρομή για τις λεπτομέρειες της συλλογής
 router.get("/collection/:arithmos_ergou", (req, res) => {
     let ergo_info = model.getErgo(req.params.arithmos_ergou);
-    const cssFilePath='/collection-style.css'
+    const cssFilePath = '/collection-style.css'
 
-    res.render('collection-template', { layout: 'index', info: ergo_info, css:cssFilePath});
+    res.render('collection-template', { layout: 'index', info: ergo_info, css: cssFilePath });
 });
 
 
 //Δημιουργώ διαδρομή για τα εισιτήρια
 router.get("/tickets", (req, res) => {
-    const cssFilePath='/tickets_style.css'
-    res.render('tickets', { layout: 'index', css:cssFilePath });
+    const cssFilePath = '/tickets_style.css'
+    res.render('tickets', { layout: 'index', css: cssFilePath });
 });
 
 
@@ -135,7 +132,7 @@ router.get("/tickets", (req, res) => {
 router.get("/buy-tickets", (req, res) => {
     const quantity = parseInt(req.query.quantity); // Convert the quantity to an integer
     const tickets = []; // Array to store the rendered multiple ticket templates
-    const cssFilePath='/tickets_style.css'
+    const cssFilePath = '/tickets_style.css'
 
     // Loop to render the multiple_tickets template based on the quantity
     for (let i = 1; i < quantity; i++) {
@@ -144,15 +141,15 @@ router.get("/buy-tickets", (req, res) => {
     }
 
     // Render the buy-tickets template and pass the array of tickets
-    res.render('buy-tickets', { layout: 'index', tickets: tickets, css:cssFilePath });
+    res.render('buy-tickets', { layout: 'index', tickets: tickets, css: cssFilePath });
 });
 
 
 //Δημιουργώ διαδρομή για τις εκθέσεις
 router.get("/exhibitions", (req, res) => {
-    const cssFilePath='/ektheseis-style.css'
+    const cssFilePath = '/ektheseis-style.css'
 
-    res.render('ektheseis', { layout: 'index', css:cssFilePath });
+    res.render('ektheseis', { layout: 'index', css: cssFilePath });
 });
 
 

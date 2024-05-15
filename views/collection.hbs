@@ -1,5 +1,3 @@
-
-
 <section>
 
     <div class="filter-menu">
@@ -25,12 +23,12 @@
 
         <select name="xronologiki-periodos" class="hidden" id="mainInput" style="display:none;">
             <option value="">Χρονολογική Περίοδος</option>
-            <option value="early">Earliest Paintings</option>
-            <option value="nuenen">Nuenen/Antwerp</option>
-            <option value="paris">Paris</option>
-            <option value="arles">Arles</option>
-            <option value="saint">Saint-Remy</option>
-            <option value="auvers">Auvers-sur-Oise</option>
+            <option value="early">Earliest Paintings(1881-1883)</option>
+            <option value="nuenen">Nuenen/Antwerp(1883-1886)</option>
+            <option value="paris">Paris(1886-1888)</option>
+            <option value="arles">Arles(1888-1889)</option>
+            <option value="saint">Saint-Remy(1889-1890)</option>
+            <option value="auvers">Auvers-sur-Oise(1890)</option>
         </select>
 
         <div class="hidden" id="periodiki" style="display:none;">
@@ -56,7 +54,7 @@
         </div>
 
         <input type="button" value="Καθαρισμός Φίλτρων" class="clear-filter" onclick="clearFilter()">
-
+        <input type="submit" value="Εφαρμογή" class="search-button">
 
     </form>
 
@@ -69,6 +67,8 @@
 </section>
 
 <script>
+
+
     function showInput(inputId) {
         let input = document.getElementById(inputId);
 
@@ -143,6 +143,9 @@
 
         });
     }
+
+
+
 
 
 </script>

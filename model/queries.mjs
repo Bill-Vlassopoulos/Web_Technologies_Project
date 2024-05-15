@@ -24,3 +24,25 @@ export function getErgo(arithmos_ergou) {
         throw (e);
     }
 }
+
+export function getErgaWithDescription() {
+    const stmt = sql.prepare("SELECT * FROM ERGO WHERE perigrafi != 'No description available'");
+    let erga;
+    try {
+        return erga = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function insertNewEpiskeptis(ilikia, onomateponymo, email, tilefono, eidiki_katigoria) {
+    const stmt = sql.prepare("INSERT INTO EPISKEPTIS (ilikia,onomateponymo,email,tilefono,eidiki_katigoria) VALUES (?,?,?,?,?)");
+    try {
+        stmt.run(ilikia, onomateponymo, email, tilefono, eidiki_katigoria);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}

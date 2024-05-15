@@ -54,7 +54,8 @@ body {
     grid-template-areas: "ma me"
         "mb mf"
         "mc mg"
-        "md mh";
+        "md mh"
+        "mi mj";
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -91,6 +92,7 @@ body {
     align-self: flex-end;
 }
 
+
 .clear-filter {
     grid-area: md;
     width: 50%;
@@ -103,6 +105,16 @@ body {
     color: white;
     border: 0.1em solid white;
     justify-self: flex-start;
+}
+
+.search-button {
+    grid-area: mh;
+    width: 50%;
+    font-size: 1.5em;
+    height: 4vh;
+    background-color: black;
+    color: white;
+    border: 0.1em solid white;
 }
 
 
@@ -148,6 +160,7 @@ input[type="text"] {
 
 input[type="text"]::placeholder {
     color: white;
+    margin-left: 2%;
 }
 
 form select {
@@ -202,7 +215,7 @@ select[name="aithousa"] {
     background-color: rgb(35, 35, 35);
     color: #dc614c;
     border: 0.1em solid #dc614c;
-    border-radius: 20%;
+    border-radius: 10%;
     justify-self: flex-start;
 }
 
@@ -213,6 +226,28 @@ select[name="aithousa"] {
     width: 75%;
     margin: 3% auto;
 }
+
+.main-radio,
+.periodiko-radio {
+    border: 1px solid white;
+    margin: 1%;
+}
+
+.radio {
+    margin: 2% auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* input[type="radio"] {
+
+    width: 70%;
+    z-index: 1;
+    
+} */
 
 
 /*collection filter*/
@@ -239,6 +274,25 @@ select[name="aithousa"] {
     form select,
     #additionalPeriodiki {
         width: 100%;
+    }
+
+    .collection-filter {
+        display: grid;
+        grid-template: 1fr 1fr 1fr 1fr 1fr/2fr 1fr;
+        grid-template-areas: "ma me"
+            "mb mf"
+            "mc mg"
+            "md mh"
+            "mi mj";
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-button {
+        grid-area: mi;
+        margin: auto;
+        width: 80%
     }
 
 
@@ -269,6 +323,24 @@ select[name="aithousa"] {
         width: 100%;
     }
 
+    .collection-filter {
+        display: grid;
+        grid-template: 1fr 1fr 1fr 1fr 1fr/2fr 1fr;
+        grid-template-areas: "ma me"
+            "mb mf"
+            "mc mg"
+            "md mh"
+            "mi mj";
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-button {
+        grid-area: mi;
+        width: 80%;
+        margin: auto;
+    }
 
 
 }
@@ -298,6 +370,26 @@ select[name="aithousa"] {
         width: 100%;
     }
 
+    .collection-filter {
+        display: grid;
+        grid-template: 1fr 1fr 1fr 1fr 1fr/2fr 1fr;
+        grid-template-areas: "ma me"
+            "mb mf"
+            "mc mg"
+            "md mh"
+            "mi mj";
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-button {
+        grid-area: mi;
+
+        width: 80%;
+        margin: auto;
+    }
+
 
 }
 
@@ -316,6 +408,38 @@ select[name="aithousa"] {
     form select,
     #additionalPeriodiki {
         width: 100%;
+    }
+
+    .collection-filter {
+        display: grid;
+        grid-template: 1fr 1fr 1fr 1fr 1fr/2fr 1fr;
+        grid-template-areas: "ma me"
+            "mb mf"
+            "mc mg"
+            "md mh"
+            "mi mj";
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-button {
+        grid-area: mi;
+        margin: auto;
+        width: 80%
+    }
+
+}
+
+@media (min-width:1401px) {
+
+    .collection-filter {
+        grid-template: 1fr 1fr 1fr 1fr/2fr 1fr;
+        grid-template-areas: "ma me"
+            "mb mf"
+            "mc mg"
+            "md mh"
+            "mi mj";
     }
 }
 
