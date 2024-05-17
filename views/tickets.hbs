@@ -86,7 +86,7 @@
                     </div>
                 </form>
 
-                <span class="kostos">Κόστος: <span id="kostos-eis">10</span>ευρώ</span>
+                <span class="kostos">Κόστος: <span id="kostos-eis1">10</span>ευρώ</span>
             </div>
         </div>
 
@@ -105,20 +105,23 @@
 
                 <div class="phone-number">
                     <label for="phone">Τηλέφωνο</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}"
+                        required>
                 </div>
             </form>
 
             <span class="finalCost">Συνολικό Κόστος: <span id="kostos-teliko">10</span>ευρώ </span>
 
-             <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας email
-            κατά την είσοδό σας στην πινακοθήκη.Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι απαραίτητη 
-            η υπόδειξη της φοιτητικής σας ταυτότητας. </p>
+            <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας
+                email
+                κατά την είσοδό σας στην πινακοθήκη.Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι
+                απαραίτητη
+                η υπόδειξη της φοιτητικής σας ταυτότητας. </p>
         </div>
-        
-    </section>
 
     </section>
+
+</section>
 
 
 <script>
@@ -132,34 +135,47 @@
             let clone = ticket.cloneNode(true);
             //add event listener to the clone when i hit the checkbox the background color to become orange
             clone.querySelector('h2').textContent = `Εισιτήριο #${i}`;
-            let inputs = clone.querySelectorAll('input, select, #kostos-eis');
+            let inputs = clone.querySelectorAll('input, select');
             inputs.forEach(input => {
                 let newName = input.name + i;
                 let newId = input.id + i;
                 input.setAttribute('name', newName);
                 input.setAttribute('id', newId);
             });
+            let kostos = clone.querySelector('#kostos-eis1');
+            kostos.setAttribute('id', `kostos-eis${i}`);
             ticket.parentNode.appendChild(clone);
         }
 
         let kratisi = document.querySelector(".episkeptis");
-        kratisi.style.display='flex';
+        kratisi.style.display = 'flex';
+
+        editPeriodeikes();
+        calculateFinalCost();
+    }
+
+    function editPeriodeikes() {
         let tickets = document.querySelectorAll('.ksechoristo-ticket');
+        let uniqueId = 1;
         tickets.forEach(ticket => {
             ticket.style.display = 'flex';
-            let ektheseisDivs = ticket.querySelectorAll('.ektheseis');
+            let ektheseisDivs = ticket.querySelectorAll('.ektheseis div');
             ektheseisDivs.forEach(ektheseisDiv => {
                 ektheseisDiv.addEventListener('click', function (event) {
-                    event.target.classList.toggle('selected');
-                    let uniqueId = selectElement.id.replace('katigoria1', ''); // Extract the uniqueId from the select element's id
-                    let cost_indiv = document.querySelector(`#kostos-eis${uniqueId}`);
-                    if (ektheseisDiv.classList.contains('selected')){
-                        cost_indiv.innerHTML+=4;
+                    ektheseisDiv.classList.toggle('selected');
+                    let cost_indiv = ticket.querySelector('.kostos span');
+                    console.log(cost_indiv);
+                    if (ektheseisDiv.classList.contains('selected')) {
+                        cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) + 4;
                     }
+                    else {
+                        cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) - 4;
+                    }
+                    calculateFinalCost();
                 });
+                uniqueId++;
             });
         });
-
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -172,7 +188,7 @@
 
     function calculate_cost(selectElement) {
         let selectedValue = selectElement.value;
-        let uniqueId = selectElement.id.replace('katigoria1', ''); // Extract the uniqueId from the select element's id
+        let uniqueId = selectElement.id.slice(-1);
         let cost_indiv = document.querySelector(`#kostos-eis${uniqueId}`);
 
         if (selectedValue === "") {
@@ -191,11 +207,30 @@
             cost = 0;
         }
 
-        cost_indiv.innerHTML = cost;
+        cost_indiv.innerHTML = cost + calculateSelectedExhibitions(selectElement) * 4;
+        calculateFinalCost();
     }
 
+    function calculateSelectedExhibitions(selectElement) {
+        // Find the common ancestor .ksechoristo-ticket
+        let ticket = selectElement.closest('.ksechoristo-ticket');
 
+        // Query for selected .ektheseis divs within this ticket
+        let selectedExhibitions = ticket.querySelectorAll('.ektheseis div.selected');
 
+        // Return the count of selected exhibitions
+        return selectedExhibitions.length;
+    }
+
+    function calculateFinalCost() {
+        let tickets = document.querySelectorAll('.ksechoristo-ticket');
+        let finalCost = 0;
+        tickets.forEach(ticket => {
+            let cost = ticket.querySelector('.kostos span').innerHTML;
+            finalCost += parseInt(cost);
+        });
+        document.querySelector('#kostos-teliko').innerHTML = finalCost;
+    }
 
 
 </script>
