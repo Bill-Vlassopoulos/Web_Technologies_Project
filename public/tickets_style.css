@@ -196,6 +196,14 @@ img {
     color: white;
 }
 
+.finalCost{
+    color: white;
+    font-size: 1.5em;
+    font-weight: 500;
+    font-style: italic;
+    padding: 1%;
+}
+
 @media screen and (max-width: 800px) {
     img {
         height: 40vh;
