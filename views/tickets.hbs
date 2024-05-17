@@ -57,7 +57,7 @@
 
                     <div class="eidiki">
                         <label for="katigoria1">Ειδική Κατηγορία:</label>
-                        <select name="katigoria1" id="katigoria1" onchange="calculate_cost(this)">
+                        <select class="katig" name="katigoria1" id="katigoria1" onchange="calculate_cost(this)">
                             <option value="">Καμία</option>
                             <option value="foititis">Φοιτητής-50%</option>
                             <option value="disabled">ΑΜΕΑ-50%</option>
@@ -159,6 +159,11 @@
                 });
             });
         });
+
+        document.querySelectorAll(".katig").value="";
+        document.querySelector("#quantity").value="1";
+        document.querySelectorAll(".imerom").value="";
+        document.querySelectorAll(".ora").value="1";
 
     }
 
