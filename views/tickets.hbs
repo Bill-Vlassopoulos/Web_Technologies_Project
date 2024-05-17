@@ -37,7 +37,7 @@
 
 
             <div class="ksechoristo-ticket">
-                <form method="post">
+                <form method="post" class="ticket-form" action="/submit">
                     <h2>Εισιτήριο #1</h2>
                     <div class="imerominia">
                         <label for="imerom1">Ημερομηνία:</label>
@@ -92,7 +92,7 @@
 
         <div class="episkeptis">
             <h2>Στοιχεία Επισκέπτη</h2>
-            <form method="get" action="/tickets" class="agora-ticket">
+            <form method="post" action="/submit" class="agora-ticket ticket-form">
                 <div class="name">
                     <label for="onoma">Ονοματεπώνυμο</label>
                     <input type="text" id="onoma" name="onoma" placeholder="Oνοματεπώνυμo.." required>
@@ -187,6 +187,7 @@
         var stickyButton = document.createElement('div');
         stickyButton.className = 'sticky-button';
         stickyButton.innerHTML = '<input type="button" value="Ολοκλήρωση">';
+        stickyButton.addEventListener('click', submitAllForms);
         document.body.appendChild(stickyButton);
     });
 
@@ -236,5 +237,39 @@
         document.querySelector('#kostos-teliko').innerHTML = finalCost;
     }
 
+    function submitAllForms() {
+        let forms = document.querySelectorAll('.ticket-form');
+
+        let formData = [];
+        forms.forEach(form => {
+            let formValues = {};
+            let inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                formValues[input.name] = input.value;
+            });
+            formData.push(formValues);
+
+        });
+        console.log(formData);
+
+        // Send formData to the server
+        fetch('/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Forms submitted successfully!');
+                } else {
+                    console.error('Failed to submit forms');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
 </script>

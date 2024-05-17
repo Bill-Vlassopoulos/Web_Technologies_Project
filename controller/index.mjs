@@ -4,6 +4,7 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import path from 'path'
 import { info } from 'console';
+import bodyParser from 'body-parser'
 
 const model = await import('../model/queries.mjs')
 
@@ -29,7 +30,8 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(router);
 
@@ -123,25 +125,14 @@ router.get("/collection/:arithmos_ergou", (req, res) => {
 router.get("/tickets", (req, res) => {
     const cssFilePath = '/tickets_style.css'
     res.render('tickets', { layout: 'index', css: cssFilePath });
+
 });
 
 
-
-//Δημουργώ διαδρομή για την αγορά εισιτηρίων
-
-router.get("/buy-tickets", (req, res) => {
-    const quantity = parseInt(req.query.quantity); // Convert the quantity to an integer
-    const tickets = []; // Array to store the rendered multiple ticket templates
-    const cssFilePath = '/tickets_style.css'
-
-    // Loop to render the multiple_tickets template based on the quantity
-    for (let i = 1; i < quantity; i++) {
-        const uniqueId = `_${i}`; // Generate a unique identifier for each ticket
-        tickets.push({ layout: 'buy-tickets', uniqueId: uniqueId });
-    }
-
-    // Render the buy-tickets template and pass the array of tickets
-    res.render('buy-tickets', { layout: 'index', tickets: tickets, css: cssFilePath });
+router.post("/submit", (req, res) => {
+    // Handle form submission
+    console.log(req.body); // This will contain the form data sent by the client
+    res.send("All good");
 });
 
 
