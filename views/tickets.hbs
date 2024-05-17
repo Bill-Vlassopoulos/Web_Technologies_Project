@@ -41,13 +41,13 @@
                     <h2>Εισιτήριο #1</h2>
                     <div class="imerominia">
                         <label for="imerom1">Ημερομηνία:</label>
-                        <input type="date" id="imerom1" name="imerom1" class="imerom" required>
+                        <input type="date" id="imerom1" name="imerom1" class="imerom" value="" required>
                     </div>
 
                     <div class="hour">
                         <label for="ora1">Ώρα:</label>
                         <select name="ora1" id="ora1" class="ora" required>
-                            <option value="1">9:00-11:00</option>
+                            <option value="1" selected>9:00-11:00</option>
                             <option value="2">11:00-13:00</option>
                             <option value="3">13:00-15:00</option>
                             <option value="4">17:00-19:00</option>
@@ -57,8 +57,8 @@
 
                     <div class="eidiki">
                         <label for="katigoria1">Ειδική Κατηγορία:</label>
-                        <select name="katigoria1" id="katigoria1" onchange="calculate_cost(this)">
-                            <option value="">Καμία</option>
+                        <select class="katig" name="katigoria1" id="katigoria1" onchange="calculate_cost(this)">
+                            <option value="" selected>Καμία</option>
                             <option value="foititis">Φοιτητής-50%</option>
                             <option value="disabled">ΑΜΕΑ-50%</option>
                             <option value="polyteknoi">Πολύτεκνοι-25%</option>
@@ -176,6 +176,10 @@
                 uniqueId++;
             });
         });
+
+        document.querySelector("#quantity").value = "1";
+
+
     }
 
     document.addEventListener('DOMContentLoaded', function () {
