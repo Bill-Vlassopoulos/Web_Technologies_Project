@@ -2,11 +2,11 @@
     <section class="tickets">
         <section class="orario">
             <h2>Ωράριο Λειτουργίας</h2>
-            <h4>Δευτέρα: 9:00-15:00 &amp; 17:00-21:00</h4>
-            <h4>Τρίτη: 9:00-15:00 &amp; 17:00-21:00</h4>
-            <h4>Τετάρτη: 9:00-15:00 &amp; 17:00-21:00</h4>
-            <h4>Πέμπτη: 9:00-15:00 &amp; 17:00-21:00</h4>
-            <h4>Παρασκευή: 9:00-15:00 &amp; 17:00-21:00</h4>
+            <h4>Δευτέρα: 9:00-15:00 & 17:00-21:00</h4>
+            <h4>Τρίτη: 9:00-15:00 & 17:00-21:00</h4>
+            <h4>Τετάρτη: 9:00-15:00 & 17:00-21:00</h4>
+            <h4>Πέμπτη: 9:00-15:00 & 17:00-21:00</h4>
+            <h4>Παρασκευή: 9:00-15:00 & 17:00-21:00</h4>
             <h4>Σάββατο: Κλειστά</h4>
             <h4>Κυριακή: Κλειστά</h4>
             <h4 class="timi">Κόστος απλής εισόδου: 10 ευρώ(ολόκληρο).</h4>
@@ -83,150 +83,182 @@
                 </div>
                 <div class="phone-number">
                     <label for="phone">Τηλέφωνο</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}"
+                        required>
                 </div>
             </form>
             <span class="finalCost">Συνολικό Κόστος: <span id="kostos-teliko">10</span>ευρώ </span>
-            <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας email κατά την είσοδό σας στην πινακοθήκη. Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι απαραίτητη η υπόδειξη της φοιτητικής σας ταυτότητας.</p>
+            <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας
+                email κατά την είσοδό σας στην πινακοθήκη. Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι
+                απαραίτητη η υπόδειξη της φοιτητικής σας ταυτότητας.</p>
         </div>
     </section>
 </section>
 
 <script>
-function editTickets() {
-    let quantity = document.getElementById('quantity').value;
-    let ticketContainer = document.querySelector('.kratisi');
-    let firstTicket = document.querySelector('.ksechoristo-ticket');
+    function editTickets() {
+        let quantity = document.getElementById('quantity').value;
+        let ticketContainer = document.querySelector('.kratisi');
+        let firstTicket = document.querySelector('.ksechoristo-ticket');
 
-    // Remove any previously added tickets except the first one
-    let existingTickets = document.querySelectorAll('.ksechoristo-ticket');
-    existingTickets.forEach((ticket, index) => {
-        if (index > 0) ticket.remove();
-    });
-
-    for (let i = 2; i <= quantity; i++) {
-        let clone = firstTicket.cloneNode(true);
-        clone.querySelector('h2').textContent = `Εισιτήριο #${i}`;
-        let inputs = clone.querySelectorAll('input, select');
-        inputs.forEach(input => {
-            let newName = input.name.replace(/\d+$/, '') + i;
-            let newId = input.id.replace(/\d+$/, '') + i;
-            input.setAttribute('name', newName);
-            input.setAttribute('id', newId);
+        // Remove any previously added tickets except the first one
+        let existingTickets = document.querySelectorAll('.ksechoristo-ticket');
+        existingTickets.forEach((ticket, index) => {
+            if (index > 0) ticket.remove();
         });
-        let kostos = clone.querySelector('.kostos span');
-        kostos.setAttribute('id', `kostos-eis${i}`);
-        ticketContainer.appendChild(clone);
-    }
 
-    let kratisi = document.querySelector(".episkeptis");
-    kratisi.style.display = 'flex';
-
-    editPeriodeikes();
-    calculateFinalCost();
-}
-
-function editPeriodeikes() {
-    let tickets = document.querySelectorAll('.ksechoristo-ticket');
-    tickets.forEach(ticket => {
-        ticket.style.display = 'flex';
-        let ektheseisDivs = ticket.querySelectorAll('.ektheseis div');
-        ektheseisDivs.forEach(ektheseisDiv => {
-            ektheseisDiv.addEventListener('click', function (event) {
-                ektheseisDiv.classList.toggle('selected');
-                let cost_indiv = ticket.querySelector('.kostos span');
-                if (ektheseisDiv.classList.contains('selected')) {
-                    cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) + 4;
-                } else {
-                    cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) - 4;
-                }
-                calculateFinalCost();
-            });
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    var stickyButton = document.createElement('div');
-    stickyButton.className = 'sticky-button';
-    stickyButton.innerHTML = '<input type="button" value="Ολοκλήρωση">';
-    stickyButton.addEventListener('click', submitAllForms);
-    document.body.appendChild(stickyButton);
-});
-
-function calculate_cost(selectElement) {
-    let selectedValue = selectElement.value;
-    let uniqueId = selectElement.id.replace(/\D/g, '');
-    let cost_indiv = document.querySelector(`#kostos-eis${uniqueId}`);
-
-    let cost = 10;
-    if (selectedValue === "foititis" || selectedValue === "disabled") {
-        cost = 5;
-    } else if (selectedValue === "polyteknoi") {
-        cost = 7.5;
-    } else if (selectedValue === "paidia") {
-        cost = 0;
-    }
-
-    cost_indiv.innerHTML = cost + calculateSelectedExhibitions(selectElement) * 4;
-    calculateFinalCost();
-}
-
-function calculateSelectedExhibitions(selectElement) {
-    let ticket = selectElement.closest('.ksechoristo-ticket');
-    let selectedExhibitions = ticket.querySelectorAll('.ektheseis div.selected');
-    return selectedExhibitions.length;
-}
-
-function calculateFinalCost() {
-    let tickets = document.querySelectorAll('.ksechoristo-ticket');
-    let finalCost = 0;
-    tickets.forEach(ticket => {
-        let cost = ticket.querySelector('.kostos span').innerHTML;
-        finalCost += parseInt(cost);
-    });
-    document.querySelector('#kostos-teliko').innerHTML = finalCost;
-}
-
-function submitAllForms() {
-    let forms = document.querySelectorAll('.ticket-form');
-    let allValid = true;
-
-    forms.forEach(form => {
-        if (!form.checkValidity()) {
-            allValid = false;
-            form.reportValidity();
-        }
-    });
-
-    if (allValid) {
-        let formData = [];
-        forms.forEach(form => {
-            let formValues = {};
-            let inputs = form.querySelectorAll('input, select');
+        for (let i = 2; i <= quantity; i++) {
+            let clone = firstTicket.cloneNode(true);
+            clone.querySelector('h2').textContent = `Εισιτήριο #${i}`;
+            let inputs = clone.querySelectorAll('input, select');
             inputs.forEach(input => {
-                formValues[input.name] = input.value;
+                let newName = input.name.replace(/\d+$/, '') + i;
+                let newId = input.id.replace(/\d+$/, '') + i;
+                input.setAttribute('name', newName);
+                input.setAttribute('id', newId);
             });
-            formData.push(formValues);
-        });
+            let kostos = clone.querySelector('.kostos span');
+            kostos.setAttribute('id', `kostos-eis${i}`);
+            ticketContainer.appendChild(clone);
+        }
 
-        fetch('/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Forms submitted successfully!');
-            } else {
-                console.error('Failed to submit forms');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        let kratisi = document.querySelector(".episkeptis");
+        kratisi.style.display = 'flex';
+
+        editPeriodeikes();
+        calculateFinalCost();
+    }
+
+    function editPeriodeikes() {
+        let tickets = document.querySelectorAll('.ksechoristo-ticket');
+        tickets.forEach(ticket => {
+            ticket.style.display = 'flex';
+            let ektheseisDivs = ticket.querySelectorAll('.ektheseis div');
+            ektheseisDivs.forEach(ektheseisDiv => {
+                ektheseisDiv.addEventListener('click', function (event) {
+                    ektheseisDiv.classList.toggle('selected');
+                    let cost_indiv = ticket.querySelector('.kostos span');
+                    if (ektheseisDiv.classList.contains('selected')) {
+                        cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) + 4;
+                    } else {
+                        cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) - 4;
+                    }
+                    calculateFinalCost();
+                });
+            });
         });
     }
-}
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var stickyButton = document.createElement('div');
+        stickyButton.className = 'sticky-button';
+        stickyButton.innerHTML = '<input type="button" value="Ολοκλήρωση">';
+        stickyButton.addEventListener('click', submitAllForms);
+        document.body.appendChild(stickyButton);
+
+        // Reset form values to default on page load
+        resetFormValues();
+    });
+
+    function resetFormValues() {
+        document.getElementById('quantity').value = 1;
+        let firstTicket = document.querySelector('.ksechoristo-ticket');
+        firstTicket.querySelectorAll('input[type="date"]').forEach(input => input.value = '');
+        firstTicket.querySelectorAll('select').forEach(select => {
+            select.selectedIndex = 0;
+        });
+        firstTicket.querySelectorAll('.ektheseis div').forEach(div => {
+            div.classList.remove('selected');
+        });
+        document.getElementById('kostos-eis1').innerHTML = 10;
+        document.querySelector('.agora-ticket').reset();
+        document.getElementById('kostos-teliko').innerHTML = 10;
+    }
+
+    function calculate_cost(selectElement) {
+        let selectedValue = selectElement.value;
+        let uniqueId = selectElement.id.replace(/\D/g, '');
+        let cost_indiv = document.querySelector(`#kostos-eis${uniqueId}`);
+
+        let cost = 10;
+        if (selectedValue === "foititis" || selectedValue === "disabled") {
+            cost = 5;
+        } else if (selectedValue === "polyteknoi") {
+            cost = 7.5;
+        } else if (selectedValue === "paidia") {
+            cost = 0;
+        }
+
+        cost_indiv.innerHTML = cost + calculateSelectedExhibitions(selectElement) * 4;
+        calculateFinalCost();
+    }
+
+    function calculateSelectedExhibitions(selectElement) {
+        let ticket = selectElement.closest('.ksechoristo-ticket');
+        let selectedExhibitions = ticket.querySelectorAll('.ektheseis div.selected');
+        return selectedExhibitions.length;
+    }
+
+    function calculateFinalCost() {
+        let tickets = document.querySelectorAll('.ksechoristo-ticket');
+        let finalCost = 0;
+        tickets.forEach(ticket => {
+            let cost = ticket.querySelector('.kostos span').innerHTML;
+            finalCost += parseInt(cost);
+        });
+        document.querySelector('#kostos-teliko').innerHTML = finalCost;
+    }
+
+    function submitAllForms() {
+        let forms = document.querySelectorAll('.ticket-form');
+        let allValid = true;
+
+        forms.forEach(form => {
+            if (!form.checkValidity()) {
+                allValid = false;
+                form.reportValidity();
+            }
+        });
+
+        if (allValid) {
+            let formData = [];
+            forms.forEach(form => {
+                let formValues = {};
+                let inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    formValues[input.name] = input.value;
+                });
+                if (form.querySelector(".ektheseis") !== null) {
+                    periodikes_ektheseis = form.querySelectorAll('.ektheseis .selected p');
+                    formValues['periodikes_ektheseis'] = [];
+                    periodikes_ektheseis.forEach(ekthesi => {
+                        formValues['periodikes_ektheseis'].push(ekthesi.textContent);
+                    });
+                }
+
+                formData.push(formValues);
+            });
+
+
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Forms submitted successfully!');
+                        location.reload();
+                    } else {
+                        console.error('Failed to submit forms');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
 </script>
