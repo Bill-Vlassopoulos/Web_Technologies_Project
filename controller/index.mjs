@@ -153,12 +153,18 @@ router.get("/admin", (req, res) => {
 
 });
 
+//Δημιουργώ διαδρομή για το editing του κάθε έργου
 router.get("/admin/edit/:arithmos_ergou", (req, res) => {
     const cssFilePath = '/admin-style.css'
     let ergo_info = model.getErgo(req.params.arithmos_ergou);
     res.render('admin-edit', { layout: 'admin', info: ergo_info, css: cssFilePath });
 });
 
+//Δημιουργώ διαδρομή για την προσθήκη ενός έργου
+router.get("/admin/addPainting", (req, res) => {
+    const cssFilePath = '/admin-style.css'
+    res.render('admin-add', { layout: 'admin', css: cssFilePath });
+});
 
 
 

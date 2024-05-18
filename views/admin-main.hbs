@@ -1,4 +1,5 @@
 <div class="katigoria-ergon container">
+    <button class="prosthiki" onclick="addErgo()">Προσθήκη Νέου Έργου</button>
     <h3>Αποθήκη</h3>
     <hr>
     <div class="grid-erga">
@@ -19,5 +20,9 @@
 <script>
     function edit(arithmos_ergou) {
         window.location.href = `/admin/edit/${arithmos_ergou}`;
+    }
+
+    function addErgo(){
+        window.location.href = "/admin/addPainting";
     }
 </script>
