@@ -143,9 +143,17 @@ router.get("/exhibitions", (req, res) => {
     res.render('ektheseis', { layout: 'index', css: cssFilePath });
 });
 
+//Δημιουργώ διαδρομή για τον διαχειριστή
+
+router.get("/admin", (req, res) => {
+
+    res.render('admin-main', { layout: 'admin'});
+
+});
 
 
 
 
 
 app.listen(port, () => console.log(`Open Vincent Van Gogh Gallery http://localhost:${port}/ `));
+console.log(`Open Admin Page http://localhost:${port}/admin`);
