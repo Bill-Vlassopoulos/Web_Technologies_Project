@@ -143,7 +143,7 @@ textarea {
     flex: 50%;
 }
 
-.prosthiki{
+.prosthiki {
     width: 12%;
     font-size: 1.2em;
     align-self: flex-end;
@@ -153,11 +153,11 @@ textarea {
     border: 0.2em solid rgb(65, 131, 212);
 }
 
-.edit-form.prosthiki-form{
+.edit-form.prosthiki-form {
     width: 90%;
     margin: 2% auto;
 }
 
-.edit-form.prosthiki-form div{
+.edit-form.prosthiki-form div {
     width: 40%;
 }

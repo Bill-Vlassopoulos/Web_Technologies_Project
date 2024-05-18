@@ -166,6 +166,12 @@ router.get("/admin/addPainting", (req, res) => {
     res.render('admin-add', { layout: 'admin', css: cssFilePath });
 });
 
+router.get("/admin/addExhibition", (req, res) => {
+    const cssFilePath = '/add-exhibition.css'
+    let erga = model.getAllErgaAllInfo();
+    res.render('admin-add-exhibition', { layout: 'admin', erga: erga, css: cssFilePath });
+});
+
 
 
 
