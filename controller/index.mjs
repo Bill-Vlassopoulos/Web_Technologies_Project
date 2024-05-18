@@ -147,8 +147,16 @@ router.get("/exhibitions", (req, res) => {
 
 router.get("/admin", (req, res) => {
 
-    res.render('admin-main', { layout: 'admin'});
+    const cssFilePath = '/admin-style.css'
+    let erga = model.getAllErgaAllInfo();
+    res.render('admin-main', { layout: 'admin', erga: erga, css: cssFilePath });
 
+});
+
+router.get("/admin/edit/:arithmos_ergou", (req, res) => {
+    const cssFilePath = '/admin-style.css'
+    let ergo_info = model.getErgo(req.params.arithmos_ergou);
+    res.render('admin-edit', { layout: 'admin', info: ergo_info, css: cssFilePath });
 });
 
 

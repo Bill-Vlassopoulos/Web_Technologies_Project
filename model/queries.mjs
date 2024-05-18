@@ -14,6 +14,19 @@ export function getAllErga() {
     }
 }
 
+export function getAllErgaAllInfo() {
+    const stmt = sql.prepare("SELECT * FROM ERGO");
+    let links;
+    try {
+        return links = stmt.all();
+
+    }
+    catch (e) {
+        throw (e);
+    }
+
+}
+
 export function getErgo(arithmos_ergou) {
     const stmt = sql.prepare("SELECT * FROM ERGO WHERE arithmos_ergou = ?");
     let ergo;

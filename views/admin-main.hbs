@@ -1,0 +1,23 @@
+<div class="katigoria-ergon container">
+    <h3>Αποθήκη</h3>
+    <hr>
+    <div class="grid-erga">
+        {{#each erga}}
+        <div class="ergo">
+            <img src={{this.link}} alt="">
+            <h5>{{this.onoma}}</h5>
+            <h5>{{this.arithmos_ergou}}</h5>
+            <div class="buttons">
+                <button class="epex" onclick="edit('{{this.arithmos_ergou}}')">Επεξεργασία</button>
+                <button class="diag">Διαγραφή</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    function edit(arithmos_ergou) {
+        window.location.href = `/admin/edit/${arithmos_ergou}`;
+    }
+</script>

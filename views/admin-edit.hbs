@@ -1,0 +1,52 @@
+<div class="edit-container">
+    <form class="edit-form">
+        <div class="titlos">
+            <label for="title">Tίτλος</label>
+            <input type="text" id="title" name="title" value="{{info.onoma}}">
+        </div>
+
+        <div class="code">
+            <label for="code">Κωδικός Έργου</label>
+            <input type="text" id="code" name="code" value="{{info.arithmos_ergou}}">
+        </div>
+
+        <div class="image-link">
+            <label for="link">Link Εικόνας</label>
+            <input type="text" id="link" name="link" value="{{info.link}}">
+        </div>
+
+        <div class="xronologia">
+            <label for="date">Χρονολογία</label>
+            <input type="text" id="date" name="date" value="{{info.xronologia}}">
+        </div>
+
+        <div class="diastaseis">
+            <label for="size">Διαστάσεις</label>
+            <input type="text" id="size" name="size" value="{{info.diastaseis}}">
+        </div>
+
+        <div class="typos">
+            <label for="type">Τύπος Καμβά</label>
+            <input type="text" id="type" name="type" value="{{info.typos_kamva}}">
+        </div>
+
+        <div class="kallitexnis">
+            <label for="artist">Καλλιτέχνης</label>
+            <input type="text" id="artist" name="artist" value="{{info.kallitexnis}}">
+        </div>
+
+        <div class="perigrafi">
+            <label for="content">Περιγραφή</label>
+            <textarea id="content" name="content" rows="10">{{info.perigrafi}}</textarea>
+        </div>
+
+        <div class="buttons">
+            <button class="submit-btn" type="submit">Αποθήκευση</button>
+            <a href="/admin">Cancel</a>
+        </div>
+
+    </form>
+
+    <img src="{{info.link}}" alt="{{info.onoma}}" class="edit-image">
+
+</div>
