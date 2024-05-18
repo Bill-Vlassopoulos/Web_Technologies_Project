@@ -1,7 +1,5 @@
 <section class="eisitiria">
-
     <section class="tickets">
-
         <section class="orario">
             <h2>Ωράριο Λειτουργίας</h2>
             <h4>Δευτέρα: 9:00-15:00 &amp; 17:00-21:00</h4>
@@ -13,37 +11,28 @@
             <h4>Κυριακή: Κλειστά</h4>
             <h4 class="timi">Κόστος απλής εισόδου: 10 ευρώ(ολόκληρο).</h4>
             <h4 class="timi2">Επιπλέον χρέωση για είσοδο σε περιοδική έκθεση: 4 ευρώ/αίθουσα.</h4>
-
         </section>
-
         <img src="http://www.vggallery.com/painting/f_0526.jpg" title="Self-Portrait with Straw Hat">
-
     </section>
 
     <section class="tickets">
-
-
         <div class="kratisi">
             <h2>Αγορά Εισιτηρίων</h2>
-
             <form method="get" action="/buy-tickets" class="kratisi-eis">
                 <div class="plithos">
                     <label for="quantity">Πλήθος Εισιτηρίων:</label>
                     <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" required>
                 </div>
-
                 <input type="button" id="elegxos" value="Επεξεργασία Εισιτηρίων" onclick="editTickets()">
             </form>
-
 
             <div class="ksechoristo-ticket">
                 <form method="post" class="ticket-form" action="/submit">
                     <h2>Εισιτήριο #1</h2>
                     <div class="imerominia">
                         <label for="imerom1">Ημερομηνία:</label>
-                        <input type="date" id="imerom1" name="imerom1" class="imerom" value="" required>
+                        <input type="date" id="imerom1" name="imerom1" class="imerom" required>
                     </div>
-
                     <div class="hour">
                         <label for="ora1">Ώρα:</label>
                         <select name="ora1" id="ora1" class="ora" required>
@@ -54,7 +43,6 @@
                             <option value="5">19:00-21:00</option>
                         </select>
                     </div>
-
                     <div class="eidiki">
                         <label for="katigoria1">Ειδική Κατηγορία:</label>
                         <select class="katig" name="katigoria1" id="katigoria1" onchange="calculate_cost(this)">
@@ -65,28 +53,20 @@
                             <option value="paidia">Παιδιά κάτω των 12 ετών-Δωρεάν</option>
                         </select>
                     </div>
-
                     <div class="ektheseis">
                         <label>Έκθεση</label>
                         <div>
-                            {{!-- <label for="ekthesi#1">Περιοδική Εκθεση 1</label>
-                            <input type="checkbox" name="ekthesi#1" id="ekthesi#1"> --}}
                             <p>Περιοδική έκθεση 1</p>
                         </div>
                         <div>
-                            {{!-- <label for="ekthesi#2">Περιοδική Εκθεση 2</label>
-                            <input type="checkbox" name="ekthesi#2" id="ekthesi#2"> --}}
                             <p>Περιοδική έκθεση 2</p>
                         </div>
                         <div>
-                            {{!-- <label for=" ekthesi#3">Περιοδική Έκθεση 3</label>
-                            <input type="checkbox" name="ekthesi#3" id="ekthesi#3"> --}}
                             <p>Περιοδική έκθεση 3</p>
                         </div>
                     </div>
+                    <span class="kostos">Κόστος: <span id="kostos-eis1">10</span>ευρώ</span>
                 </form>
-
-                <span class="kostos">Κόστος: <span id="kostos-eis1">10</span>ευρώ</span>
             </div>
         </div>
 
@@ -97,149 +77,129 @@
                     <label for="onoma">Ονοματεπώνυμο</label>
                     <input type="text" id="onoma" name="onoma" placeholder="Oνοματεπώνυμo.." required>
                 </div>
-
                 <div class="email">
                     <label for="mail">Email</label>
                     <input type="email" id="mail" name="mail" placeholder="example@gmail.com" required>
                 </div>
-
                 <div class="phone-number">
                     <label for="phone">Τηλέφωνο</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}"
-                        required>
+                    <input type="tel" id="phone" name="phone" placeholder="Aριθμός τηλεφώνου.." pattern="[0-9]{10}" required>
                 </div>
             </form>
-
             <span class="finalCost">Συνολικό Κόστος: <span id="kostos-teliko">10</span>ευρώ </span>
-
-            <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας
-                email
-                κατά την είσοδό σας στην πινακοθήκη.Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι
-                απαραίτητη
-                η υπόδειξη της φοιτητικής σας ταυτότητας. </p>
+            <p>*Η πληρωμή των εισιτηρίων γίνεται με την υπόδειξη του αποδεικτικού που προσκομίσατε στο προσωπικό σας email κατά την είσοδό σας στην πινακοθήκη. Σε περίπτωση μειωμένου εισιτηρίου κατηγορίας φοιτητή είναι απαραίτητη η υπόδειξη της φοιτητικής σας ταυτότητας.</p>
         </div>
-
     </section>
-
 </section>
 
-
 <script>
+function editTickets() {
+    let quantity = document.getElementById('quantity').value;
+    let ticketContainer = document.querySelector('.kratisi');
+    let firstTicket = document.querySelector('.ksechoristo-ticket');
 
-
-
-    function editTickets() {
-        let quantity = document.getElementById('quantity').value;
-        for (let i = 2; i <= quantity; i++) {
-            let ticket = document.querySelector(`.ksechoristo-ticket`);
-            let clone = ticket.cloneNode(true);
-            //add event listener to the clone when i hit the checkbox the background color to become orange
-            clone.querySelector('h2').textContent = `Εισιτήριο #${i}`;
-            let inputs = clone.querySelectorAll('input, select');
-            inputs.forEach(input => {
-                let newName = input.name + i;
-                let newId = input.id + i;
-                input.setAttribute('name', newName);
-                input.setAttribute('id', newId);
-            });
-            let kostos = clone.querySelector('#kostos-eis1');
-            kostos.setAttribute('id', `kostos-eis${i}`);
-            ticket.parentNode.appendChild(clone);
-        }
-
-        let kratisi = document.querySelector(".episkeptis");
-        kratisi.style.display = 'flex';
-
-        editPeriodeikes();
-        calculateFinalCost();
-    }
-
-    function editPeriodeikes() {
-        let tickets = document.querySelectorAll('.ksechoristo-ticket');
-        let uniqueId = 1;
-        tickets.forEach(ticket => {
-            ticket.style.display = 'flex';
-            let ektheseisDivs = ticket.querySelectorAll('.ektheseis div');
-            ektheseisDivs.forEach(ektheseisDiv => {
-                ektheseisDiv.addEventListener('click', function (event) {
-                    ektheseisDiv.classList.toggle('selected');
-                    let cost_indiv = ticket.querySelector('.kostos span');
-                    console.log(cost_indiv);
-                    if (ektheseisDiv.classList.contains('selected')) {
-                        cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) + 4;
-                    }
-                    else {
-                        cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) - 4;
-                    }
-                    calculateFinalCost();
-                });
-                uniqueId++;
-            });
-        });
-
-        document.querySelector("#quantity").value = "1";
-
-
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Create the input button
-        var stickyButton = document.createElement('div');
-        stickyButton.className = 'sticky-button';
-        stickyButton.innerHTML = '<input type="button" value="Ολοκλήρωση">';
-        stickyButton.addEventListener('click', submitAllForms);
-        document.body.appendChild(stickyButton);
+    // Remove any previously added tickets except the first one
+    let existingTickets = document.querySelectorAll('.ksechoristo-ticket');
+    existingTickets.forEach((ticket, index) => {
+        if (index > 0) ticket.remove();
     });
 
-    function calculate_cost(selectElement) {
-        let selectedValue = selectElement.value;
-        let uniqueId = selectElement.id.slice(-1);
-        let cost_indiv = document.querySelector(`#kostos-eis${uniqueId}`);
-
-        if (selectedValue === "") {
-            cost = 10;
-        }
-
-        if (selectedValue === "foititis" || selectedValue === "disabled") {
-            cost = 5;
-        }
-
-        if (selectedValue === "polyteknoi") {
-            cost = 7.5;
-        }
-
-        if (selectedValue === "paidia") {
-            cost = 0;
-        }
-
-        cost_indiv.innerHTML = cost + calculateSelectedExhibitions(selectElement) * 4;
-        calculateFinalCost();
-    }
-
-    function calculateSelectedExhibitions(selectElement) {
-        // Find the common ancestor .ksechoristo-ticket
-        let ticket = selectElement.closest('.ksechoristo-ticket');
-
-        // Query for selected .ektheseis divs within this ticket
-        let selectedExhibitions = ticket.querySelectorAll('.ektheseis div.selected');
-
-        // Return the count of selected exhibitions
-        return selectedExhibitions.length;
-    }
-
-    function calculateFinalCost() {
-        let tickets = document.querySelectorAll('.ksechoristo-ticket');
-        let finalCost = 0;
-        tickets.forEach(ticket => {
-            let cost = ticket.querySelector('.kostos span').innerHTML;
-            finalCost += parseInt(cost);
+    for (let i = 2; i <= quantity; i++) {
+        let clone = firstTicket.cloneNode(true);
+        clone.querySelector('h2').textContent = `Εισιτήριο #${i}`;
+        let inputs = clone.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            let newName = input.name.replace(/\d+$/, '') + i;
+            let newId = input.id.replace(/\d+$/, '') + i;
+            input.setAttribute('name', newName);
+            input.setAttribute('id', newId);
         });
-        document.querySelector('#kostos-teliko').innerHTML = finalCost;
+        let kostos = clone.querySelector('.kostos span');
+        kostos.setAttribute('id', `kostos-eis${i}`);
+        ticketContainer.appendChild(clone);
     }
 
-    function submitAllForms() {
-        let forms = document.querySelectorAll('.ticket-form');
+    let kratisi = document.querySelector(".episkeptis");
+    kratisi.style.display = 'flex';
 
+    editPeriodeikes();
+    calculateFinalCost();
+}
+
+function editPeriodeikes() {
+    let tickets = document.querySelectorAll('.ksechoristo-ticket');
+    tickets.forEach(ticket => {
+        ticket.style.display = 'flex';
+        let ektheseisDivs = ticket.querySelectorAll('.ektheseis div');
+        ektheseisDivs.forEach(ektheseisDiv => {
+            ektheseisDiv.addEventListener('click', function (event) {
+                ektheseisDiv.classList.toggle('selected');
+                let cost_indiv = ticket.querySelector('.kostos span');
+                if (ektheseisDiv.classList.contains('selected')) {
+                    cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) + 4;
+                } else {
+                    cost_indiv.innerHTML = parseInt(cost_indiv.innerHTML) - 4;
+                }
+                calculateFinalCost();
+            });
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var stickyButton = document.createElement('div');
+    stickyButton.className = 'sticky-button';
+    stickyButton.innerHTML = '<input type="button" value="Ολοκλήρωση">';
+    stickyButton.addEventListener('click', submitAllForms);
+    document.body.appendChild(stickyButton);
+});
+
+function calculate_cost(selectElement) {
+    let selectedValue = selectElement.value;
+    let uniqueId = selectElement.id.replace(/\D/g, '');
+    let cost_indiv = document.querySelector(`#kostos-eis${uniqueId}`);
+
+    let cost = 10;
+    if (selectedValue === "foititis" || selectedValue === "disabled") {
+        cost = 5;
+    } else if (selectedValue === "polyteknoi") {
+        cost = 7.5;
+    } else if (selectedValue === "paidia") {
+        cost = 0;
+    }
+
+    cost_indiv.innerHTML = cost + calculateSelectedExhibitions(selectElement) * 4;
+    calculateFinalCost();
+}
+
+function calculateSelectedExhibitions(selectElement) {
+    let ticket = selectElement.closest('.ksechoristo-ticket');
+    let selectedExhibitions = ticket.querySelectorAll('.ektheseis div.selected');
+    return selectedExhibitions.length;
+}
+
+function calculateFinalCost() {
+    let tickets = document.querySelectorAll('.ksechoristo-ticket');
+    let finalCost = 0;
+    tickets.forEach(ticket => {
+        let cost = ticket.querySelector('.kostos span').innerHTML;
+        finalCost += parseInt(cost);
+    });
+    document.querySelector('#kostos-teliko').innerHTML = finalCost;
+}
+
+function submitAllForms() {
+    let forms = document.querySelectorAll('.ticket-form');
+    let allValid = true;
+
+    forms.forEach(form => {
+        if (!form.checkValidity()) {
+            allValid = false;
+            form.reportValidity();
+        }
+    });
+
+    if (allValid) {
         let formData = [];
         forms.forEach(form => {
             let formValues = {};
@@ -248,11 +208,8 @@
                 formValues[input.name] = input.value;
             });
             formData.push(formValues);
-
         });
-        console.log(formData);
 
-        // Send formData to the server
         fetch('/submit', {
             method: 'POST',
             headers: {
@@ -260,16 +217,16 @@
             },
             body: JSON.stringify(formData),
         })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Forms submitted successfully!');
-                } else {
-                    console.error('Failed to submit forms');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .then(response => {
+            if (response.ok) {
+                console.log('Forms submitted successfully!');
+            } else {
+                console.error('Failed to submit forms');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
-
+}
 </script>
