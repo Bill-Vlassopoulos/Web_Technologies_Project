@@ -145,7 +145,7 @@ router.get("/exhibitions", (req, res) => {
 
 //Δημιουργώ διαδρομή για τον διαχειριστή
 
-router.get("/admin", (req, res) => {
+router.get("/admin/edit", (req, res) => {
 
     const cssFilePath = '/admin-style.css'
     let erga = model.getAllErgaAllInfo();
@@ -182,4 +182,4 @@ router.get("/admin/addExhibition2", (req, res) => {
 
 
 app.listen(port, () => console.log(`Open Vincent Van Gogh Gallery http://localhost:${port}/ `));
-console.log(`Open Admin Page http://localhost:${port}/admin`);
+console.log(`Open Admin Page http://localhost:${port}/admin/edit`);
