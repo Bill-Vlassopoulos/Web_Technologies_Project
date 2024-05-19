@@ -8,9 +8,9 @@
 }
 
 h2 {
-    margin: 1rem auto;
     margin-bottom: 2rem;
     font-size: 2rem;
+    align-self: flex-start;
 }
 
 h3 {
@@ -29,8 +29,19 @@ hr {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
 }
+
+.information-form label{
+    align-self: flex-start;
+}
+
+
+.information-form input[type="text"]{
+    height: 2em;
+    width: 40%;
+}
+
 
 input,
 select,
@@ -49,8 +60,11 @@ label {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
-    margin-left: 1rem;
+    align-items: flex-start;
+}
+
+.liksi{
+    margin-left: 2em;
 }
 
 .imer {
@@ -59,6 +73,37 @@ label {
     justify-content: space-evenly;
     align-items: center;
 }
+
+.img-ekthesis{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+#perigrafi{
+    width: 40%;
+}
+
+
+.img-ekthesis input[type="text"]{
+    width: 100%;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    margin-top: 1%;
+}
+
+.submit-btn, .buttons a{
+    font-size: 1.5em;
+}
+
 
 .container {
     width: 90%;

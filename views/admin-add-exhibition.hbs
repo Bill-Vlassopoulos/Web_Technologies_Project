@@ -1,73 +1,42 @@
 <div class="container">
     <h2>Δημιουργία Νέας Έκθεσης</h2>
 
-    <div class="information-form">
+    <form class="information-form">
         <label for="">Τίτλος</label>
-        <input type="text" placeholder="Δώσε τον τίτλο της έκθεσης">
+        <input type="text" id="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.." required>
+
+        <div class="img-ekthesis">
+             <label for="">Link Εικόνας</label>
+            <input type="text" id="link" placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.."required>
+        </div>
 
         <label for="">Περιγραφή Έκθεσης</label>
-        <textarea name="perigrafi" id="perigrafi" placeholder="Περιγραφή της έκθεσης">
+        <textarea name="perigrafi" id="perigrafi" placeholder="Πληκτρολογήστε την περιγραφή της έκθεσης.." rows="10" required></textarea> 
 
-    </textarea>
+    
 
         <div class="imer">
             <div>
                 <label for="imer_enarx">Ημερομηνία Έναρξης:</label>
 
-                <input type="date" name="imer_enarx">
+                <input type="date" name="imer_enarx" required>
             </div>
-            <div>
+            <div class="liksi">
                 <label for="imer_liksis">Ημερομηνία Λήξης:</label>
-                <input type="date" name="imer_liksis">
+                <input type="date" name="imer_liksis" required>
             </div>
         </div>
         <label for="aithousa">Επιλέξτε Αίθουσα</label>
-        <select name="aithousa" id="aithousa">
+        <select name="aithousa" id="aithousa" required>
             <option value="1">Αίθουσα 1</option>
             <option value="2">Αίθουσα 2</option>
             <option value="3">Αίθουσα 3</option>
         </select>
-    </div>
 
-    <div class="erga">
-        <h3>Διαθέσιμα έργα</h3>
-        <hr>
-        <div class="grid-erga">
-            {{#each erga}}
-            <div class="ergo">
-                <img src={{this.link}} alt="">
-                <h5>{{this.onoma}}</h5>
-                <h5>{{this.arithmos_ergou}}</h5>
-                <div class="buttons">
-                    <button class="prosthiki">Προσθήκη</button>
-
-                </div>
-            </div>
-            {{/each}}
-        </div>
-
-        <h3>Επιλεγμένα</h3>
-        <hr>
-        <div class="grid-erga">
+          <div class="buttons">
+            <button class="submit-btn" type="submit">Συνέχεια</button>
+            <a href="/admin">Ακύρωση</a>
+          </div>
 
 
-        </div>
-
-    </div>
-</div>
-
-
-<script>
-    document.querySelectorAll('.prosthiki').forEach(button => {
-        button.addEventListener('click', function () {
-            // Get the parent div
-            let parentDiv = this.parentNode.parentNode;
-
-            // Remove the parent div from the first grid
-            parentDiv.parentNode.removeChild(parentDiv);
-
-            // Add the parent div to the last grid-erga
-            document.querySelectorAll('.grid-erga')[1].appendChild(parentDiv);
-        });
-    });
-</script>
+    </form>

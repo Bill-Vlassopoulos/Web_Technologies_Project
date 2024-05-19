@@ -1,47 +1,84 @@
  <form class="edit-form prosthiki-form">
     <div class="titlos">
         <label for="title">Tίτλος</label>
-        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο έργου..">
+        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο έργου.." required>
     </div>
 
     <div class="code">
         <label for="code">Κωδικός Έργου</label>
-        <input type="text" id="code" name="code" placeholder="Πληκτρολογήστε τον κωδικό του έργου..">
+        <input type="text" id="code" name="code" placeholder="Πληκτρολογήστε τον κωδικό του έργου.." required>
     </div>
 
     <div class="image-link">
         <label for="link">Link Εικόνας</label>
-        <input type="text" id="link" name="link" placeholder="Πληκτρολογήστε το link της εικόνας..">
+        <input type="url" id="link" name="link" placeholder="Πληκτρολογήστε το link της εικόνας.." required>
     </div>
 
     <div class="xronologia">
         <label for="date">Χρονολογία</label>
-        <input type="text" id="date" name="date" placeholder="Πληκτρολογήστε την χρονολογία δημιουργίας του έργου..">
+        <input type="text" id="date" name="date" placeholder="Πληκτρολογήστε την χρονολογία δημιουργίας του έργου.." required>
     </div>
 
     <div class="diastaseis">
         <label for="size">Διαστάσεις</label>
-        <input type="text" id="size" name="size" placeholder="Πληκτρολογήστε τις διαστάσεις του έργου..">
+        <input type="text" id="size" name="size" placeholder="Πληκτρολογήστε τις διαστάσεις του έργου.." required>
     </div>
 
     <div class="typos">
         <label for="type">Τύπος Καμβά</label>
-        <input type="text" id="type" name="type" placeholder="Πληκτρολογήστε τον τύπο καμβά του έργου..">
+        <input type="text" id="type" name="type" placeholder="Πληκτρολογήστε τον τύπο καμβά του έργου.." required>
     </div>
 
     <div class="kallitexnis">
         <label for="artist">Καλλιτέχνης</label>
-        <input type="text" id="artist" name="artist" placeholder="Πληκτρολογήστε τον καλλιτέχνη του έργου..">
+        <input type="text" id="artist" name="artist" placeholder="Πληκτρολογήστε τον καλλιτέχνη του έργου.." required>
     </div>
 
     <div class="perigrafi">
         <label for="content">Περιγραφή</label>
-         <textarea id="content" name="content" rows="10" placeholder="Πληκτρολογήστε την περιγραφή του έργου.."></textarea>
+        <textarea id="content" name="content" rows="10" placeholder="Πληκτρολογήστε την περιγραφή του έργου.." required></textarea>
+    </div>
+
+    <p>Προσθήκη σε: </p>
+    <div class="ekthesi">
+        <div class="radios">
+            <div class="radio-monimi">
+                <input type="radio" id="monimi" name="ekthesi" value="monimi" onclick="chooseRoom()" required>
+                <label for="monimi">Μόνιμη Έκθεση</label><br>
+            </div>
+            <div class="radio-periodiki">
+                <input type="radio" id="periodiki" name="ekthesi" value="periodiki" onclick="chooseRoom()" required>
+                <label for="periodiki">Περιοδική Έκθεση</label><br>
+            </div>
+        </div>
+        <div class="room" id="room">
+            <label for="aithousa">Επιλέξτε Αίθουσα</label>
+            <select name="aithousa" id="aithousa">
+                <option value="1">Αίθουσα 1</option>
+                <option value="2">Αίθουσα 2</option>
+                <option value="3">Αίθουσα 3</option>
+            </select>
+        </div>
     </div>
 
     <div class="buttons">
         <button class="submit-btn" type="submit">Προσθήκη</button>
         <a href="/admin">Ακύρωση</a>
     </div>
-
 </form>
+
+<script>
+    function chooseRoom() {
+        var periodicRadio = document.getElementById('periodiki');
+        var roomSelect = document.getElementById('room');
+        
+        if (periodicRadio.checked) {
+            roomSelect.style.display = 'flex';
+        } else {
+            roomSelect.style.display = 'none';
+        }
+    }
+
+    // Initialize the room select visibility
+    chooseRoom();
+</script>
