@@ -9,7 +9,7 @@ import bodyParser from 'body-parser'
 const model = await import('../model/queries.mjs')
 
 const app = express()
-const port = process.env.PORT || '3001';
+const port = process.env.PORT || '3000';
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
