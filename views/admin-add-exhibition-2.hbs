@@ -1,0 +1,65 @@
+<div class="container1">
+
+    <div class="available">
+        <h3>Διαθέσιμα έργα</h3>
+        <hr>
+        <div class="grid-erga">
+            {{#each erga}}
+            <div class="ergo">
+                <img src={{this.link}} alt="">
+                <h5>{{this.onoma}}</h5>
+                <h5>{{this.arithmos_ergou}}</h5>
+                <div class="buttons">
+                    <button class="prosthiki btn btn-light">Προσθήκη</button>
+
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="selected">
+        <h3>Επιλεγμένα</h3>
+        <hr>
+        <div class="grid-erga">
+
+
+        </div>
+    </div>
+    <div class="ypovoli">
+        <button class="btn btn-outline-success">Υποβολή</button>
+
+    </div>
+</div>
+
+
+
+<script>
+    document.querySelectorAll('.prosthiki').forEach(button => {
+        button.addEventListener('click', function () {
+            // Get the parent div
+
+            if (button.innerHTML == "Προσθήκη") {
+
+                let parentDiv = this.parentNode.parentNode;
+
+                // Remove the parent div from the first grid
+                parentDiv.parentNode.removeChild(parentDiv);
+
+                // Add the parent div to the last grid-erga
+                document.querySelectorAll('.grid-erga')[1].appendChild(parentDiv);
+                button.innerHTML = "Αφαίρεση";
+            }
+            else {
+                let parentDiv = this.parentNode.parentNode;
+
+                // Remove the parent div from the first grid
+                parentDiv.parentNode.removeChild(parentDiv);
+
+                // Add the parent div to the last grid-erga
+                document.querySelectorAll('.grid-erga')[0].appendChild(parentDiv);
+                button.innerHTML = "Προσθήκη";
+            }
+        });
+    });
+</script>
