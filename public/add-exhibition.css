@@ -32,12 +32,12 @@ hr {
     align-items: flex-start;
 }
 
-.information-form label{
+.information-form label {
     align-self: flex-start;
 }
 
 
-.information-form input[type="text"]{
+.information-form input[type="text"] {
     height: 2em;
     width: 40%;
 }
@@ -63,7 +63,7 @@ label {
     align-items: flex-start;
 }
 
-.liksi{
+.liksi {
     margin-left: 2em;
 }
 
@@ -74,7 +74,7 @@ label {
     align-items: center;
 }
 
-.img-ekthesis{
+.img-ekthesis {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,16 +82,16 @@ label {
     width: 40%;
 }
 
-#perigrafi{
+#perigrafi {
     width: 40%;
 }
 
 
-.img-ekthesis input[type="text"]{
+.img-ekthesis input[type="text"] {
     width: 100%;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -100,7 +100,8 @@ label {
     margin-top: 1%;
 }
 
-.submit-btn, .buttons a{
+.submit-btn,
+.buttons a {
     font-size: 1.5em;
 }
 

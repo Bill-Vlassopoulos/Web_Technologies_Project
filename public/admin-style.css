@@ -127,6 +127,10 @@ textarea {
     margin-bottom: 1%;
 }
 
+textarea#content {
+    font-size: 1.3em;
+}
+
 .edit-container {
     display: flex;
     flex-direction: row;
@@ -162,61 +166,63 @@ textarea {
     width: 40%;
 }
 
-.edit-form.prosthiki-form .ekthesi{
+.edit-form.prosthiki-form .ekthesi {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
 }
 
-.edit-form.prosthiki-form .ekthesi .radios{
+.edit-form.prosthiki-form .ekthesi .radios {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    flex:50%
+    flex: 50%
 }
 
-.ekthesi .radio-monimi,.ekthesi .radio-periodiki{
+.ekthesi .radio-monimi,
+.ekthesi .radio-periodiki {
     display: flex;
     flex-direction: row;
 }
 
-.ekthesi .radio-monimi label ,.ekthesi .radio-periodiki label{
+.ekthesi .radio-monimi label,
+.ekthesi .radio-periodiki label {
     font-weight: 400;
 }
 
-.edit-form.prosthiki-form .radio-monimi,.edit-form.prosthiki-form .radio-periodiki{
+.edit-form.prosthiki-form .radio-monimi,
+.edit-form.prosthiki-form .radio-periodiki {
     width: 60%;
-} 
+}
 
-.edit-form.prosthiki-form .room{
+.edit-form.prosthiki-form .room {
     display: none;
 }
 
-.edit-form.prosthiki-form .room #aithousa{
+.edit-form.prosthiki-form .room #aithousa {
     font-size: 1.5em;
 }
 
- p{
+p {
     font-size: 1.5em;
     font-weight: 600;
     margin-bottom: 0.5%;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
 
-    .prosthiki{
+    .prosthiki {
         width: 20%;
     }
 
 }
 
-@media screen and (min-width: 601px) and (max-width:1000px){
-    .prosthiki{
+@media screen and (min-width: 601px) and (max-width:1000px) {
+    .prosthiki {
         width: 15%;
     }
 
 }
-

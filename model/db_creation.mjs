@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3';
 
 
-const db = new sqlite3.Database('./model/ArtGallery.db');
+const db = new sqlite3.Database('./model/ArtGallery.sqlite');
 
 // Create a table named 'Artists' with columns 'id', 'name', 'birth_year', 'country'
 
@@ -10,25 +10,30 @@ const db = new sqlite3.Database('./model/ArtGallery.db');
 
 let tables = [`CREATE TABLE EPISKEPTIS (
         id_episkepti INTEGER PRIMARY KEY AUTOINCREMENT,
-        ilikia INTEGER,
         onomateponymo TEXT,
         email TEXT,
-        tilefono TEXT,
-        eidiki_katigoria CHAR(50)
+        tilefono TEXT
+        
 );`,
     `CREATE TABLE EKTHESI (
         id_ekthesis INTEGER PRIMARY KEY AUTOINCREMENT,
         onoma_ekthesis CHAR(50),
         perigrafi TEXT
 );`,
+
     `CREATE TABLE EISITIRIO (
         id_eisitiriou INTEGER PRIMARY KEY AUTOINCREMENT,
-        kostos INTEGER,
         imerominia DATE,
-        ora TIME,
+        ora CHAR(10),
+        eidiki_katigoria CHAR(20),
         id_episkepti INTEGER,
+        FOREIGN KEY (id_episkepti) REFERENCES EPISKEPTIS(id_episkepti)
+        
+    );`,
+    `CREATE TABLE ANTISTOIXEI (
+        id_eisitiriou INTEGER,
         id_ekthesis INTEGER,
-        FOREIGN KEY (id_episkepti) REFERENCES EPISKEPTIS(id_episkepti),
+        FOREIGN KEY (id_eisitiriou) REFERENCES EISITIRIO(id_eisitiriou),
         FOREIGN KEY (id_ekthesis) REFERENCES EKTHESI(id_ekthesis)
     );`,
 

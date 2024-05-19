@@ -1,4 +1,4 @@
- <form class="edit-form prosthiki-form">
+<form class="edit-form prosthiki-form" method="post" action="/admin/addPainting/submit">
     <div class="titlos">
         <label for="title">Tίτλος</label>
         <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο έργου.." required>
@@ -16,7 +16,8 @@
 
     <div class="xronologia">
         <label for="date">Χρονολογία</label>
-        <input type="text" id="date" name="date" placeholder="Πληκτρολογήστε την χρονολογία δημιουργίας του έργου.." required>
+        <input type="text" id="date" name="date" placeholder="Πληκτρολογήστε την χρονολογία δημιουργίας του έργου.."
+            required>
     </div>
 
     <div class="diastaseis">
@@ -36,7 +37,8 @@
 
     <div class="perigrafi">
         <label for="content">Περιγραφή</label>
-        <textarea id="content" name="content" rows="10" placeholder="Πληκτρολογήστε την περιγραφή του έργου.." required></textarea>
+        <textarea id="content" name="content" rows="10" placeholder="Πληκτρολογήστε την περιγραφή του έργου.."
+            required></textarea>
     </div>
 
     <p>Προσθήκη σε: </p>
@@ -54,9 +56,10 @@
         <div class="room" id="room">
             <label for="aithousa">Επιλέξτε Αίθουσα</label>
             <select name="aithousa" id="aithousa">
-                <option value="1">Αίθουσα 1</option>
-                <option value="2">Αίθουσα 2</option>
-                <option value="3">Αίθουσα 3</option>
+                {{#each aithouses}}
+                <option value="{{this.id_aithousas}}">Αίθουσα {{this.id_aithousas}}</option>
+                {{/each}}
+
             </select>
         </div>
     </div>
@@ -71,7 +74,7 @@
     function chooseRoom() {
         var periodicRadio = document.getElementById('periodiki');
         var roomSelect = document.getElementById('room');
-        
+
         if (periodicRadio.checked) {
             roomSelect.style.display = 'flex';
         } else {

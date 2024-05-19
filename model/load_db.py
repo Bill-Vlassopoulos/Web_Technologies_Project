@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def main():
-    conn = sqlite3.connect("model/ArtGallery.db")
+    conn = sqlite3.connect("model/ArtGallery.sqlite")
     cursor = conn.cursor()
     DataFrame = pd.read_csv("vangogh.csv")
 

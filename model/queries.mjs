@@ -49,13 +49,62 @@ export function getErgaWithDescription() {
     }
 }
 
-export function insertNewEpiskeptis(ilikia, onomateponymo, email, tilefono, eidiki_katigoria) {
-    const stmt = sql.prepare("INSERT INTO EPISKEPTIS (ilikia,onomateponymo,email,tilefono,eidiki_katigoria) VALUES (?,?,?,?,?)");
+export function insertNewEpiskeptis(onomateponymo, email, tilefono) {
+    const stmt = sql.prepare("INSERT INTO EPISKEPTIS (onomateponymo,email,tilefono) VALUES (?,?,?)");
     try {
-        stmt.run(ilikia, onomateponymo, email, tilefono, eidiki_katigoria);
+        stmt.run(onomateponymo, email, tilefono);
         return true;
     }
     catch (e) {
         throw (e);
     }
 }
+
+export function insertNewEisitirio(imerominia, ora, eidiki_katigoria, id_episkepti) {
+
+    if (imerominia === undefined || ora === undefined || eidiki_katigoria === undefined || id_episkepti === undefined) {
+        throw new Error('All parameters must be defined');
+    }
+    // Convert imerominia to a Date object
+    const date = new Date(imerominia);
+
+    // Format the date as YYYY-MM-DD
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+    const stmt = sql.prepare("INSERT INTO EISITIRIO (imerominia,ora,eidiki_katigoria,id_episkepti) VALUES (?,?,?,?)");
+
+
+
+    try {
+        stmt.run(formattedDate, ora, eidiki_katigoria, id_episkepti);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function getIdofLastEpiskeptis() {
+    const stmt = sql.prepare("SELECT id_episkepti FROM EPISKEPTIS ORDER BY id_episkepti DESC LIMIT 1");
+    let id;
+    try {
+        return id = stmt.get();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function getAithouses() {
+    const stmt = sql.prepare("SELECT * FROM AITHOUSA");
+    let aithouses;
+    try {
+        return aithouses = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+
+
