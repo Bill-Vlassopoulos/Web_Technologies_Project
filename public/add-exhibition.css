@@ -7,10 +7,11 @@
     font-size: 10px;
 }
 
-h2 {
-    margin-bottom: 2rem;
+.container h2 {
+    margin-bottom: 1em;
     font-size: 2rem;
     align-self: flex-start;
+    text-decoration: underline;
 }
 
 h3 {
@@ -72,6 +73,7 @@ label {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 1%;
 }
 
 .img-ekthesis {
@@ -79,16 +81,23 @@ label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40%;
-}
-
-#perigrafi {
-    width: 40%;
+    width: 60%;
+    margin-bottom: 1%;
 }
 
 
 .img-ekthesis input[type="text"] {
     width: 100%;
+}
+
+select#aithousa {
+    font-size: 1.5em;
+    margin-bottom: 1%;
+}
+
+.information-form input[type="date"] {
+    font-size: 1.5em;
+
 }
 
 .buttons {
@@ -100,43 +109,29 @@ label {
     margin-top: 1%;
 }
 
-.submit-btn,
+.buttons .submit-btn,
 .buttons a {
     font-size: 1.5em;
 }
 
 
-.container {
-    width: 90%;
-    margin: 2% auto;
+.container.add {
+    margin: 2%;
     display: flex;
     flex-direction: column;
 }
 
-.ergo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    border: 2px solid #000;
-    padding: 0.6em;
-    background-color: #cccbcb;
-    box-shadow: 11px 29px 67px -40px rgba(0, 0, 0, 0.75);
-
+.information-form input[type="text"] {
+    font-size: 1.5em;
 }
 
-.ergo img {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    flex: 50%;
+.information-form #title {
+    width: 60%;
+    margin-bottom: 1%;
 }
 
-.grid-erga {
-    margin-top: 2em;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-
-    gap: 4rem;
+.information-form #perigrafi {
+    font-size: 1.5em;
+    width: 60%;
+    margin-bottom: 1%;
 }

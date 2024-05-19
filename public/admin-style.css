@@ -212,6 +212,62 @@ p {
     margin-bottom: 0.5%;
 }
 
+.display .enarxi input,
+.display .liksi input {
+    padding: 0;
+}
+
+.display .enarxi,
+.display .liksi {
+    width: 40%;
+}
+
+.edit-form .aithousa-display {
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.aithousa-display select {
+    font-size: 1.5em;
+    width: 50%;
+}
+
+.edit-form .imerom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.display .enarxi input,
+.display .liksi input {
+    padding: 0;
+}
+
+.display .enarxi,
+.display .liksi {
+    width: 40%;
+}
+
+.edit-form .aithousa-display {
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.aithousa-display select {
+    font-size: 1.5em;
+    width: 50%;
+}
+
+.edit-form .imerom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 @media screen and (max-width: 600px) {
 
     .prosthiki {

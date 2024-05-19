@@ -1,29 +1,26 @@
-<div class="container">
+<div class="container add">
     <h2>Δημιουργία Νέας Έκθεσης</h2>
 
-    <form class="information-form">
-        <label for="">Τίτλος</label>
+    <form class="information-form" method="post" action="/admin/addExhibition2" onsubmit="return continueExhibition2()">
+        <label for="title">Τίτλος</label>
         <input type="text" id="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.." required>
 
         <div class="img-ekthesis">
-             <label for="">Link Εικόνας</label>
-            <input type="text" id="link" placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.."required>
+             <label for="link">Link Εικόνας</label>
+            <input type="text" id="link" placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.." required>
         </div>
 
-        <label for="">Περιγραφή Έκθεσης</label>
+        <label for="perigrafi">Περιγραφή Έκθεσης</label>
         <textarea name="perigrafi" id="perigrafi" placeholder="Πληκτρολογήστε την περιγραφή της έκθεσης.." rows="10" required></textarea> 
-
-    
 
         <div class="imer">
             <div>
                 <label for="imer_enarx">Ημερομηνία Έναρξης:</label>
-
-                <input type="date" name="imer_enarx" required>
+                <input type="date" name="imer_enarx" id="imer_enarx" required>
             </div>
             <div class="liksi">
                 <label for="imer_liksis">Ημερομηνία Λήξης:</label>
-                <input type="date" name="imer_liksis" required>
+                <input type="date" name="imer_liksis" id="imer_liksis" required>
             </div>
         </div>
         <label for="aithousa">Επιλέξτε Αίθουσα</label>
@@ -33,10 +30,20 @@
             <option value="3">Αίθουσα 3</option>
         </select>
 
-          <div class="buttons">
+        <div class="buttons">
             <button class="submit-btn" type="submit">Συνέχεια</button>
             <a href="/admin">Ακύρωση</a>
-          </div>
-
-
+        </div>
     </form>
+</div>
+
+<script>
+    function continueExhibition2() {
+        const form = document.querySelector('.information-form');
+        if (form.checkValidity()) {
+            window.location.href = "/admin/addExhibition2";
+            return false; // Prevent default form submission
+        }
+        return false; // Prevent default form submission if invalid
+    }
+</script>

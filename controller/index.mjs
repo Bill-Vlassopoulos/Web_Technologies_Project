@@ -9,7 +9,7 @@ import bodyParser from 'body-parser'
 const model = await import('../model/queries.mjs')
 
 const app = express()
-const port = process.env.PORT || '3001';
+const port = process.env.PORT || '3000';
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -153,7 +153,7 @@ router.get("/exhibitions", (req, res) => {
 
 //Δημιουργώ διαδρομή για τον διαχειριστή
 
-router.get("/admin", (req, res) => {
+router.get("/admin/edit", (req, res) => {
 
     const cssFilePath = '/admin-style.css'
     let erga = model.getAllErgaAllInfo();
@@ -198,4 +198,4 @@ router.get("/admin/addExhibition2", (req, res) => {
 
 
 app.listen(port, () => console.log(`Open Vincent Van Gogh Gallery http://localhost:${port}/ `));
-console.log(`Open Admin Page http://localhost:${port}/admin`);
+console.log(`Open Admin Page http://localhost:${port}/admin/edit`);
