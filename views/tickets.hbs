@@ -226,7 +226,7 @@
                 let formValues = {};
                 let inputs = form.querySelectorAll('input, select');
                 inputs.forEach(input => {
-                    formValues[input.name] = input.value;
+                    formValues[input.name.slice(0, -1)] = input.value;
                 });
                 if (form.querySelector(".ektheseis") !== null) {
                     periodikes_ektheseis = form.querySelectorAll('.ektheseis .selected p');
