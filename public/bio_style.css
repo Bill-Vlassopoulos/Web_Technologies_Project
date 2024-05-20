@@ -106,7 +106,7 @@ body{
 /*bio first page*/
 
 .bio_first{
-    height: 170vh;
+    height: 190vh;
     padding-top: 2%;
 }
 
@@ -340,7 +340,7 @@ body{
 /*bio page 3*/
 
 .parisi{
-    height: 160vh;
+    height: 180vh;
 
 }
 
@@ -439,7 +439,7 @@ body{
 
 /*bio page 4 arles*/
 .arles-body{
-    height: 340vh;
+    height: 360vh;
 }
 
 .topio,.yellow-house,.sunflowers{
@@ -814,4 +814,23 @@ img#palia-photo{
             height: 400vh;
         }
     }
+}
+
+.page1,.page2,.page3,.page4,.page5,.page6{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.page1 .bx.bx-chevron-left, .page6 .bx.bx-chevron-right{
+    opacity: 0;
+
+}
+
+.bx.bx-chevron-right,.bx.bx-chevron-left{
+    color:white;
+    font-size: 6em;
+    top: 6em;
+    position: sticky;
 }
