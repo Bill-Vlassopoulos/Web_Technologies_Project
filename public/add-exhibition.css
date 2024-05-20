@@ -33,12 +33,12 @@ hr {
     align-items: flex-start;
 }
 
-.information-form label{
+.information-form label {
     align-self: flex-start;
 }
 
 
-.information-form input[type="text"]{
+.information-form input[type="text"] {
     height: 2em;
     width: 40%;
 }
@@ -64,7 +64,7 @@ label {
     align-items: flex-start;
 }
 
-.liksi{
+.liksi {
     margin-left: 2em;
 }
 
@@ -76,7 +76,7 @@ label {
     margin-bottom: 1%;
 }
 
-.img-ekthesis{
+.img-ekthesis {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,21 +86,21 @@ label {
 }
 
 
-.img-ekthesis input[type="text"]{
+.img-ekthesis input[type="text"] {
     width: 100%;
 }
 
-select#aithousa{
+select#aithousa {
     font-size: 1.5em;
     margin-bottom: 1%;
 }
 
-.information-form input[type="date"]{
+.information-form input[type="date"] {
     font-size: 1.5em;
 
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -109,7 +109,8 @@ select#aithousa{
     margin-top: 1%;
 }
 
-.buttons .submit-btn, .buttons a{
+.buttons .submit-btn,
+.buttons a {
     font-size: 1.5em;
 }
 
@@ -120,16 +121,16 @@ select#aithousa{
     flex-direction: column;
 }
 
-.information-form input[type="text"]{
+.information-form input[type="text"] {
     font-size: 1.5em;
 }
 
-.information-form #title{
+.information-form #title {
     width: 60%;
     margin-bottom: 1%;
 }
 
-.information-form #perigrafi{
+.information-form #perigrafi {
     font-size: 1.5em;
     width: 60%;
     margin-bottom: 1%;
