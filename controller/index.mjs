@@ -5,6 +5,7 @@ import { engine } from 'express-handlebars'
 import path from 'path'
 import { info } from 'console';
 import bodyParser from 'body-parser'
+import taskListSession from '../app-setup/app-setup-session.mjs';
 
 const model = await import('../model/queries.mjs')
 
@@ -32,6 +33,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+//Ενεργοποίηση συνεδρίας
+app.use(taskListSession)
 
 app.use(router);
 
@@ -179,7 +184,7 @@ router.post("/admin/addPainting/submit", (req, res) => {
     let info = req.body;
     console.log(info);
     model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist);
-    res.redirect('/admin');
+    res.redirect('/admin/edit');
 });
 
 router.get("/admin/addExhibition", (req, res) => {
@@ -198,6 +203,12 @@ router.get("/admin/edit/delete/:arithmos_ergou", (req, res) => {
     model.deleteErgo(req.params.arithmos_ergou);
     res.redirect('/admin/edit');
 });
+
+//Δημιουργία διαδρομής για το login του admin
+router.get("/admin/login", (req,res)=>{
+    const cssFilePath = '/admin-style.css'
+    res.render('admin-login',{layout:'admin', css:cssFilePath});
+})
 
 
 

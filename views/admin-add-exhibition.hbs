@@ -46,4 +46,27 @@
         }
         return false; // Prevent default form submission if invalid
     }
+
+        // JavaScript to set the minimum date
+        const datePicker = document.getElementById('imer_enarx');
+        const date_after = document.getElementById('imer_liksis');
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+        const year = today.getFullYear();
+
+        // Set the min attribute to today's date in YYYY-MM-DD format
+        const minDate = `${year}-${month}-${day}`;
+        datePicker.setAttribute('min', minDate);
+        date_after.setAttribute('min',minDate);
+
+    // Function to update the minimum end date
+    datePicker.addEventListener('change', function() {
+        const startDate = datePicker.value;
+        date_after.setAttribute('min', startDate);
+        if (date_after.value < startDate) {
+            date_after.value = startDate;
+        }
+    });
+
 </script>
