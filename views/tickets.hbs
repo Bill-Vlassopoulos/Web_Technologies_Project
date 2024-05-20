@@ -96,7 +96,21 @@
 </section>
 
 <script>
-    function editTickets() {
+
+     // JavaScript to set the minimum date
+        const datePickers = document.querySelectorAll(".imerominia input[type='date']");
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+        const year = today.getFullYear();
+
+        // Set the min attribute to today's date in YYYY-MM-DD format
+        const minDate = `${year}-${month}-${day}`;
+         datePickers.forEach(picker => {
+            picker.setAttribute('min', minDate);
+        });
+
+        function editTickets() {
         let quantity = document.getElementById('quantity').value;
         let ticketContainer = document.querySelector('.kratisi');
         let firstTicket = document.querySelector('.ksechoristo-ticket');
