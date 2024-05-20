@@ -129,3 +129,38 @@ export function deleteErgo(arithmos_ergou) {
 
 }
 
+export function newPeriodikiEkthesi(titlos, perigrafi, imerominia_enarxis, imerominia_lixis, id_aithousas) {
+    const stmt = sql.prepare("INSERT INTO EKTHESI (onoma_ekthesis,perigrafi) VALUES (?,?)");
+
+    try {
+        stmt.run(titlos, perigrafi);
+        const stmt2 = sql.prepare("SELECT id_ekthesis FROM EKTHESI ORDER BY id_ekthesis DESC LIMIT 1");
+        let id;
+        try {
+            id = stmt2.get();
+            const stmt3 = sql.prepare("INSERT INTO PARODIKI_EKTHESI (id_ekthesis,imerominia_enarxis,imerominia_lixis) VALUES (?,?,?)");
+            stmt3.run(id.id_ekthesis, imerominia_enarxis, imerominia_lixis);
+            try {
+                const stmt4 = sql.prepare("INSERT INTO DIEXAGETAI (id_ekthesis,id_aithousas) VALUES (?,?)");
+                stmt4.run(id.id_ekthesis, parseInt(id_aithousas));
+                return true;
+            }
+            catch (e) {
+                throw (e);
+            }
+
+        }
+        catch (e) {
+            throw (e);
+        }
+    }
+    catch (e) {
+        throw (e);
+    }
+
+
+};
+
+
+
+

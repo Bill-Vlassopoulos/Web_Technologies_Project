@@ -9,12 +9,12 @@ import bodyParser from 'body-parser'
 const model = await import('../model/queries.mjs')
 
 const app = express()
-const port = process.env.PORT || '3001';
+const port = process.env.PORT || '3000';
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
+let ex_info = {};
 // Χρήση της Handlebars σαν template engine
 app.engine('hbs', engine({
     extname: 'hbs',
@@ -182,13 +182,27 @@ router.post("/admin/addPainting/submit", (req, res) => {
     res.redirect('/admin');
 });
 
+
 router.get("/admin/addExhibition", (req, res) => {
     const cssFilePath = '/add-exhibition.css'
-    let erga = model.getAllErgaAllInfo();
-    res.render('admin-add-exhibition', { layout: 'admin', erga: erga, css: cssFilePath });
+
+    res.render('admin-add-exhibition', { layout: 'admin', css: cssFilePath });
 });
 
+router.post("/admin/addExhibition/submit", (req, res) => {
+    ex_info = req.body;
+    console.log(ex_info);
+    model.newPeriodikiEkthesi(ex_info.title, ex_info.perigrafi, ex_info.imer_enarx, ex_info.imer_liksis, ex_info.aithousa);
+    //res.send("All good");
+    res.redirect('/admin/addExhibition');
+});
+
+
+
+
+
 router.get("/admin/addExhibition2", (req, res) => {
+
     const cssFilePath = '/add-exhibition-2.css'
     let erga = model.getAllErgaAllInfo();
     res.render('admin-add-exhibition-2', { layout: 'admin', erga: erga, css: cssFilePath });

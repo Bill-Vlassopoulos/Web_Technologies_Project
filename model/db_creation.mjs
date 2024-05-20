@@ -82,6 +82,8 @@ let tables = [`CREATE TABLE EPISKEPTIS (
     `CREATE TABLE PERILAMBANETAI(
         id_ekthesis INTEGER,
         arithmos_ergou INTEGER,
+        imerominia_enarxsis DATE,
+        imerominia_lixis DATE,
         FOREIGN KEY (id_ekthesis) REFERENCES EKTHESI(id_ekthesis),
         FOREIGN KEY (arithmos_ergou) REFERENCES ERGO(arithmos_ergou)
     );`,

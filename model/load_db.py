@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+import random
 
 
 def main():
@@ -22,7 +23,30 @@ def main():
             ),
         )
         conn.commit()
-
+    cursor.execute(
+        "INSERT INTO EKTHESI (onoma_ekthesis, perigrafi) VALUES (?, ?)",
+        (
+            "Μόνιμη Έκθεση",
+            "Η μόνιμη έκθεση της πινακοθήκης του Βαν Γκογκ",
+        ),
+    )
+    conn.commit()
+    id_ekthesis = cursor.execute(
+        "SELECT id_ekthesis FROM EKTHESI WHERE onoma_ekthesis = 'Μόνιμη Έκθεση'"
+    )
+    id_ekthesis = id_ekthesis.fetchone()[0]
+    cursor.execute(
+        "INSERT INTO MONIMI_EKTHESI(id_ekthesis) VALUES (?)",
+        (id_ekthesis,),
+    )
+    conn.commit()
+    for x in range(3):
+        orio = random.randint(10, 20)
+        cursor.execute(
+            "INSERT INTO AITHOUSA(id_aithousas,orio_atomon) VALUES (?,?)",
+            (x + 1, orio),
+        )
+        conn.commit()
     conn.close()
 
 

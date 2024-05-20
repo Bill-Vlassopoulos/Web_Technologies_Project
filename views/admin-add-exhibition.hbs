@@ -1,17 +1,19 @@
 <div class="container add">
     <h2>Δημιουργία Νέας Έκθεσης</h2>
 
-    <form class="information-form" method="post" action="/admin/addExhibition2" onsubmit="return continueExhibition2()">
+    <form class="information-form" method="post" action="/admin/addExhibition/submit">
         <label for="title">Τίτλος</label>
-        <input type="text" id="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.." required>
+        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.." required>
 
         <div class="img-ekthesis">
-             <label for="link">Link Εικόνας</label>
-            <input type="text" id="link" placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.." required>
+            <label for="link">Link Εικόνας</label>
+            <input type="text" id="link"
+                placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.." required>
         </div>
 
         <label for="perigrafi">Περιγραφή Έκθεσης</label>
-        <textarea name="perigrafi" id="perigrafi" placeholder="Πληκτρολογήστε την περιγραφή της έκθεσης.." rows="10" required></textarea> 
+        <textarea name="perigrafi" id="perigrafi" placeholder="Πληκτρολογήστε την περιγραφή της έκθεσης.." rows="10"
+            required></textarea>
 
         <div class="imer">
             <div>
@@ -38,12 +40,5 @@
 </div>
 
 <script>
-    function continueExhibition2() {
-        const form = document.querySelector('.information-form');
-        if (form.checkValidity()) {
-            window.location.href = "/admin/addExhibition2";
-            return false; // Prevent default form submission
-        }
-        return false; // Prevent default form submission if invalid
-    }
+
 </script>
