@@ -178,7 +178,7 @@ router.get("/admin/addPainting", (req, res) => {
 router.post("/admin/addPainting/submit", (req, res) => {
     let info = req.body;
     console.log(info);
-    model.insertNewErgo(info.code, info.title, info.content, info.date, info.arithmos_aithousas);
+    model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist);
     res.redirect('/admin');
 });
 
@@ -192,6 +192,11 @@ router.get("/admin/addExhibition2", (req, res) => {
     const cssFilePath = '/add-exhibition-2.css'
     let erga = model.getAllErgaAllInfo();
     res.render('admin-add-exhibition-2', { layout: 'admin', erga: erga, css: cssFilePath });
+});
+
+router.get("/admin/edit/delete/:arithmos_ergou", (req, res) => {
+    model.deleteErgo(req.params.arithmos_ergou);
+    res.redirect('/admin/edit');
 });
 
 

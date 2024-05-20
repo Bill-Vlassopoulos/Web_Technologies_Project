@@ -106,5 +106,26 @@ export function getAithouses() {
     }
 }
 
+export function insertNewErgo(arithmos_ergou, link, xronologia, diastaseis, typos_kamva, onoma, perigrafi, kallitexnis) {
+    const stmt = sql.prepare("INSERT INTO ERGO (arithmos_ergou,link,xronologia,diastaseis,typos_kamva,onoma,perigrafi,kallitexnis) VALUES (?,?,?,?,?,?,?,?)");
+    try {
+        stmt.run(arithmos_ergou, link, xronologia, diastaseis, typos_kamva, onoma, perigrafi, kallitexnis);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}
 
+export function deleteErgo(arithmos_ergou) {
+    const stmt = sql.prepare("DELETE FROM ERGO WHERE arithmos_ergou = ?");
+    try {
+        stmt.run(arithmos_ergou);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+
+}
 
