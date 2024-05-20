@@ -131,7 +131,15 @@ router.get("/tickets", (req, res) => {
 
 router.post("/submit", (req, res) => {
     // Handle form submission
-    console.log(req.body); // This will contain the form data sent by the client
+
+    let info = req.body;
+    console.log(info);
+    // console.log(info[info.length - 1]);
+    model.insertNewEpiskeptis(info[info.length - 1].onoma, info[info.length - 1].mail, info[info.length - 1].phone);
+    let id_episkepti = model.getIdofLastEpiskeptis();
+    for (let i = 0; i < info.length - 1; i++) {
+        model.insertNewEisitirio(info[i].imerom, info[i].ora, info[i].katigoria, id_episkepti["id_episkepti"]);
+    }
     res.send("All good");
 });
 
@@ -163,7 +171,15 @@ router.get("/admin/edit/:arithmos_ergou", (req, res) => {
 //Δημιουργώ διαδρομή για την προσθήκη ενός έργου
 router.get("/admin/addPainting", (req, res) => {
     const cssFilePath = '/admin-style.css'
-    res.render('admin-add', { layout: 'admin', css: cssFilePath });
+    let aithouses = model.getAithouses();
+    res.render('admin-add', { layout: 'admin', aithouses: aithouses, css: cssFilePath });
+});
+
+router.post("/admin/addPainting/submit", (req, res) => {
+    let info = req.body;
+    console.log(info);
+    model.insertNewErgo(info.code, info.title, info.content, info.date, info.arithmos_aithousas);
+    res.redirect('/admin');
 });
 
 router.get("/admin/addExhibition", (req, res) => {
