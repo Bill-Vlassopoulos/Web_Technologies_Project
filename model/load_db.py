@@ -49,7 +49,7 @@ def main():
         )
         conn.commit()
     cursor.execute(
-        "INSERT INTO XEIRISTIS(username, password) VALUES (?, ?)",
+        "INSERT INTO DIAXEIRISTIS(username, password) VALUES (?, ?)",
         ("admin", bcrypt.hashpw("admin".encode("utf-8"), bcrypt.gensalt())),
     )
     conn.commit()

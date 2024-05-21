@@ -86,7 +86,7 @@ let tables = [`CREATE TABLE EPISKEPTIS (
         imerominia_lixis DATE,
         FOREIGN KEY (id_ekthesis) REFERENCES EKTHESI(id_ekthesis),
         FOREIGN KEY (arithmos_ergou) REFERENCES ERGO(arithmos_ergou)
-    );`
+    );`,
         `CREATE TABLE DIAXEIRISTIS (
         username CHAR(20) PRIMARY KEY,
         password CHAR(20)
