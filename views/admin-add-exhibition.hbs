@@ -3,26 +3,28 @@
 
     <form class="information-form" method="post" action="/admin/addExhibition/submit">
         <label for="title">Τίτλος</label>
-        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.." required>
+        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.."
+            value="{{ex_info.title}}" required>
 
         <div class="img-ekthesis">
             <label for="link">Link Εικόνας</label>
-            <input type="text" id="link"
-                placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.." required>
+            <input type="text" name="link" id="link"
+                placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.."
+                value="{{ex_info.link}}" required>
         </div>
 
         <label for="perigrafi">Περιγραφή Έκθεσης</label>
         <textarea name="perigrafi" id="perigrafi" placeholder="Πληκτρολογήστε την περιγραφή της έκθεσης.." rows="10"
-            required></textarea>
+            required>{{ex_info.perigrafi}}</textarea>
 
         <div class="imer">
             <div>
                 <label for="imer_enarx">Ημερομηνία Έναρξης:</label>
-                <input type="date" name="imer_enarx" id="imer_enarx" required>
+                <input type="date" name="imer_enarx" id="imer_enarx" value="{{ex_info.imer_enarx}}" required>
             </div>
             <div class="liksi">
                 <label for="imer_liksis">Ημερομηνία Λήξης:</label>
-                <input type="date" name="imer_liksis" id="imer_liksis" required>
+                <input type="date" name="imer_liksis" id="imer_liksis" value="{{ex_info.imer_liksis}}" required>
             </div>
         </div>
         <label for="aithousa">Επιλέξτε Αίθουσα</label>

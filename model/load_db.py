@@ -1,6 +1,7 @@
 import sqlite3
 import pandas as pd
 import random
+import bcrypt
 
 
 def main():
@@ -47,6 +48,11 @@ def main():
             (x + 1, orio),
         )
         conn.commit()
+    cursor.execute(
+        "INSERT INTO XEIRISTIS(username, password) VALUES (?, ?)",
+        ("admin", bcrypt.hashpw("admin".encode("utf-8"), bcrypt.gensalt())),
+    )
+    conn.commit()
     conn.close()
 
 

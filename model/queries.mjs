@@ -161,6 +161,25 @@ export function newPeriodikiEkthesi(titlos, perigrafi, imerominia_enarxis, imero
 
 };
 
+export function checkAvailableEktheseis(imerominia_enarxis, imerominia_lixis) {
+    const stmt = sql.prepare(`SELECT DISTINCT(AITHOUSA.id_aithousas) 
+                             FROM AITHOUSA 
+                             LEFT JOIN DIEXAGETAI ON AITHOUSA.id_aithousas = DIEXAGETAI.id_aithousas 
+                             LEFT JOIN EKTHESI ON EKTHESI.id_ekthesis = DIEXAGETAI.id_ekthesis 
+                             LEFT JOIN (SELECT * FROM PARODIKI_EKTHESI  
+                                        WHERE PARODIKI_EKTHESI.imerominia_lixis >= ? 
+                                        AND ? >= PARODIKI_EKTHESI.imerominia_enarxis) AS B 
+                             ON EKTHESI.id_ekthesis = B.id_ekthesis 
+                             WHERE B.id_ekthesis IS NULL;`);
+    let available;
+    try {
+        return available = stmt.all(imerominia_enarxis, imerominia_lixis);
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
 
 
 

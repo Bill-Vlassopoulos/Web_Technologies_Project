@@ -188,18 +188,35 @@ router.post("/admin/addPainting/submit", (req, res) => {
 });
 
 
-router.get("/admin/addExhibition", (req, res) => {
-    const cssFilePath = '/add-exhibition.css'
-
-    res.render('admin-add-exhibition', { layout: 'admin', css: cssFilePath });
-});
 
 router.post("/admin/addExhibition/submit", (req, res) => {
     ex_info = req.body;
+    //console.log(ex_info);
+
+    let avail = model.checkAvailableEktheseis(ex_info.imer_enarx, ex_info.imer_liksis);
+    //console.log(avail);
+
+    let found = false;
+
+    avail.forEach(element => {
+        if (!found) {
+            if (element.id_aithousas == ex_info.aithousa) {
+                found = true;
+                res.redirect('/admin/addExhibition2');
+            }
+        }
+    });
+
+    if (!found) {
+        res.redirect('/admin/addExhibition');
+    }
+});
+
+router.get("/admin/addExhibition", (req, res) => {
+    const cssFilePath = '/add-exhibition.css'
     console.log(ex_info);
-    model.newPeriodikiEkthesi(ex_info.title, ex_info.perigrafi, ex_info.imer_enarx, ex_info.imer_liksis, ex_info.aithousa);
-    //res.send("All good");
-    res.redirect('/admin/addExhibition');
+    res.render('admin-add-exhibition', { layout: 'admin', ex_info: ex_info, css: cssFilePath });
+    ex_info = {};
 });
 
 
@@ -219,9 +236,9 @@ router.get("/admin/edit/delete/:arithmos_ergou", (req, res) => {
 });
 
 //Δημιουργία διαδρομής για το login του admin
-router.get("/admin/login", (req,res)=>{
+router.get("/admin/login", (req, res) => {
     const cssFilePath = '/admin-style.css'
-    res.render('admin-login',{layout:'admin', css:cssFilePath});
+    res.render('admin-login', { layout: 'admin', css: cssFilePath });
 })
 
 
