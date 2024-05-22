@@ -322,3 +322,31 @@ h1{
     color:black;
     border:0.1em solid black;
 }
+
+.mess-alert{
+    background-color: rgb(164, 171, 203);
+    color:black;
+    border: 0.1em solid black;
+    border-radius: 5%;
+    font-size: 1.5em;
+    margin-bottom: 2%;
+    padding:0.2em;
+    font-family: inherit;
+    width: 30%;
+    padding-left: 7.5%;
+}
+
+@media screen and (max-width: 800px){
+    .log-admin input{
+        width: 70%;
+    }
+
+    .mess-alert{
+        width: 70%;
+    }
+
+    .log-admin .button{
+        width: 50%;
+    }
+} 
+

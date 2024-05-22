@@ -1,8 +1,7 @@
 import session from 'express-session'
 
-let taskListSession
 
-taskListSession=session({
+const taskListSession=session({
     secret:'mySecret',
     resave:false,
     saveUninitialized:false,

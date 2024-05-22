@@ -88,7 +88,8 @@ let tables = [`CREATE TABLE EPISKEPTIS (
         FOREIGN KEY (arithmos_ergou) REFERENCES ERGO(arithmos_ergou)
     );`,
         `CREATE TABLE DIAXEIRISTIS (
-        username CHAR(20) PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username CHAR(20),
         password CHAR(20)
     );`,
 
