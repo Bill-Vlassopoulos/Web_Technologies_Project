@@ -195,7 +195,7 @@ router.get("/admin/addPainting",logInController.checkAuthenticated, (req, res) =
 
 router.post("/admin/addPainting/submit",logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
-    console.log(info);
+    //console.log(info);
     model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist);
     res.redirect('/admin/edit');
 });
@@ -224,6 +224,21 @@ router.post("/admin/addExhibition/submit",logInController.checkAuthenticated, (r
         res.redirect('/admin/addExhibition');
     }
 });
+
+//Δημιουργώ διαδρομή για τις εκθέσεις
+router.get("/admin/Exhibitions",logInController.checkAuthenticated,(req,res)=>{
+    const cssFilePath='/admin-exh.css'
+    let exh=model.getActiveFutureExhibitions();
+    //console.log(exh);
+    res.render('admin-exhibitions',{layout: 'admin', css:cssFilePath, exh:exh});
+})
+
+//Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
+router.get("/admin/updateExhibition/:id_ekthesis",logInController.checkAuthenticated,(req,res)=>{
+    const cssFilePath='/admin-exh.css'
+    let ekthes=model.getEkthesiById(req.params.id_ekthesis);
+    res.render('admin-update-exh',{layout: 'admin', ekthes:ekthes, css:cssFilePath});
+})
 
 router.get("/admin/addExhibition", logInController.checkAuthenticated,(req, res) => {
     const cssFilePath = '/add-exhibition.css'

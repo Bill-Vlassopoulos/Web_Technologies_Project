@@ -86,9 +86,11 @@ label {
 }
 
 
-.img-ekthesis input[type="text"] {
+.img-ekthesis input[type="text"],.img-ekthesis input[type="url"] {
     width: 100%;
 }
+
+
 
 select#aithousa {
     font-size: 1.5em;
@@ -121,9 +123,10 @@ select#aithousa {
     flex-direction: column;
 }
 
-.information-form input[type="text"] {
+.information-form input[type="text"],.img-ekthesis input[type="url"] {
     font-size: 1.5em;
 }
+
 
 .information-form #title {
     width: 60%;
