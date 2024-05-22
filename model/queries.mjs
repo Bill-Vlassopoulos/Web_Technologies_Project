@@ -161,19 +161,20 @@ export function newPeriodikiEkthesi(titlos, perigrafi, imerominia_enarxis, imero
 
 };
 
-export function checkAvailableEktheseis(imerominia_enarxis, imerominia_lixis) {
-    const stmt = sql.prepare(`SELECT DISTINCT(AITHOUSA.id_aithousas) 
-                             FROM AITHOUSA 
-                             LEFT JOIN DIEXAGETAI ON AITHOUSA.id_aithousas = DIEXAGETAI.id_aithousas 
-                             LEFT JOIN EKTHESI ON EKTHESI.id_ekthesis = DIEXAGETAI.id_ekthesis 
-                             LEFT JOIN (SELECT * FROM PARODIKI_EKTHESI  
-                                        WHERE PARODIKI_EKTHESI.imerominia_lixis >= ? 
-                                        AND ? >= PARODIKI_EKTHESI.imerominia_enarxis) AS B 
-                             ON EKTHESI.id_ekthesis = B.id_ekthesis 
-                             WHERE B.id_ekthesis IS NULL;`);
+export function checkAvailableAithouses(imerominia_enarxis, imerominia_lixis) {
+    const stmt = sql.prepare(`SELECT DISTINCT(DIEXAGETAI.id_aithousas)
+    FROM DIEXAGETAI
+    WHERE id_aithousas NOT IN(
+            SELECT DIEXAGETAI.id_aithousas
+            FROM DIEXAGETAI
+            JOIN PARODIKI_EKTHESI ON DIEXAGETAI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+            WHERE (imerominia_enarxis <= ? AND  ? <=imerominia_lixis )
+               OR (imerominia_enarxis <= ? AND  ? <=imerominia_lixis )
+               OR (imerominia_enarxis = ? AND imerominia_lixis = ?)
+               )`);
     let available;
     try {
-        return available = stmt.all(imerominia_enarxis, imerominia_lixis);
+        return available = stmt.all(imerominia_enarxis, imerominia_enarxis, imerominia_lixis, imerominia_lixis, imerominia_enarxis, imerominia_lixis);
     }
     catch (e) {
         throw (e);
@@ -194,6 +195,46 @@ export function getActiveFutureExhibitions() {
     }
 }
 
+export function availableErga(imerominia_enarxis, imerominia_lixis) {
+    const stmt = sql.prepare(`SELECT *
+    FROM ERGO
+    WHERE ERGO.arithmos_ergou NOT IN (
+        SELECT PERILAMBANETAI.arithmos_ergou
+        FROM PERILAMBANETAI
+        WHERE (imerominia_enarxsis <= ? AND  ? <=imerominia_lixis )
+               OR (imerominia_enarxsis <= ? AND  ? <=imerominia_lixis )
+               OR (imerominia_enarxsis = ? AND imerominia_lixis = ?)
+    );`);
+    let available;
+    try {
+        return available = stmt.all(imerominia_enarxis, imerominia_enarxis, imerominia_lixis, imerominia_lixis, imerominia_enarxis, imerominia_lixis);
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function insertErgotoEkthesi(arithmos_ergou, id_ekthesis, imer_enarx, imer_liksis) {
+    const stmt = sql.prepare("INSERT INTO PERILAMBANETAI (arithmos_ergou,id_ekthesis,imerominia_enarxsis,imerominia_lixis) VALUES (?,?,?,?)");
+    try {
+        stmt.run(arithmos_ergou, id_ekthesis, imer_enarx, imer_liksis);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function getIdofLastEkthesis() {
+    const stmt = sql.prepare("SELECT id_ekthesis FROM EKTHESI ORDER BY id_ekthesis DESC LIMIT 1");
+    let id;
+    try {
+        return id = stmt.get();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
 
 
 

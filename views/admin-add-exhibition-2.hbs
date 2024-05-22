@@ -36,6 +36,7 @@
 
 <script>
     document.querySelectorAll('.prosthiki').forEach(button => {
+
         button.addEventListener('click', function () {
             // Get the parent div
 
@@ -61,5 +62,44 @@
                 button.innerHTML = "Προσθήκη";
             }
         });
+    });
+
+    document.querySelector('.ypovoli button').addEventListener('click', function () {
+        console.log('Υποβολή');
+        let selected = Array.from(document.querySelectorAll('.grid-erga')[1].children);
+        let erga = [];
+        selected.forEach(ergo => {
+            let onoma = ergo.querySelectorAll('h5')[0].innerHTML;
+            let arithmos_ergou = ergo.querySelectorAll('h5')[1].innerHTML;
+            erga.push({ onoma, arithmos_ergou });
+        });
+        console.log(erga);
+        // Send the data to the server
+        fetch('/admin/addExhibition2/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(erga)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    alert('Επιτυχής υποβολή');
+                    window.location.href = '/admin/addExhibition';
+                } else {
+                    alert('Αποτυχία υποβολής');
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Αποτυχία υποβολής');
+            });
     });
 </script>

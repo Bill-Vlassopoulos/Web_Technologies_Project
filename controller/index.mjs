@@ -171,7 +171,7 @@ router.get("/exhibitions", (req, res) => {
 
 //Δημιουργώ διαδρομή για τον διαχειριστή
 
-router.get("/admin/edit",logInController.checkAuthenticated,(req, res) => {
+router.get("/admin/edit", logInController.checkAuthenticated, (req, res) => {
 
     const cssFilePath = '/admin-style.css'
     let erga = model.getAllErgaAllInfo();
@@ -180,20 +180,20 @@ router.get("/admin/edit",logInController.checkAuthenticated,(req, res) => {
 });
 
 //Δημιουργώ διαδρομή για το editing του κάθε έργου
-router.get("/admin/edit/:arithmos_ergou",logInController.checkAuthenticated, (req, res) => {
+router.get("/admin/edit/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-style.css'
     let ergo_info = model.getErgo(req.params.arithmos_ergou);
     res.render('admin-edit', { layout: 'admin', info: ergo_info, css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την προσθήκη ενός έργου
-router.get("/admin/addPainting",logInController.checkAuthenticated, (req, res) => {
+router.get("/admin/addPainting", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-style.css'
     let aithouses = model.getAithouses();
     res.render('admin-add', { layout: 'admin', aithouses: aithouses, css: cssFilePath });
 });
 
-router.post("/admin/addPainting/submit",logInController.checkAuthenticated, (req, res) => {
+router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
     console.log(info);
     model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist);
@@ -202,12 +202,12 @@ router.post("/admin/addPainting/submit",logInController.checkAuthenticated, (req
 
 
 
-router.post("/admin/addExhibition/submit",logInController.checkAuthenticated, (req, res) => {
+router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (req, res) => {
     ex_info = req.body;
     //console.log(ex_info);
 
-    let avail = model.checkAvailableEktheseis(ex_info.imer_enarx, ex_info.imer_liksis);
-    //console.log(avail);
+    let avail = model.checkAvailableAithouses(ex_info.imer_enarx, ex_info.imer_liksis);
+    console.log(avail);
 
     let found = false;
 
@@ -225,7 +225,7 @@ router.post("/admin/addExhibition/submit",logInController.checkAuthenticated, (r
     }
 });
 
-router.get("/admin/addExhibition", logInController.checkAuthenticated,(req, res) => {
+router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/add-exhibition.css'
     //console.log(ex_info);
     res.render('admin-add-exhibition', { layout: 'admin', ex_info: ex_info, css: cssFilePath });
@@ -233,14 +233,28 @@ router.get("/admin/addExhibition", logInController.checkAuthenticated,(req, res)
 });
 
 
-router.get("/admin/addExhibition2",logInController.checkAuthenticated, (req, res) => {
+router.get("/admin/addExhibition2", logInController.checkAuthenticated, (req, res) => {
 
     const cssFilePath = '/add-exhibition-2.css'
-    let erga = model.getAllErgaAllInfo();
+    let erga = model.availableErga(ex_info.imer_enarx, ex_info.imer_liksis);
     res.render('admin-add-exhibition-2', { layout: 'admin', erga: erga, css: cssFilePath });
 });
 
-router.get("/admin/edit/delete/:arithmos_ergou",logInController.checkAuthenticated, (req, res) => {
+router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, (req, res) => {
+    res.json({ success: true });
+
+    let info = req.body;
+    console.log(info);
+    model.newPeriodikiEkthesi(ex_info.title, ex_info.content, ex_info.imer_enarx, ex_info.imer_liksis, ex_info.aithousa);
+    let id_ekthesis = model.getIdofLastEkthesis();
+    for (let i = 0; i < info.length; i++) {
+        model.insertErgotoEkthesi(info[i].arithmos_ergou, id_ekthesis["id_ekthesis"], ex_info.imer_enarx, ex_info.imer_liksis);
+    }
+
+});
+
+
+router.get("/admin/edit/delete/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
     model.deleteErgo(req.params.arithmos_ergou);
     res.redirect('/admin/edit');
 });
