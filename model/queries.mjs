@@ -180,6 +180,20 @@ export function checkAvailableEktheseis(imerominia_enarxis, imerominia_lixis) {
     }
 }
 
+export function getActiveFutureExhibitions() {
+    const stmt = sql.prepare(`SELECT * 
+            FROM PARODIKI_EKTHESI
+            JOIN EKTHESI ON PARODIKI_EKTHESI.id_ekthesis = EKTHESI.id_ekthesis
+            WHERE PARODIKI_EKTHESI.imerominia_lixis >= CURRENT_DATE`);
+    let ektheseis;
+    try {
+        return ektheseis = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
 
 
 
