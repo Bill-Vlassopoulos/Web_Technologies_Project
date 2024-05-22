@@ -11,7 +11,7 @@ import * as logInController from '../controller/login-controller.mjs';
 const model = await import('../model/queries.mjs')
 
 const app = express()
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3001';
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -227,7 +227,7 @@ router.post("/admin/addExhibition/submit",logInController.checkAuthenticated, (r
 
 router.get("/admin/addExhibition", logInController.checkAuthenticated,(req, res) => {
     const cssFilePath = '/add-exhibition.css'
-    console.log(ex_info);
+    //console.log(ex_info);
     res.render('admin-add-exhibition', { layout: 'admin', ex_info: ex_info, css: cssFilePath });
     ex_info = {};
 });
