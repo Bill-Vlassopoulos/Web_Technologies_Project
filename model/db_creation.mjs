@@ -45,6 +45,7 @@ let tables = [`CREATE TABLE EPISKEPTIS (
         id_ekthesis INTEGER PRIMARY KEY ,
         imerominia_enarxis DATE,
         imerominia_lixis DATE,
+        link TEXT,
         FOREIGN KEY (id_ekthesis) REFERENCES EKTHESI(id_ekthesis)
     );`,
     `CREATE TABLE ERGO (
@@ -87,7 +88,7 @@ let tables = [`CREATE TABLE EPISKEPTIS (
         FOREIGN KEY (id_ekthesis) REFERENCES EKTHESI(id_ekthesis),
         FOREIGN KEY (arithmos_ergou) REFERENCES ERGO(arithmos_ergou)
     );`,
-        `CREATE TABLE DIAXEIRISTIS (
+    `CREATE TABLE DIAXEIRISTIS (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username CHAR(20),
         password CHAR(20)
