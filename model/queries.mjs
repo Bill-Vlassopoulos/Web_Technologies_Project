@@ -252,5 +252,26 @@ export function getIdofLastEkthesis() {
     }
 }
 
+export function getScheduleAithousas(id_aithousas) {
+    const stmt = sql.prepare(`SELECT 
+    CASE 
+        WHEN PARODIKI_EKTHESI.imerominia_enarxis < CURRENT_DATE 
+        THEN CURRENT_DATE 
+        ELSE PARODIKI_EKTHESI.imerominia_enarxis 
+    END AS imerominia_enarxis_modified,
+    PARODIKI_EKTHESI.imerominia_lixis
+FROM DIEXAGETAI
+JOIN PARODIKI_EKTHESI ON DIEXAGETAI.id_ekthesis = PARODIKI_EKTHESI.id_ekthesis
+WHERE PARODIKI_EKTHESI.imerominia_lixis > CURRENT_DATE 
+  AND DIEXAGETAI.id_aithousas = ? ;`);
+    let schedule;
+    try {
+        return schedule = stmt.all(id_aithousas);
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
 
 
