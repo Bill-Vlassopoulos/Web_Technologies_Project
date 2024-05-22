@@ -1,0 +1,61 @@
+ <form class="update-form">
+    <div class="plirofories">
+        <div class="titlos">
+            <label for="titlos">Tίτλος</label>
+            <input type="text" id="titlos" name="title" value="{{ekthes.onoma_ekthesis}}">
+        </div>
+
+        <div class="perigrafi">
+            <label for="content">Περιγραφή</label>
+            <textarea id="content" name="content" rows="10">{{ekthes.perigrafi}}</textarea>
+        </div>
+
+            <div class="imerom">
+                <div class="enarxi">
+                    <label for="imer_enarx">Ημερομηνία Έναρξης Έκθεσης:</label>
+
+                    <input type="date" id="imer_enarx" name="imer_enarx" value="{{ekthes.imerominia_enarxis}}" required>
+                </div>
+                <div class="liksi">
+                    <label for="imer_liksis">Ημερομηνία Λήξης Έκθεσης:</label>
+                    <input type="date" id="imer_liksis" name="imer_liksis" value="{{ekthes.imerominia_lixis}}" required>
+                </div>
+            </div>
+
+        <div class="buttons">
+            <button class="submit-btn" type="submit">Αποθήκευση</button>
+            <a href="/admin">Ακύρωση</a>
+        </div>
+
+    </div>
+
+    <div class="image-link">
+        <img src={{ekthes.link}} class="edit-image">
+        <label for="link">Link Εικόνας</label>
+        <input type="url" id="link" name="link" value="{{ekthes.link}}">
+    </div>
+</form>
+
+<script>
+    // JavaScript to set the minimum date
+    const datePicker = document.getElementById('imer_enarx');
+    const date_after = document.getElementById('imer_liksis');
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+    const year = today.getFullYear();
+
+    // Set the min attribute to today's date in YYYY-MM-DD format
+    const minDate = `${year}-${month}-${day}`;
+    datePicker.setAttribute('min', minDate);
+    date_after.setAttribute('min', minDate);
+
+    // Function to update the minimum end date
+    datePicker.addEventListener('change', function () {
+        const startDate = datePicker.value;
+        date_after.setAttribute('min', startDate);
+        if (date_after.value < startDate) {
+            date_after.value = startDate;
+        }
+    });
+</script>

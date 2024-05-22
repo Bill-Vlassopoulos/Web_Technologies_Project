@@ -185,11 +185,27 @@ export function getActiveFutureExhibitions() {
     const stmt = sql.prepare(`SELECT * 
             FROM PARODIKI_EKTHESI
             JOIN EKTHESI ON PARODIKI_EKTHESI.id_ekthesis = EKTHESI.id_ekthesis
+            JOIN DIEXAGETAI ON EKTHESI.id_ekthesis = DIEXAGETAI.id_ekthesis
             WHERE PARODIKI_EKTHESI.imerominia_lixis >= CURRENT_DATE`);
     let ektheseis;
     try {
         return ektheseis = stmt.all();
     }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function getEkthesiById(id_ekthesis) {
+    const stmt = sql.prepare(`SELECT *
+                    FROM EKTHESI
+                    JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis = PARODIKI_EKTHESI.id_ekthesis
+                    WHERE EKTHESI.id_ekthesis = ?`);
+    let ekthesi;
+    try {
+        return ekthesi = stmt.get(id_ekthesis);
+    }
+
     catch (e) {
         throw (e);
     }

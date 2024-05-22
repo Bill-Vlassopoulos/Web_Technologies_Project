@@ -1,0 +1,36 @@
+<div class="main-exh">
+<button class="prosthiki" onclick="addExhibition()">Προσθήκη Νέας Έκθεσης</button>
+<div class="exhibitions-main container">
+        <h3>Προσεχώς</h3>
+        <hr>
+    <div class="grid-exh">
+        {{#each exh}}
+        <div class="exh">
+            <h4>{{this.onoma_ekthesis}}</h4>
+            <img src={{this.link}} alt="">
+            <h5><span id="title">Έναρξη Έκθεσης: </span>{{this.imerominia_enarxis}}</h5>
+            <h5><span id="title">Λήξη Έκθεσης: </span>{{this.imerominia_lixis}}</h5>
+            <h5><span id="title">Αίθουσα προβολής: </span>{{this.id_aithousas}}</h5>
+            <div class="buttons">
+                <button class="epex" onclick="updateExhibition({{this.id_ekthesis}})">Επεξεργασία</button>
+                <button class="diag">Διαγραφή</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+</div>
+
+<script>
+
+    function updateExhibition(id_ekthesis){
+        window.location.href=`/admin/updateExhibition/${id_ekthesis}`
+
+    }
+
+    function addExhibition(){
+        window.location.href="/admin/addExhibition";
+    }
+
+</script>

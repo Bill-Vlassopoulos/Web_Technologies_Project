@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+}
+
+.exhibitions-main.container{
+    width:90%;
+    margin:0 auto;
+}
+
+.grid-exh{
+    margin-top: 4em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 4rem;
+}
+
+.exh{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+    padding: 1em;
+    background-color:rgb(243, 222, 199);
+    box-shadow: 11px 29px 67px -40px rgba(0, 0, 0, 0.75);
+}
+
+.exh img{
+    max-width: 100%;
+    max-height:300px;
+    object-fit: contain;
+    margin-bottom: 2%;
+}
+
+.exh h4{
+    font-weight: 700;
+    font-style: italic;
+    text-decoration: underline;
+    margin-bottom: 1%;
+}
+
+.exh #title{
+    color: black;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.exh h5{
+    width: 32%;
+    margin-bottom: 1%;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    margin-top: 1em;
+
+}
+
+.epex,
+.diag {
+    height: 4em;
+    border: 1px solid #000;
+    border-radius: 1em;
+    color: white;
+    font-size: 1.2em;
+    padding:0 4%;
+}
+
+.epex {
+    background-color: #0b6b02;
+}
+
+.diag {
+    background-color: #df1212;
+}
+
+@media screen and (max-width: 650px) {
+    .exh img{
+        max-height: 200px;
+        object-fit: contain;
+    }
+
+    .grid-exh{
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+
+    .buttons{
+        width: 60%;
+    }
+
+    .exh h5{
+        width:60%;
+    }
+
+
+}
+@media screen and (min-width: 651px) and (max-width:1300px){
+    .grid-exh{
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1301px){
+    .grid-exh{
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    }
+}
+
+/*admin update*/
+
+.update-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    margin:3% auto;
+}
+
+.plirofories{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex:50%
+}
+
+.plirofories div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.plirofories div label{
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.plirofories textarea{
+    width: 60%;
+    font-size: 1.5em;
+}
+
+.plirofories input{
+    width: 60%;
+    font-size: 1.5em;
+}
+
+.plirofories .enarxi input, .plirofories .liksi input{
+    width: 30%;
+}
+
+.plirofories .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    align-self: flex-start;
+}
+
+.submit-btn,a{
+    font-size: 1.5em;
+}
+
+.image-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:50%;
+}
+
+.image-link img{
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    margin-bottom: 2%;
+}
+
+.image-link label{
+    font-size: 2em;
+    font-weight: 700;
+    align-self: flex-start;
+}
+
+.image-link input{
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.prosthiki{
+    margin-top: 3%;
+    align-self: flex-end;
+    margin-right: 8%;
+    font-size: 1.5em;
+}
+
+.main-exh{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media screen and (max-width: 800px){
+    .update-form{
+        flex-direction: column;
+    }
+
+    .plirofories .enarxi input, .plirofories .liksi input{
+        width: 50%;
+    }
+
+    .plirofories input, .plirofories textarea{
+        width: 90%;
+    }
+
+    .plirofories .buttons{
+        width: 80%;
+        margin-bottom: 5%;
+    }
+}
