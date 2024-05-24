@@ -168,8 +168,10 @@ router.post("/submit", (req, res) => {
 //Δημιουργώ διαδρομή για τις εκθέσεις
 router.get("/exhibitions", (req, res) => {
     const cssFilePath = '/ektheseis-style.css'
+    let future_exh = model.getFutureExhibitions();
+    let current_exh = model.getAllCurrentEktheseis();
 
-    res.render('ektheseis', { layout: 'index', css: cssFilePath });
+    res.render('ektheseis', { layout: 'index', future_exh: future_exh, current_exh: current_exh, css: cssFilePath });
 });
 
 //*ΔΙΑΧΕΙΡΙΣΤΗΣ *//
@@ -264,8 +266,8 @@ router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (
     // Assign the dates to separate variables
     let imer_enarx = dates[0].trim();
     let imer_lixis = dates[1].trim();
-    ex_info.imer_enarx=imer_enarx;
-    ex_info.imer_lixis=imer_lixis;
+    ex_info.imer_enarx = imer_enarx;
+    ex_info.imer_lixis = imer_lixis;
 
     res.redirect('/admin/addExhibition2');
 });

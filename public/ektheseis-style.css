@@ -1,68 +1,82 @@
-body{
+body {
     background-color: black !important;
 }
 
-:root{
+:root {
     font-size: 10px;
 }
 
-.protes-aithouses{
-    display: flex;
-    flex-direction: row;
+.protes-aithouses {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 4rem;
 }
 
-.ektheseis{
-    margin:3% auto;
+.ektheseis {
+    margin: 3% auto;
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.ektheseis h1{
+.ektheseis h1 {
     color: white;
     padding-bottom: 0.2em;
     border-bottom: 0.1em solid #dc614c;
     font-style: italic;
+    width: 100%;
+    margin-bottom: 2%;
 }
 
-.aithousa{
+.aithousa {
     margin-top: 3%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    transition: 0.2s ease-in-out;
 }
 
-.aithousa h3{
+.aithousa:hover {
+    background-color: #dc614c;
+    transform: scale(1.05);
+}
+
+.aithousa h3 {
     color: white;
     margin-bottom: 2%;
 }
 
-.aithousa img{
+.aithousa img {
     max-width: 30em;
     max-height: 40em;
     object-fit: contain;
     margin-bottom: 2%;
 }
 
-.aithousa h5{
+.aithousa h5 {
     color: white;
     font-style: italic;
 }
 
-.aithousa .imerominia,.aithousa .arithmos-aithousas{
+.aithousa .imerominia,
+.aithousa .arithmos-aithousas {
     font-weight: 200;
 }
 
-#perigrafi-ekthesis{
+#perigrafi-ekthesis {
     margin-top: 1%;
     text-decoration: underline;
 }
 
-.aithousa p{
+.aithousa p {
     color: white;
     width: 60%;
     font-size: 1.2em;
 }
 
-#prosexws{
+#prosexws {
     margin-top: 3%;
 }

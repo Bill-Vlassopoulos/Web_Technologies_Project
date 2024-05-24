@@ -186,7 +186,7 @@ export function getFutureExhibitions() {
             FROM PARODIKI_EKTHESI
             JOIN EKTHESI ON PARODIKI_EKTHESI.id_ekthesis = EKTHESI.id_ekthesis
             JOIN DIEXAGETAI ON EKTHESI.id_ekthesis = DIEXAGETAI.id_ekthesis
-            WHERE PARODIKI_EKTHESI.imerominia_enarxis >= CURRENT_DATE`);
+            WHERE PARODIKI_EKTHESI.imerominia_enarxis > CURRENT_DATE`);
     let ektheseis;
     try {
         return ektheseis = stmt.all();
