@@ -273,6 +273,7 @@ router.get("/admin/addExhibition2", logInController.checkAuthenticated, (req, re
     const cssFilePath = '/add-exhibition-2.css'
     let erga = model.availableErga(ex_info.imer_enarx, ex_info.imer_liksis);
     res.render('admin-add-exhibition-2', { layout: 'admin', erga: erga, css: cssFilePath });
+
 });
 
 router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, (req, res) => {
@@ -283,7 +284,7 @@ router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, 
     model.newPeriodikiEkthesi(ex_info.title, ex_info.content, ex_info.imer_enarx, ex_info.imer_lixis, ex_info.aithousa);
     let id_ekthesis = model.getIdofLastEkthesis();
     for (let i = 0; i < info.length; i++) {
-        model.insertErgotoEkthesi(info[i].arithmos_ergou, id_ekthesis["id_ekthesis"], ex_info.imer_enarx, ex_info.imer_liksis);
+        model.insertErgotoEkthesi(info[i].arithmos_ergou, id_ekthesis["id_ekthesis"], ex_info.imer_enarx, ex_info.imer_lixis);
     }
 
 });
