@@ -210,25 +210,34 @@ router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (re
 
 router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (req, res) => {
     ex_info = req.body;
-    //console.log(ex_info);
+    console.log(ex_info);
+    let dates = ex_info.imerom.split(' to ');
 
-    let avail = model.checkAvailableAithouses(ex_info.imer_enarx, ex_info.imer_liksis);
+// Assign the dates to separate variables
+    let imer_enarx = dates[0].trim();
+    let imer_lixis = dates[1].trim();
+    ex_info.imer_enarx=imer_enarx;
+    ex_info.imer_lixis=imer_lixis;
+
+    //let avail = model.checkAvailableAithouses(ex_info.imer_enarx, ex_info.imer_liksis);
     //console.log(avail);
 
-    let found = false;
+    //let found = false;
 
-    avail.forEach(element => {
-        if (!found) {
-            if (element.id_aithousas == ex_info.aithousa) {
-                found = true;
-                res.redirect('/admin/addExhibition2');
-            }
-        }
-    });
+    // avail.forEach(element => {
+    //     if (!found) {
+    //         if (element.id_aithousas == ex_info.aithousa) {
+    //             found = true;
+    //             res.redirect('/admin/addExhibition2');
+    //         }
+    //     }
+    // });
 
-    if (!found) {
-        res.redirect('/admin/addExhibition');
-    }
+    // if (!found) {
+    //     res.redirect('/admin/addExhibition2');
+    // }
+
+    res.redirect('/admin/addExhibition2');
 });
 
 //Δημιουργώ διαδρομή για τις εκθέσεις
@@ -239,14 +248,6 @@ router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) 
     //console.log(exh);
     res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, future_exh: JSON.stringify(future_exh), current_exh: JSON.stringify(current_exh) });
 })
-
-//Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
-router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
-    const cssFilePath = '/admin-exh.css'
-    let ekthes = model.getEkthesiById(req.params.id_ekthesis);
-    res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, css: cssFilePath });
-})
-
 
 
 //Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
@@ -279,7 +280,7 @@ router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, 
 
     let info = req.body;
     //console.log(info);
-    model.newPeriodikiEkthesi(ex_info.title, ex_info.content, ex_info.imer_enarx, ex_info.imer_liksis, ex_info.aithousa);
+    model.newPeriodikiEkthesi(ex_info.title, ex_info.content, ex_info.imer_enarx, ex_info.imer_lixis, ex_info.aithousa);
     let id_ekthesis = model.getIdofLastEkthesis();
     for (let i = 0; i < info.length; i++) {
         model.insertErgotoEkthesi(info[i].arithmos_ergou, id_ekthesis["id_ekthesis"], ex_info.imer_enarx, ex_info.imer_liksis);
