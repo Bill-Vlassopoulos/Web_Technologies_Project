@@ -1,10 +1,8 @@
 <section>
 
     <div class="filter-menu">
-
         <input type="button" value="Φίλτρα" class="filter" onclick="openNav()">
         <input type="text" class="search" placeholder="Αναζητήστε κωδικό έργου...">
-
     </div>
 
     <form action="/collection/" class="collection-filter">
@@ -38,7 +36,6 @@
                 <option value="two">2</option>
                 <option value="three">3</option>
             </select>
-
             <input type="text" class="search" id="kallitexnis" placeholder="Αναζητήστε καλλιτέχνη...">
         </div>
 
@@ -50,45 +47,31 @@
                 <span class="txt">2020</span>
             </div>
             <span class="value">Επιλογή: <span id="value"></span></span>
-
         </div>
 
         <input type="button" value="Καθαρισμός Φίλτρων" class="clear-filter" onclick="clearFilter()">
         <input type="submit" value="Εφαρμογή" class="search-button">
-
     </form>
 
 </section>
 
-<section class="collection">
-    {{#each links}}
-    <a href="/collection/{{this.arithmos_ergou}}"><img src="{{this.link}}" alt=""></a>
-    {{/each}}
+<section class="collection" id="collection">
+    <!-- Images will be loaded here asynchronously -->
 </section>
 
 <script>
-
-
     function showInput(inputId) {
         let input = document.getElementById(inputId);
-
-        //Hide all input fields first
         let inputs = document.querySelectorAll('.hidden');
         inputs.forEach(function (inputElement) {
             inputElement.style.display = 'none';
         });
-
-        // Show the input field corresponding to the selected radio button
         if (input) {
             input.style.display = 'flex';
         }
-
         if (inputId === 'mainInput') {
             document.querySelector(".radio").style.gridArea = 'mb';
         }
-
-
-        // Additional logic to show both elements with id 'periodiki'
         if (inputId === 'periodiki') {
             let additionalInput = document.getElementById('additionalPeriodiki');
             if (additionalInput) {
@@ -99,16 +82,12 @@
         }
     }
 
-    //display slider value
-
     let slider = document.getElementById("time");
     let output = document.getElementById("value");
     output.innerHTML = slider.value;
     slider.oninput = function () {
         output.innerHTML = this.value;
     }
-
-    //sidenav for filters
 
     function openNav() {
         document.querySelector(".collection-filter").style.display = 'grid';
@@ -125,27 +104,41 @@
         let radioButtons = document.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(function (radioButton) {
             radioButton.checked = false;
-
             let inputs = document.querySelectorAll('.hidden');
             inputs.forEach(function (inputElement) {
                 inputElement.style.display = 'none';
             });
-
             document.querySelector('select[name="xronologiki-periodos"]').value = "";
             document.querySelector('select[name="aithousa"]').value = "";
             document.querySelector('#kallitexnis').value = "";
             document.getElementById("time").value = 1960;
             document.getElementById("value").innerHTML = 1960;
-
             document.querySelector(".radio").style.gridArea = 'mb';
             document.querySelector(".radio").style.justifySelf = 'flex-start';
             document.querySelector(".radio").style.alignSelf = 'flex-start';
-
         });
     }
 
+    // Function to load images asynchronously
+    async function loadImages() {
+        try {
+            let response = await fetch('/api/collection');
+            let images = await response.json();
+            let collectionDiv = document.getElementById('collection');
+            images.forEach(function (image) {
+                let anchor = document.createElement('a');
+                anchor.href = `/collection/${image.arithmos_ergou}`;
+                let img = document.createElement('img');
+                img.src = image.link;
+                img.alt = "";
+                anchor.appendChild(img);
+                collectionDiv.appendChild(anchor);
+            });
+        } catch (error) {
+            console.error('Error loading images:', error);
+        }
+    }
 
-
-
-
+    // Load images when the page loads
+    window.onload = loadImages;
 </script>

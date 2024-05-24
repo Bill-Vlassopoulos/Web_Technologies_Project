@@ -129,6 +129,10 @@ router.get("/collection", (req, res) => {
     res.render('collection', { layout: 'index', links: links, css: cssFilePath });
 });
 
+router.get('/api/collection', async (req, res) => {
+    let links = await model.getAllErga(); // Ensure this returns a promise if it doesn't already
+    res.json(links);
+});
 
 //Δημιουργώ διαδρομή για τις λεπτομέρειες της συλλογής
 router.get("/collection/:arithmos_ergou", (req, res) => {
@@ -174,8 +178,10 @@ router.get("/exhibitions", (req, res) => {
 router.get("/admin/edit", logInController.checkAuthenticated, (req, res) => {
 
     const cssFilePath = '/admin-style.css'
-    let erga = model.getAllErgaAllInfo();
-    res.render('admin-main', { layout: 'admin', erga: erga, css: cssFilePath });
+    let erga = model.getErgaWithCurrentIdEkthesis();
+    let current_ekthesis = model.getCurrentEkthesiIdtitle();
+
+    res.render('admin-main', { layout: 'admin', erga: JSON.stringify(erga), ektheseis: JSON.stringify(current_ekthesis), css: cssFilePath });
 
 });
 
@@ -228,9 +234,10 @@ router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (
 //Δημιουργώ διαδρομή για τις εκθέσεις
 router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-exh.css'
-    let exh = model.getActiveFutureExhibitions();
+    let future_exh = model.getFutureExhibitions();
+    let current_exh = model.getAllCurrentEktheseis();
     //console.log(exh);
-    res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, exh: exh });
+    res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, future_exh: JSON.stringify(future_exh), current_exh: JSON.stringify(current_exh) });
 })
 
 //Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
@@ -240,13 +247,7 @@ router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenti
     res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, css: cssFilePath });
 })
 
-//Δημιουργώ διαδρομή για τις εκθέσεις
-router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) => {
-    const cssFilePath = '/admin-exh.css'
-    let exh = model.getActiveFutureExhibitions();
-    //console.log(exh);
-    res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, exh: exh });
-})
+
 
 //Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
 router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {

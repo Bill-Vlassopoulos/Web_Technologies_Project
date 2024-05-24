@@ -1,32 +1,106 @@
-<div class="katigoria-ergon container">
-    <button class="prosthiki" onclick="addErgo()">Προσθήκη Νέου Έργου</button>
-    <h3>Αποθήκη</h3>
-    <hr>
-    <div class="grid-erga">
-        {{#each erga}}
-        <div class="ergo">
-            <img src={{this.link}} alt="">
-            <h5>{{this.onoma}}</h5>
-            <h5>{{this.arithmos_ergou}}</h5>
-            <div class="buttons">
-                <button class="epex" onclick="edit('{{this.arithmos_ergou}}')">Επεξεργασία</button>
-                <button class="diag" onclick="deleteErgo('{{this.arithmos_ergou}}')">Διαγραφή</button>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-</div>
+<div id="exhibitions-container"></div>
 
 <script>
-    function edit(arithmos_ergou) {
-        window.location.href = `/admin/edit/${arithmos_ergou}`;
+    // Example data
+    let erga = {{{ erga }}}
+    let current_exhibition = {{{ ektheseis }}}
+
+    current_exhibition.push({ id_ekthesis: 1, onoma_ekthesis: "Μόνιμη Έκθεση" });
+    current_exhibition.push({ id_ekthesis: null, onoma_ekthesis: "Αποθήκη" });
+
+    function createExhibitionContainer(exhibition) {
+        const container = document.createElement('div');
+        container.className = 'katigoria-ergon container';
+        container.id = `exhibition-${exhibition.id_ekthesis}`;
+
+        const addButton = document.createElement('button');
+        addButton.className = 'prosthiki';
+        addButton.innerText = 'Προσθήκη Νέου Έργου';
+        addButton.onclick = () => addErgo();
+
+        const title = document.createElement('h3');
+        title.innerText = exhibition.onoma_ekthesis;
+
+        const hr = document.createElement('hr');
+
+        const grid = document.createElement('div');
+        grid.className = 'grid-erga';
+
+        container.appendChild(addButton);
+        container.appendChild(title);
+        container.appendChild(hr);
+        container.appendChild(grid);
+
+        document.getElementById('exhibitions-container').appendChild(container);
     }
 
     function addErgo() {
         window.location.href = "/admin/addPainting";
     }
 
-    function deleteErgo(arithmos_ergou) {
-        window.location.href = "/admin/edit/delete/" + arithmos_ergou;
+    function edit(arithmos_ergou) {
+        window.location.href = `/admin/edit/${arithmos_ergou}`;
     }
+
+    function deleteErgo(arithmos_ergou) {
+        window.location.href = `/admin/edit/delete/${arithmos_ergou}`;
+    }
+
+    async function createErgoElement(ergo) {
+        const ergoDiv = document.createElement('div');
+        ergoDiv.className = 'ergo';
+
+        const img = document.createElement('img');
+        img.src = ergo.link;
+        img.alt = '';
+        await img.decode();  // Ensure the image is fully loaded and decoded
+
+        const h5Onoma = document.createElement('h5');
+        h5Onoma.innerText = ergo.onoma;
+
+        const h5Arithmos = document.createElement('h5');
+        h5Arithmos.innerText = ergo.arithmos_ergou;
+
+        const buttonsDiv = document.createElement('div');
+        buttonsDiv.className = 'buttons';
+
+        const editButton = document.createElement('button');
+        editButton.className = 'epex';
+        editButton.innerText = 'Επεξεργασία';
+        editButton.onclick = () => edit(ergo.arithmos_ergou);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'diag';
+        deleteButton.innerText = 'Διαγραφή';
+        deleteButton.onclick = () => deleteErgo(ergo.arithmos_ergou);
+
+        buttonsDiv.appendChild(editButton);
+        buttonsDiv.appendChild(deleteButton);
+
+        ergoDiv.appendChild(img);
+        ergoDiv.appendChild(h5Onoma);
+        ergoDiv.appendChild(h5Arithmos);
+        ergoDiv.appendChild(buttonsDiv);
+
+        return ergoDiv;
+    }
+
+    // Create containers for each exhibition
+    current_exhibition.forEach(exhibition => {
+        createExhibitionContainer(exhibition);
+    });
+
+    // Append erga to their respective exhibition container
+    async function appendErgaToExhibitions() {
+        for (let ergo of erga) {
+            const ergoElement = await createErgoElement(ergo);
+            const exhibitionContainer = document.querySelector(`#exhibition-${ergo.id_ekthesis} .grid-erga`);
+            if (exhibitionContainer) {
+                exhibitionContainer.appendChild(ergoElement);
+            }
+        }
+    }
+
+    appendErgaToExhibitions();
+
 </script>

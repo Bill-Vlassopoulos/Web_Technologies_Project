@@ -181,12 +181,12 @@ export function checkAvailableAithouses(imerominia_enarxis, imerominia_lixis) {
     }
 }
 
-export function getActiveFutureExhibitions() {
+export function getFutureExhibitions() {
     const stmt = sql.prepare(`SELECT * 
             FROM PARODIKI_EKTHESI
             JOIN EKTHESI ON PARODIKI_EKTHESI.id_ekthesis = EKTHESI.id_ekthesis
             JOIN DIEXAGETAI ON EKTHESI.id_ekthesis = DIEXAGETAI.id_ekthesis
-            WHERE PARODIKI_EKTHESI.imerominia_lixis >= CURRENT_DATE`);
+            WHERE PARODIKI_EKTHESI.imerominia_enarxis >= CURRENT_DATE`);
     let ektheseis;
     try {
         return ektheseis = stmt.all();
@@ -198,7 +198,7 @@ export function getActiveFutureExhibitions() {
 
 export function getEkthesiById(id_ekthesis) {
     const stmt = sql.prepare(`SELECT *
-                    FROM EKTHESI
+                    FROM EKTHESI    
                     JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis = PARODIKI_EKTHESI.id_ekthesis
                     WHERE EKTHESI.id_ekthesis = ?`);
     let ekthesi;
@@ -273,5 +273,68 @@ WHERE PARODIKI_EKTHESI.imerominia_lixis > CURRENT_DATE
     }
 }
 
+
+export function getErgaWithCurrentIdEkthesis() {
+    const stmt = sql.prepare(`SELECT ERGO.*,B.id_ekthesis
+    FROM ERGO
+    LEFT JOIN (SELECT *
+                FROM PERILAMBANETAI
+                WHERE CURRENT_DATE>= PERILAMBANETAI.imerominia_enarxsis AND PERILAMBANETAI.imerominia_lixis<=CURRENT_DATE)
+                AS B ON ERGO.arithmos_ergou=B.arithmos_ergou
+    ORDER BY B.id_ekthesis;`);
+    let erga;
+    try {
+        return erga = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+};
+
+export function getCurrentEkthesiIdtitle() {
+    const stmt = sql.prepare(`SELECT EKTHESI.id_ekthesis,EKTHESI.onoma_ekthesis
+    FROM EKTHESI
+     JOIN (
+        SELECT *
+        FROM PARODIKI_EKTHESI
+        WHERE PARODIKI_EKTHESI.imerominia_enarxis<=CURRENT_DATE AND CURRENT_DATE<=PARODIKI_EKTHESI.imerominia_lixis
+    ) AS B ON EKTHESI.id_ekthesis=B.id_ekthesis ;`);
+    let ekthesi;
+    try {
+        return ekthesi = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+};
+
+export function getAllCurrentEktheseis() {
+    const stmt = sql.prepare(`SELECT *
+    FROM EKTHESI
+    JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+    WHERE CURRENT_DATE>=PARODIKI_EKTHESI.imerominia_enarxis AND CURRENT_DATE<=PARODIKI_EKTHESI.imerominia_lixis;`);
+    let ekthesi;
+    try {
+        return ekthesi = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+};
+
+export function getFullAithousesSchedule() {
+    const stmt = sql.prepare(`SELECT AITHOUSA.id_aithousas,imerominia_enarxis,imerominia_lixis
+    FROM AITHOUSA
+    LEFT JOIN DIEXAGETAI ON AITHOUSA.id_aithousas=DIEXAGETAI.id_aithousas
+    JOIN PARODIKI_EKTHESI ON DIEXAGETAI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+    ORDER BY AITHOUSA.id_aithousas,imerominia_enarxis,imerominia_lixis;`)
+    let schedule;
+    try {
+        return schedule = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+};
 
 
