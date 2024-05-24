@@ -280,7 +280,7 @@ export function getErgaWithCurrentIdEkthesis() {
     FROM ERGO
     LEFT JOIN (SELECT *
                 FROM PERILAMBANETAI
-                WHERE CURRENT_DATE>= PERILAMBANETAI.imerominia_enarxsis AND PERILAMBANETAI.imerominia_lixis<=CURRENT_DATE)
+                WHERE CURRENT_DATE>= PERILAMBANETAI.imerominia_enarxsis AND PERILAMBANETAI.imerominia_lixis>=CURRENT_DATE)
                 AS B ON ERGO.arithmos_ergou=B.arithmos_ergou
     ORDER BY B.id_ekthesis;`);
     let erga;
