@@ -339,4 +339,29 @@ export function getFullAithousesSchedule() {
     }
 };
 
+export function updateErgo(arithmos_ergou, perigrafi, typos_kamva, onoma, kallitexnis) {
+    const stmt = sql.prepare("UPDATE ERGO SET perigrafi = ?, typos_kamva = ?, onoma = ?, kallitexnis = ? WHERE arithmos_ergou = ?");
+    try {
+        stmt.run(perigrafi, typos_kamva, onoma, kallitexnis, arithmos_ergou);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+
+}
+
+export function getEktheseisoftheDay(date) {
+    const stmt = sql.prepare(`SELECT *
+    FROM EKTHESI
+    JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+    WHERE ? BETWEEN PARODIKI_EKTHESI.imerominia_enarxis AND PARODIKI_EKTHESI.imerominia_lixis;`);
+    let ektheseis;
+    try {
+        return ektheseis = stmt.all(date);
+    }
+    catch (e) {
+        throw (e);
+    }
+}
 
