@@ -118,10 +118,17 @@ export function insertNewErgo(arithmos_ergou, link, xronologia, diastaseis, typo
 }
 
 export function deleteErgo(arithmos_ergou) {
-    const stmt = sql.prepare("DELETE FROM ERGO WHERE arithmos_ergou = ?");
+    const stmt = sql.prepare("DELETE FROM PERILAMBANETAI WHERE arithmos_ergou = ?");
     try {
         stmt.run(arithmos_ergou);
-        return true;
+        const stmt2 = sql.prepare("DELETE FROM ERGO WHERE arithmos_ergou = ?");
+        try {
+            stmt2.run(arithmos_ergou);
+            return true;
+        }
+        catch (e) {
+            throw (e);
+        }
     }
     catch (e) {
         throw (e);
@@ -339,10 +346,10 @@ export function getFullAithousesSchedule() {
     }
 };
 
-export function updateErgo(arithmos_ergou, perigrafi, typos_kamva, onoma, kallitexnis) {
-    const stmt = sql.prepare("UPDATE ERGO SET perigrafi = ?, typos_kamva = ?, onoma = ?, kallitexnis = ? WHERE arithmos_ergou = ?");
+export function updateErgo(arithmos_ergou, perigrafi, typos_kamva, onoma, kallitexnis, diastaseis, xronologia) {
+    const stmt = sql.prepare("UPDATE ERGO SET perigrafi = ?, typos_kamva = ?, onoma = ?, kallitexnis = ?, diastaseis = ?, xronologia = ? WHERE arithmos_ergou = ?");
     try {
-        stmt.run(perigrafi, typos_kamva, onoma, kallitexnis, arithmos_ergou);
+        stmt.run(perigrafi, typos_kamva, onoma, kallitexnis, diastaseis, xronologia, arithmos_ergou);
         return true;
     }
     catch (e) {
@@ -351,6 +358,7 @@ export function updateErgo(arithmos_ergou, perigrafi, typos_kamva, onoma, kallit
 
 }
 
+//Επιστέφει τις εκθέσεις που ειναι ενεργές την ημερομηνία που δινεται ως όρισμα
 export function getEktheseisoftheDay(date) {
     const stmt = sql.prepare(`SELECT *
     FROM EKTHESI
@@ -365,3 +373,17 @@ export function getEktheseisoftheDay(date) {
     }
 }
 
+export function gettheEkthesisErga(id_ekthesis) {
+    const stmt = sql.prepare(`SELECT ERGO.*
+    FROM ERGO
+    JOIN PERILAMBANETAI ON ERGO.arithmos_ergou=PERILAMBANETAI.arithmos_ergou
+    WHERE PERILAMBANETAI.id_ekthesis = ?;`);
+    let erga;
+    try {
+        return erga = stmt.all(id_ekthesis);
+    }
+    catch (e) {
+        throw (e);
+    }
+
+}

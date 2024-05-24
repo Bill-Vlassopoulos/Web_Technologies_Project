@@ -205,6 +205,13 @@ router.get("/admin/edit/:arithmos_ergou", logInController.checkAuthenticated, (r
     res.render('admin-edit', { layout: 'admin', info: ergo_info, css: cssFilePath });
 });
 
+router.post("/admin/edit/:arithmos_ergou/submit", logInController.checkAuthenticated, (req, res) => {
+    let info = req.body;
+    console.log(info);
+    model.updateErgo(info.code, info.content, info.type, info.title, info.artist, info.size, info.date);
+    res.redirect('/admin/edit');
+});
+
 //Δημιουργώ διαδρομή για την προσθήκη ενός έργου
 router.get("/admin/addPainting", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-style.css'
@@ -221,7 +228,7 @@ router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (re
 });
 
 //Διαδρομή για την διαγραφή του έργου
-router.get("/admin/edit/delete/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
+router.get("/admin/delete/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
     model.deleteErgo(req.params.arithmos_ergou);
     res.redirect('/admin/edit');
 });
@@ -253,7 +260,7 @@ router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res
     let sched = model.getFullAithousesSchedule();
     //console.log(sched);
     res.render('admin-add-exhibition', { layout: 'admin', ex_info: ex_info, sched: JSON.stringify(sched), css: cssFilePath });
-    ex_info = {};
+
 });
 
 
@@ -287,7 +294,7 @@ router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, 
 
     let info = req.body;
     //console.log(info);
-    model.newPeriodikiEkthesi(ex_info.title, ex_info.content, ex_info.imer_enarx, ex_info.imer_lixis, ex_info.aithousa);
+    model.newPeriodikiEkthesi(ex_info.title, ex_info.perigrafi, ex_info.imer_enarx, ex_info.imer_lixis, ex_info.aithousa);
     let id_ekthesis = model.getIdofLastEkthesis();
     for (let i = 0; i < info.length; i++) {
         model.insertErgotoEkthesi(info[i].arithmos_ergou, id_ekthesis["id_ekthesis"], ex_info.imer_enarx, ex_info.imer_lixis);

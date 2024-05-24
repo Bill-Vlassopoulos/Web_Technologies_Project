@@ -1,5 +1,5 @@
 <div class="edit-container">
-    <form class="edit-form">
+    <form class="edit-form" method="post" action="/admin/edit/{{info.arithmos_ergou}}/submit">
         <div class="titlos">
             <label for="title">Tίτλος</label>
             <input type="text" id="title" name="title" value="{{info.onoma}}">
@@ -44,9 +44,9 @@
             <div class="aithousa-display">
                 <label for="content">Τώρα Βρίσκεται:</label>
                 <select name="aithousa" id="aithousa" required>
-                <option value="1">Αίθουσα 1</option>
-                <option value="2">Αίθουσα 2</option>
-                <option value="3">Αίθουσα 3</option>
+                    <option value="1">Αίθουσα 1</option>
+                    <option value="2">Αίθουσα 2</option>
+                    <option value="3">Αίθουσα 3</option>
                 </select>
             </div>
 
