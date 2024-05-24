@@ -43,7 +43,9 @@
     }
 
     function deleteErgo(arithmos_ergou) {
-        window.location.href = `/admin/edit/delete/${arithmos_ergou}`;
+        if (confirm('Είστε σίγουρος ότι θέλετε να διαγράψετε το έργο;')) {
+            window.location.href = `/admin/delete/${arithmos_ergou}`;
+        }
     }
 
     async function createErgoElement(ergo) {
