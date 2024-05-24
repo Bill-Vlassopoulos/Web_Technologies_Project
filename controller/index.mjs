@@ -3,7 +3,6 @@ import { dirname } from 'path';
 import express from 'express'
 import { engine } from 'express-handlebars'
 import path from 'path'
-//import { info } from 'console';
 import bodyParser from 'body-parser'
 import taskListSession from '../app-setup/app-setup-session.mjs';
 import * as logInController from '../controller/login-controller.mjs';
@@ -40,6 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Ενεργοποίηση συνεδρίας
 app.use(taskListSession)
 
+//Ελέγχω πως υπάρχει ο χρήστης 
 app.use((req, res, next) => {
     if (req.session && req.session.loggedUserId) {
         res.locals.userId = req.session.loggedUserId;
@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 
 app.use(router);
 
-
+//*ΧΡΗΣΤΗΣ*//
 
 //Open Main Page
 router.get('/', (req, res) => {
@@ -70,7 +70,6 @@ router.get('/biography', (req, res) => {
 
     res.render('biography', { layout: 'index', css: cssFilePath });
 });
-
 
 
 //Δημιουργώ διαδρομή για την πρώτη σελίδα της βιογραφίας
@@ -150,7 +149,7 @@ router.get("/tickets", (req, res) => {
 
 });
 
-
+//Submit εισιτηρίων
 router.post("/submit", (req, res) => {
     // Handle form submission
 
@@ -173,8 +172,20 @@ router.get("/exhibitions", (req, res) => {
     res.render('ektheseis', { layout: 'index', css: cssFilePath });
 });
 
-//Δημιουργώ διαδρομή για τον διαχειριστή
+//*ΔΙΑΧΕΙΡΙΣΤΗΣ *//
 
+//Δημιουργία διαδρομής για το login του admin
+router.route('/admin/login').get(logInController.showLogInForm);
+
+// // //Αυτή η διαδρομή καλείται όταν η φόρμα φτάσει στον εξυπηρετητή με POST στο /login. Διεκπεραιώνει τη σύνδεση (login) του χρήστη
+router.route('/login').post(logInController.doLogin);
+
+// //Αποσυνδέει το χρήστη
+router.route('/admin/logout').get(logInController.doLogout);
+
+//**ΕΡΓΑ **//
+
+//Διαδρομή μετά το login, στην σελίδα με τα έργα
 router.get("/admin/edit", logInController.checkAuthenticated, (req, res) => {
 
     const cssFilePath = '/admin-style.css'
@@ -199,6 +210,7 @@ router.get("/admin/addPainting", logInController.checkAuthenticated, (req, res) 
     res.render('admin-add', { layout: 'admin', aithouses: aithouses, css: cssFilePath });
 });
 
+//Submit για την προσθήκη του έργου
 router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
     //console.log(info);
@@ -206,39 +218,14 @@ router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (re
     res.redirect('/admin/edit');
 });
 
-
-
-router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (req, res) => {
-    ex_info = req.body;
-    console.log(ex_info);
-    let dates = ex_info.imerom.split(' to ');
-
-// Assign the dates to separate variables
-    let imer_enarx = dates[0].trim();
-    let imer_lixis = dates[1].trim();
-    ex_info.imer_enarx=imer_enarx;
-    ex_info.imer_lixis=imer_lixis;
-
-    //let avail = model.checkAvailableAithouses(ex_info.imer_enarx, ex_info.imer_liksis);
-    //console.log(avail);
-
-    //let found = false;
-
-    // avail.forEach(element => {
-    //     if (!found) {
-    //         if (element.id_aithousas == ex_info.aithousa) {
-    //             found = true;
-    //             res.redirect('/admin/addExhibition2');
-    //         }
-    //     }
-    // });
-
-    // if (!found) {
-    //     res.redirect('/admin/addExhibition2');
-    // }
-
-    res.redirect('/admin/addExhibition2');
+//Διαδρομή για την διαγραφή του έργου
+router.get("/admin/edit/delete/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
+    model.deleteErgo(req.params.arithmos_ergou);
+    res.redirect('/admin/edit');
 });
+
+
+//**ΕΚΘΕΣΕΙΣ *//
 
 //Δημιουργώ διαδρομή για τις εκθέσεις
 router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) => {
@@ -249,8 +236,7 @@ router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) 
     res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, future_exh: JSON.stringify(future_exh), current_exh: JSON.stringify(current_exh) });
 })
 
-
-//Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
+//Επεξεργασία έκθεσης
 router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-exh.css'
     let ekthes = model.getEkthesiById(req.params.id_ekthesis);
@@ -259,6 +245,7 @@ router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenti
     res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, aithousa: JSON.stringify(aithousa), css: cssFilePath });
 })
 
+//Προσθήκη Νέας Έκθεσης
 router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/add-exhibition.css'
     let sched = model.getFullAithousesSchedule();
@@ -268,6 +255,22 @@ router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res
 });
 
 
+//Submit της πρώτης φάσης της προσθήκης
+router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (req, res) => {
+    ex_info = req.body;
+    console.log(ex_info);
+    let dates = ex_info.imerom.split(' to ');
+
+    // Assign the dates to separate variables
+    let imer_enarx = dates[0].trim();
+    let imer_lixis = dates[1].trim();
+    ex_info.imer_enarx=imer_enarx;
+    ex_info.imer_lixis=imer_lixis;
+
+    res.redirect('/admin/addExhibition2');
+});
+
+//Προσθήκη Έργων στην Έκθεση
 router.get("/admin/addExhibition2", logInController.checkAuthenticated, (req, res) => {
 
     const cssFilePath = '/add-exhibition-2.css'
@@ -276,6 +279,7 @@ router.get("/admin/addExhibition2", logInController.checkAuthenticated, (req, re
 
 });
 
+//Τελική υποβολή προσθήκης έκθεσης
 router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, (req, res) => {
     res.json({ success: true });
 
@@ -290,19 +294,7 @@ router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, 
 });
 
 
-router.get("/admin/edit/delete/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
-    model.deleteErgo(req.params.arithmos_ergou);
-    res.redirect('/admin/edit');
-});
 
-//Δημιουργία διαδρομής για το login του admin
-router.route('/admin/login').get(logInController.showLogInForm);
-
-// // //Αυτή η διαδρομή καλείται όταν η φόρμα φτάσει στον εξυπηρετητή με POST στο /login. Διεκπεραιώνει τη σύνδεση (login) του χρήστη
-router.route('/login').post(logInController.doLogin);
-
-// //Αποσυνδέει το χρήστη
-router.route('/admin/logout').get(logInController.doLogout);
-
+//Άνοιγμα Εφαρμογής
 app.listen(port, () => console.log(`Open Vincent Van Gogh Gallery http://localhost:${port}/ `));
 console.log(`Open Admin Page http://localhost:${port}/admin/login`);

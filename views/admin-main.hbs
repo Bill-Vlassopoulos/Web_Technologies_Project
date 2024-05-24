@@ -1,3 +1,5 @@
+
+<div class="button-add-ergo"><button class="prosthiki" onclick="addErgo()">Προσθήκη Νέου Έργου</button></div>
 <div id="exhibitions-container"></div>
 
 <script>
@@ -13,11 +15,6 @@
         container.className = 'katigoria-ergon container';
         container.id = `exhibition-${exhibition.id_ekthesis}`;
 
-        const addButton = document.createElement('button');
-        addButton.className = 'prosthiki';
-        addButton.innerText = 'Προσθήκη Νέου Έργου';
-        addButton.onclick = () => addErgo();
-
         const title = document.createElement('h3');
         title.innerText = exhibition.onoma_ekthesis;
 
@@ -26,7 +23,6 @@
         const grid = document.createElement('div');
         grid.className = 'grid-erga';
 
-        container.appendChild(addButton);
         container.appendChild(title);
         container.appendChild(hr);
         container.appendChild(grid);
