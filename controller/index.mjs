@@ -11,7 +11,7 @@ import * as logInController from '../controller/login-controller.mjs';
 const model = await import('../model/queries.mjs')
 
 const app = express()
-const port = process.env.PORT || '3001';
+const port = process.env.PORT || '3000';
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -151,7 +151,7 @@ router.post("/submit", (req, res) => {
     // Handle form submission
 
     let info = req.body;
-    console.log(info);
+    //console.log(info);
     // console.log(info[info.length - 1]);
     model.insertNewEpiskeptis(info[info.length - 1].onoma, info[info.length - 1].mail, info[info.length - 1].phone);
     let id_episkepti = model.getIdofLastEpiskeptis();
@@ -207,7 +207,7 @@ router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (
     //console.log(ex_info);
 
     let avail = model.checkAvailableAithouses(ex_info.imer_enarx, ex_info.imer_liksis);
-    console.log(avail);
+    //console.log(avail);
 
     let found = false;
 
@@ -233,32 +233,21 @@ router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) 
     res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, exh: exh });
 })
 
-//Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
-router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
-    const cssFilePath = '/admin-exh.css'
-    let ekthes = model.getEkthesiById(req.params.id_ekthesis);
-    res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, css: cssFilePath });
-})
-
-//Δημιουργώ διαδρομή για τις εκθέσεις
-router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) => {
-    const cssFilePath = '/admin-exh.css'
-    let exh = model.getActiveFutureExhibitions();
-    //console.log(exh);
-    res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, exh: exh });
-})
 
 //Δημιουργώ διαδρομή για την επεξεργασία έκθεσης
 router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-exh.css'
     let ekthes = model.getEkthesiById(req.params.id_ekthesis);
-    res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, css: cssFilePath });
+    let aithousa = model.getScheduleAithousas(ekthes.id_aithousas);
+    //console.log(aithousa);
+    res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, aithousa: JSON.stringify(aithousa), css: cssFilePath });
 })
 
 router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/add-exhibition.css'
-    //console.log(ex_info);
-    res.render('admin-add-exhibition', { layout: 'admin', ex_info: ex_info, css: cssFilePath });
+    let sched = model.getFullAithousesSchedule();
+    //console.log(sched);
+    res.render('admin-add-exhibition', { layout: 'admin', ex_info: ex_info, sched: JSON.stringify(sched), css: cssFilePath });
     ex_info = {};
 });
 
@@ -274,7 +263,7 @@ router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, 
     res.json({ success: true });
 
     let info = req.body;
-    console.log(info);
+    //console.log(info);
     model.newPeriodikiEkthesi(ex_info.title, ex_info.content, ex_info.imer_enarx, ex_info.imer_liksis, ex_info.aithousa);
     let id_ekthesis = model.getIdofLastEkthesis();
     for (let i = 0; i < info.length; i++) {

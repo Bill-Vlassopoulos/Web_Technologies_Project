@@ -200,6 +200,7 @@ export function getEkthesiById(id_ekthesis) {
     const stmt = sql.prepare(`SELECT *
                     FROM EKTHESI
                     JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis = PARODIKI_EKTHESI.id_ekthesis
+                    JOIN DIEXAGETAI ON EKTHESI.id_ekthesis = DIEXAGETAI.id_ekthesis
                     WHERE EKTHESI.id_ekthesis = ?`);
     let ekthesi;
     try {
@@ -273,5 +274,19 @@ WHERE PARODIKI_EKTHESI.imerominia_lixis > CURRENT_DATE
     }
 }
 
+export function getFullAithousesSchedule() {
+    const stmt = sql.prepare(`SELECT AITHOUSA.id_aithousas,imerominia_enarxis,imerominia_lixis
+    FROM AITHOUSA
+    LEFT JOIN DIEXAGETAI ON AITHOUSA.id_aithousas=DIEXAGETAI.id_aithousas
+    JOIN PARODIKI_EKTHESI ON DIEXAGETAI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+    ORDER BY AITHOUSA.id_aithousas,imerominia_enarxis,imerominia_lixis;`)
+    let schedule;
+    try {
+        return schedule = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+};
 
 

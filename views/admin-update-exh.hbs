@@ -10,52 +10,76 @@
             <textarea id="content" name="content" rows="10">{{ekthes.perigrafi}}</textarea>
         </div>
 
-            <div class="imerom">
-                <div class="enarxi">
-                    <label for="imer_enarx">Ημερομηνία Έναρξης Έκθεσης:</label>
+        <div class="aithousa">
+         <label for="aithousa">Επιλέξτε Αίθουσα</label>
+            <select name="aithousa" id="aithousa" required>
+                <option value="1">Αίθουσα 1</option>
+                <option value="2">Αίθουσα 2</option>
+                <option value="3">Αίθουσα 3</option>
+            </select>
+        </div>
 
-                    <input type="date" id="imer_enarx" name="imer_enarx" value="{{ekthes.imerominia_enarxis}}" required>
-                </div>
-                <div class="liksi">
-                    <label for="imer_liksis">Ημερομηνία Λήξης Έκθεσης:</label>
-                    <input type="date" id="imer_liksis" name="imer_liksis" value="{{ekthes.imerominia_lixis}}" required>
-                </div>
+            <div class="imerom">
+                <label for="datePicker">Διάρκεια Έκθεσης:</label>
+                <input type="text" id="datePicker" placeholder="Επιλέξτε Ημερομηνία" required>
             </div>
+
 
         <div class="buttons">
             <button class="submit-btn" type="submit">Αποθήκευση</button>
-            <a href="/admin">Ακύρωση</a>
+            <a href="/admin/Exhibitions">Ακύρωση</a>
         </div>
+
+     
 
     </div>
 
     <div class="image-link">
         <img src={{ekthes.link}} class="edit-image">
         <label for="link">Link Εικόνας</label>
-        <input type="url" id="link" name="link" value="{{ekthes.link}}">
+        <input type="text" id="link" name="link" value="{{ekthes.link}}">
     </div>
 </form>
 
 <script>
-    // JavaScript to set the minimum date
-    const datePicker = document.getElementById('imer_enarx');
-    const date_after = document.getElementById('imer_liksis');
-    const today = new Date();
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
-    const year = today.getFullYear();
 
-    // Set the min attribute to today's date in YYYY-MM-DD format
-    const minDate = `${year}-${month}-${day}`;
-    datePicker.setAttribute('min', minDate);
-    date_after.setAttribute('min', minDate);
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateRanges = {{{ aithousa }}};
 
-    // Function to update the minimum end date
-    datePicker.addEventListener('change', function () {
-        const startDate = datePicker.value;
-        date_after.setAttribute('min', startDate);
-        if (date_after.value < startDate) {
-            date_after.value = startDate;
-        }
+        //console.log('Parsed dateRanges:', dateRanges);
+
+        const defaultStartDate = "{{ ekthes.imerominia_enarxis }}";
+        const defaultEndDate = "{{ ekthes.imerominia_lixis }}";
+
+        //console.log('defaultStartDate:', defaultStartDate);
+        //console.log('defaultEndDate:', defaultEndDate);
+
+        // Transform the array of objects to Flatpickr disable format
+        const disabledDates = dateRanges.map(range => ({
+            from: range.imerominia_enarxis_modified,
+            to: range.imerominia_lixis
+        })).filter(range => {
+            // Check if the range overlaps with the default date range
+            const defaultStart = new Date(defaultStartDate);
+            const defaultEnd = new Date(defaultEndDate);
+            const rangeStart = new Date(range.from);
+            const rangeEnd = new Date(range.to);
+
+            return (rangeEnd < defaultStart || rangeStart > defaultEnd);
+        });
+
+        //console.log('Filtered Disabled Dates:', disabledDates);
+
+        flatpickr("#datePicker", {
+            enableTime: false,
+            mode: "range",
+            minDate: "today",
+            defaultDate: [defaultStartDate, defaultEndDate],
+            dateFormat: "Y-m-d",
+            disable: disabledDates
+        });
     });
+
+    document.getElementById('aithousa').value={{ekthes.id_aithousas}}
+
 </script>

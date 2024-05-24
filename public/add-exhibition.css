@@ -138,3 +138,15 @@ select#aithousa {
     width: 60%;
     margin-bottom: 1%;
 }
+
+.information-form .imerom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 1%;
+}
+
+.information-form .imerom #datePicker{
+    width: 80%;
+}
