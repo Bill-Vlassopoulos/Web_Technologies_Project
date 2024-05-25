@@ -45,8 +45,8 @@ h3 {
     margin-top: 2em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-
     gap: 4rem;
+    margin-bottom: 4%;
 }
 
 h5 {
@@ -61,6 +61,14 @@ h5 {
     border: 1px solid #000;
     border-radius: 1em;
     color: white;
+}
+
+.buttons{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .epex {
@@ -119,6 +127,7 @@ h5 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 3%;
 }
 
 textarea {

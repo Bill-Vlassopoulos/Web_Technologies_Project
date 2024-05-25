@@ -91,6 +91,10 @@
     margin-top: 0;
 }
 
+.diag{
+    background-color: #df1212;
+}
+
 @media screen and (max-width: 650px) {
     .exh img{
         max-height: 200px;

@@ -3,19 +3,17 @@
 
     <form class="information-form" method="post" action="/admin/addExhibition/submit">
         <label for="title">Τίτλος</label>
-        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.."
-            value="{{ex_info.title}}" required>
+        <input type="text" id="title" name="title" placeholder="Πληκτρολογήστε τον τίτλο της έκθεσης.." required>
 
         <div class="img-ekthesis">
             <label for="link">Link Εικόνας</label>
             <input type="text" name="link" id="link"
-                placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.."
-                value="{{ex_info.link}}" required>
+                placeholder="Πληκτρολογήστε το link για την αντιπροσωπευτική εικόνα της έκθεσης.." required>
         </div>
 
         <label for="perigrafi">Περιγραφή Έκθεσης</label>
         <textarea name="perigrafi" id="perigrafi" placeholder="Πληκτρολογήστε την περιγραφή της έκθεσης.." rows="10"
-            required>{{ex_info.perigrafi}}</textarea>
+            required></textarea>
 
         <label for="aithousa">Επιλέξτε Αίθουσα</label>
         <select name="aithousa" id="aithousa" required>

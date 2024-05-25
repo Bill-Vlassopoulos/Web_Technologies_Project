@@ -40,32 +40,9 @@
             <textarea id="content" name="content" rows="10">{{info.perigrafi}}</textarea>
         </div>
 
-        <div class="display">
-            <div class="aithousa-display">
-                <label for="content">Τώρα Βρίσκεται:</label>
-                <select name="aithousa" id="aithousa" required>
-                    <option value="1">Αίθουσα 1</option>
-                    <option value="2">Αίθουσα 2</option>
-                    <option value="3">Αίθουσα 3</option>
-                </select>
-            </div>
-
-            <div class="imerom">
-                <div class="enarxi">
-                    <label for="imer_enarx">Ημερομηνία Έναρξης Δανεισμού:</label>
-
-                    <input type="date" name="imer_enarx" value="2024-06-02" required>
-                </div>
-                <div class="liksi">
-                    <label for="imer_liksis">Ημερομηνία Λήξης Δανεισμού:</label>
-                    <input type="date" name="imer_liksis" value="2024-08-10" required>
-                </div>
-            </div>
-        </div>
-
         <div class="buttons">
             <button class="submit-btn" type="submit">Αποθήκευση</button>
-            <a href="/admin">Ακύρωση</a>
+            <a href="/admin/edit">Ακύρωση</a>
         </div>
 
     </form>

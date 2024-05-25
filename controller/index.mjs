@@ -250,8 +250,9 @@ router.get("/admin/viewExhibition/:id_ekthesis", logInController.checkAuthentica
     const cssFilePath = '/admin-exh.css'
     let ekthes = model.getEkthesiById(req.params.id_ekthesis);
     let aithousa = model.getScheduleAithousas(ekthes.id_aithousas);
-    //console.log(aithousa);
-    res.render('admin-view-exh', { layout: 'admin', ekthes: ekthes, aithousa: JSON.stringify(aithousa), css: cssFilePath });
+    console.log(ekthes);
+    console.log(aithousa);
+    res.render('admin-view-exh', { layout: 'admin', ekthes: ekthes, aithousa: aithousa, css: cssFilePath });
 })
 
 //Επεξεργασία μελλοντικής έκθεσης
@@ -304,7 +305,7 @@ router.post("/admin/addExhibition2/submit", logInController.checkAuthenticated, 
 
     let info = req.body;
     //console.log(info);
-    model.newPeriodikiEkthesi(ex_info.title, ex_info.perigrafi, ex_info.imer_enarx, ex_info.imer_lixis, ex_info.aithousa);
+    model.newPeriodikiEkthesi(ex_info.title, ex_info.perigrafi, ex_info.imer_enarx, ex_info.imer_lixis, ex_info.link, ex_info.aithousa);
     let id_ekthesis = model.getIdofLastEkthesis();
     for (let i = 0; i < info.length; i++) {
         model.insertErgotoEkthesi(info[i].arithmos_ergou, id_ekthesis["id_ekthesis"], ex_info.imer_enarx, ex_info.imer_lixis);

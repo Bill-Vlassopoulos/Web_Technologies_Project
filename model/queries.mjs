@@ -136,7 +136,7 @@ export function deleteErgo(arithmos_ergou) {
 
 }
 
-export function newPeriodikiEkthesi(titlos, perigrafi, imerominia_enarxis, imerominia_lixis, id_aithousas) {
+export function newPeriodikiEkthesi(titlos, perigrafi, imerominia_enarxis, imerominia_lixis, link, id_aithousas) {
     const stmt = sql.prepare("INSERT INTO EKTHESI (onoma_ekthesis,perigrafi) VALUES (?,?)");
 
     try {
@@ -145,8 +145,8 @@ export function newPeriodikiEkthesi(titlos, perigrafi, imerominia_enarxis, imero
         let id;
         try {
             id = stmt2.get();
-            const stmt3 = sql.prepare("INSERT INTO PARODIKI_EKTHESI (id_ekthesis,imerominia_enarxis,imerominia_lixis) VALUES (?,?,?)");
-            stmt3.run(id.id_ekthesis, imerominia_enarxis, imerominia_lixis);
+            const stmt3 = sql.prepare("INSERT INTO PARODIKI_EKTHESI (id_ekthesis,imerominia_enarxis,imerominia_lixis,link) VALUES (?,?,?,?)");
+            stmt3.run(id.id_ekthesis, imerominia_enarxis, imerominia_lixis, link);
             try {
                 const stmt4 = sql.prepare("INSERT INTO DIEXAGETAI (id_ekthesis,id_aithousas) VALUES (?,?)");
                 stmt4.run(id.id_ekthesis, parseInt(id_aithousas));
