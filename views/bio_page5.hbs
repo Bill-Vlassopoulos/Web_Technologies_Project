@@ -15,7 +15,7 @@
                 </p>
 
                 <div class="starry-img">
-                    <img src="http://www.vggallery.com/painting/f_0612.jpg">
+                    <img id="starry-night-img" src="http://www.vggallery.com/painting/f_0612.jpg">
                     <h5>Starry Night, June 1889.</h5>
                 </div>
             </div>
@@ -23,7 +23,7 @@
 
             <div class="hospital-room">
                 <div class="hospital-img">
-                    <img src="http://www.vggallery.com/painting/f_0484.jpg">
+                    <img  id="hos-img" src="http://www.vggallery.com/painting/f_0484.jpg">
                     <h5>The Bedroom, early September, 1889. </h5>
                 </div>
 
@@ -61,6 +61,32 @@
     left.addEventListener('click',function(event){
         window.location.href="/biography/arles";
     })
+
+    document.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/painting/f_0612.jpg",
+        "http://www.vggallery.com/painting/f_0484.jpg"
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+
+    });
 
 
 </script>

@@ -19,11 +19,11 @@
 
                 <div class="doctor-img">
                     <div class="doc-portrait">
-                        <img src="http://www.vggallery.com/painting/f_0753.jpg">
+                        <img id="doc-img" src="http://www.vggallery.com/painting/f_0753.jpg">
                         <h5>Portrait of Doctor Gachet, June 1890.</h5>
                     </div>
                     <div class="church">
-                        <img src="http://www.vggallery.com/painting/f_0789.jpg">
+                        <img id="church-img" src="http://www.vggallery.com/painting/f_0789.jpg">
                         <h5>The Church at Auvers, June 1890.</h5>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 </p>
 
                 <div class="garden">
-                    <img src="http://www.vggallery.com/painting/f_0777.jpg">
+                    <img id="garden-img" src="http://www.vggallery.com/painting/f_0777.jpg">
                     <h5>Daubigny's Garden,July 1890. <strong>Considered his last painting.</strong></h5>
                 </div>
             </div>
@@ -59,12 +59,12 @@
                 <p id="self">Πως ο ίδιος ο Vincent έβλεπε τον εαυτό του από τότε από μετακόμισε στην Arles</p>
 
                 <div class="self-portraits">
-                    <img src="http://www.vggallery.com/painting/f_0524.jpg" title="Arles,August 1888">
-                    <img src="http://www.vggallery.com/painting/f_0476.jpg" title="Arles,September 1888">
-                    <img src="http://www.vggallery.com/painting/f_0529.jpg" title="Arles, January 1889">
-                    <img src="http://www.vggallery.com/painting/f_0525.jpg" title="Saint-Remy,September 1889">
-                    <img src="http://www.vggallery.com/painting/f_0627.jpg" title="Saint-Remy,September 1889">
-                    <img src="http://www.vggallery.com/painting/f_0528.jpg" title="Saint-Remy,September 1889">
+                    <img id="self-por1" src="http://www.vggallery.com/painting/f_0524.jpg" title="Arles,August 1888">
+                    <img id="self-por2" src="http://www.vggallery.com/painting/f_0476.jpg" title="Arles,September 1888">
+                    <img id="self-por3" src="http://www.vggallery.com/painting/f_0529.jpg" title="Arles, January 1889">
+                    <img id="self-por4" src="http://www.vggallery.com/painting/f_0525.jpg" title="Saint-Remy,September 1889">
+                    <img id="self-por5" src="http://www.vggallery.com/painting/f_0627.jpg" title="Saint-Remy,September 1889">
+                    <img id="self-por6" src="http://www.vggallery.com/painting/f_0528.jpg" title="Saint-Remy,September 1889">
                 </div>
             </div>
         </div>
@@ -78,6 +78,38 @@
     left.addEventListener('click',function(event){
         window.location.href="/biography/saint-remy";
     })
+
+   document.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/painting/f_0753.jpg",
+        "http://www.vggallery.com/painting/f_0789.jpg",
+        "http://www.vggallery.com/painting/f_0777.jpg",
+        "http://www.vggallery.com/painting/f_0524.jpg",
+        "http://www.vggallery.com/painting/f_0476.jpg",
+        "http://www.vggallery.com/painting/f_0529.jpg",
+        "http://www.vggallery.com/painting/f_0525.jpg",
+        "http://www.vggallery.com/painting/f_0627.jpg",
+        "http://www.vggallery.com/painting/f_0528.jpg"
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+});
 
 
 </script>

@@ -16,7 +16,7 @@
                 </p>
 
                 <div class="img_paris">
-                    <img src="http://www.vggallery.com/painting/f_0221.jpg">
+                    <img id="paris-img" src="http://www.vggallery.com/painting/f_0221.jpg">
                     <h5>The Pont du Carrousel and the Louvre(1886)</h5>
                 </div>
 
@@ -24,7 +24,7 @@
 
                 <div class="japan">
                     <div class="japan_img">
-                        <img src="http://www.vggallery.com/painting/f_0371.jpg">
+                        <img id="japan-img" src="http://www.vggallery.com/painting/f_0371.jpg">
                         <h5>Japonaiserie: Flowering Plum Tree (after Hiroshige),1887</h5>
                     </div>
 
@@ -57,6 +57,32 @@
     left.addEventListener('click',function(event){
         window.location.href="/biography/nuenen";
     })
+
+    document.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/painting/f_0221.jpg",
+        "http://www.vggallery.com/painting/f_0371.jpg"
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+
+    });
 
 
 </script>

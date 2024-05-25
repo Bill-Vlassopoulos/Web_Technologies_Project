@@ -10,6 +10,7 @@
 .exhibitions-main.container{
     width:90%;
     margin:0 auto;
+    margin-bottom: 3%;
 }
 
 .grid-exh{
@@ -58,7 +59,7 @@
 .buttons{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 30%;
     margin-top: 1em;
@@ -66,7 +67,7 @@
 }
 
 .epex,
-.diag {
+.diag,.view {
     height: 4em;
     border: 1px solid #000;
     border-radius: 1em;
@@ -75,12 +76,19 @@
     padding:0 4%;
 }
 
-.epex {
+.epex{
     background-color: #0b6b02;
+    margin-right: 3%;
 }
 
-.diag {
+.view{
+    background-color: #076fb4;
+}
+
+.buttons .diag {
     background-color: #df1212;
+    margin-left: 3%;
+    margin-top: 0;
 }
 
 @media screen and (max-width: 650px) {
@@ -238,4 +246,63 @@ select#aithousa{
         width: 80%;
         margin-bottom: 5%;
     }
+}
+
+h2{
+    width: 80%;
+    margin:0 auto;
+    border-bottom: 0.1em solid black;
+}
+
+.erga-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 4rem;
+    width: 80%;
+    margin: 3% auto;
+}
+
+.ergo-exh{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:0.1em solid black;
+    padding:1em;
+    padding-top: 2em;
+}
+
+.ergo-exh img{
+    max-height: 40vh;
+    width: 100%;
+    object-fit: contain;
+    margin-bottom: 2%;
+}
+
+.diag{
+    margin-top: 2%;
+}
+
+.ergo-exh h3{
+    font-weight: 700;
+}
+
+span.show{
+    color: black;
+    font-size: 2em;
+    font-weight: 700;
+    width: 70%;
+    margin-top: 2%;
+    margin-left: 0;
+}
+
+span.show2{
+    color: black;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-left: 0;
+}
+
+.aithousa span.show2{
+    font-size: 1em;
 }
