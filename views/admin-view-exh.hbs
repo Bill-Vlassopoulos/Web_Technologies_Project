@@ -27,3 +27,17 @@
         <img src={{ekthes.link}} class="edit-image">
     </div>
 </div>
+
+ <h2>Έργα που περιέχονται</h2>
+
+<div class="erga-container">
+   
+    {{#each erga_exh}}
+        <div class="ergo-exh">
+            <h3>{{this.onoma}}</h3>
+            <img src="{{this.link}}">
+            <h4>Κωδικός έργου: {{this.arithmos_ergou}}</h4>
+        </div>
+
+    {{/each}}
+</div>
