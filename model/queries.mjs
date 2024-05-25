@@ -389,3 +389,64 @@ export function gettheEkthesisErga(id_ekthesis) {
     }
 
 }
+
+export function updateEkthesi(id_ekthesis, titlos, perigrafi, imerominia_enarxis, imerominia_lixis, link) {
+    const stmt = sql.prepare("UPDATE EKTHESI SET onoma_ekthesis = ?, perigrafi = ? WHERE id_ekthesis = ?");
+    try {
+        stmt.run(titlos, perigrafi, id_ekthesis);
+        const stmt2 = sql.prepare("UPDATE PARODIKI_EKTHESI SET imerominia_enarxis = ?, imerominia_lixis = ?, link = ? WHERE id_ekthesis = ?");
+        try {
+            stmt2.run(imerominia_enarxis, imerominia_lixis, link, id_ekthesis);
+            return true;
+        }
+        catch (e) {
+            throw (e);
+        }
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function deleteEkthesi(id_ekthesis) {
+    const stmt = sql.prepare("DELETE FROM PARODIKI_EKTHESI WHERE id_ekthesis = ?");
+    try {
+        stmt.run(id_ekthesis);
+        const stmt2 = sql.prepare("DELETE FROM DIEXAGETAI WHERE id_ekthesis = ?");
+        try {
+            stmt2.run(id_ekthesis);
+            const stmt3 = sql.prepare("DELETE FROM PERILAMBANETAI WHERE id_ekthesis = ?");
+            try {
+                stmt3.run(id_ekthesis);
+                const stmt4 = sql.prepare("DELETE FROM EKTHESI WHERE id_ekthesis = ?");
+                try {
+                    stmt4.run(id_ekthesis);
+                    return true;
+                }
+                catch (e) {
+                    throw (e);
+                }
+            }
+            catch (e) {
+                throw (e);
+            }
+        }
+        catch (e) {
+            throw (e);
+        }
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function afairesiErgouapoEkthesi(arithmos_ergou, id_ekthesis) {
+    const stmt = sql.prepare("DELETE FROM PERILAMBANETAI WHERE arithmos_ergou = ? AND id_ekthesis = ?");
+    try {
+        stmt.run(arithmos_ergou, id_ekthesis);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}
