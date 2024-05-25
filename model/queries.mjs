@@ -283,13 +283,15 @@ WHERE PARODIKI_EKTHESI.imerominia_lixis > CURRENT_DATE
 
 
 export function getErgaWithCurrentIdEkthesis() {
-    const stmt = sql.prepare(`SELECT ERGO.*,B.id_ekthesis
-    FROM ERGO
-    LEFT JOIN (SELECT *
-                FROM PERILAMBANETAI
-                WHERE CURRENT_DATE>= PERILAMBANETAI.imerominia_enarxsis AND PERILAMBANETAI.imerominia_lixis>=CURRENT_DATE)
-                AS B ON ERGO.arithmos_ergou=B.arithmos_ergou
-    ORDER BY B.id_ekthesis;`);
+    const stmt = sql.prepare(`SELECT ERGO.*,PERILAMBANETAI.id_ekthesis
+    FROM ERGO 
+    LEFT JOIN PERILAMBANETAI ON ERGO.arithmos_ergou=PERILAMBANETAI.arithmos_ergou
+    WHERE PERILAMBANETAI.id_ekthesis=1 AND ERGO.arithmos_ergou NOT IN (SELECT arithmos_ergou
+                    FROM PERILAMBANETAI
+                    WHERE CURRENT_DATE>= PERILAMBANETAI.imerominia_enarxsis AND PERILAMBANETAI.imerominia_lixis>=CURRENT_DATE)
+    OR	CURRENT_DATE>= PERILAMBANETAI.imerominia_enarxsis AND PERILAMBANETAI.imerominia_lixis>=CURRENT_DATE
+    OR id_ekthesis IS NULL
+    ORDER BY id_ekthesis;`);
     let erga;
     try {
         return erga = stmt.all();

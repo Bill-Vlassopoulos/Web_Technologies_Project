@@ -82,6 +82,13 @@ def main():
         ("admin", bcrypt.hashpw("admin".encode("utf-8"), bcrypt.gensalt())),
     )
     conn.commit()
+    for x in range(int(len(DataFrame) / 2)):
+        cursor.execute(
+            "INSERT INTO PERILAMBANETAI(id_ekthesis,arithmos_ergou,imerominia_enarxsis,imerominia_lixis) VALUES (?, ?, ?, ?)",
+            (1, DataFrame["Art_ID"][x], None, None),
+        ),
+
+        conn.commit()
     conn.close()
 
 
