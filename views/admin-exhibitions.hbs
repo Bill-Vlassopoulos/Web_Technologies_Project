@@ -17,14 +17,18 @@
         window.location.href = `/admin/updateExhibition/${id_ekthesis}`;
     }
 
+    function viewExhibition(id_ekthesis) {
+        window.location.href = `/admin/viewExhibition/${id_ekthesis}`;
+    }
+
     function addExhibition() {
         window.location.href = "/admin/addExhibition";
     }
 
-    const current_exh = {{{ current_exh }}};
+    const current_exh = {{{current_exh}}};
+    const future_exh = {{{future_exh}}};
 
-    const future_exh = {{{ future_exh }}};
-    function createExhibitionElement(exhibition) {
+    function createExhibitionElement(exhibition, type) {
         const exhDiv = document.createElement('div');
         exhDiv.className = 'exh';
 
@@ -47,17 +51,26 @@
         const buttonsDiv = document.createElement('div');
         buttonsDiv.className = 'buttons';
 
-        const editButton = document.createElement('button');
-        editButton.className = 'epex';
-        editButton.innerText = 'Επεξεργασία';
-        editButton.onclick = () => updateExhibition(exhibition.id_ekthesis);
+        if (type === 'current') {
+            const viewButton = document.createElement('button');
+            viewButton.className = 'view';
+            viewButton.innerText = 'Προβολή';
+            viewButton.onclick = () => viewExhibition(exhibition.id_ekthesis);
+            buttonsDiv.appendChild(viewButton);
+        } else if (type === 'future') {
+            const updateButton = document.createElement('button');
+            updateButton.className = 'epex';
+            updateButton.innerText = 'Επεξεργασία';
+            updateButton.onclick = () => updateExhibition(exhibition.id_ekthesis);
+            buttonsDiv.appendChild(updateButton);
 
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'diag';
-        deleteButton.innerText = 'Διαγραφή';
+             const deleteButton = document.createElement('button');
+            deleteButton.className = 'diag';
+            deleteButton.innerText = 'Διαγραφή';
+            buttonsDiv.appendChild(deleteButton);
+        }
 
-        buttonsDiv.appendChild(editButton);
-        buttonsDiv.appendChild(deleteButton);
+       
 
         exhDiv.appendChild(h4);
         exhDiv.appendChild(img);
@@ -69,21 +82,19 @@
         return exhDiv;
     }
 
-    function appendExhibitionsToContainer(exhibitions, containerId) {
+    function appendExhibitionsToContainer(exhibitions, containerId, type) {
         const container = document.getElementById(containerId);
         exhibitions.forEach(exhibition => {
-            const exhElement = createExhibitionElement(exhibition);
+            const exhElement = createExhibitionElement(exhibition, type);
             container.appendChild(exhElement);
         });
     }
 
-    appendExhibitionsToContainer(current_exh, 'current-exh-grid');
-    appendExhibitionsToContainer(future_exh, 'future-exh-grid');
-    first_exh = document.querySelector('#current-exh-grid ');
+    appendExhibitionsToContainer(current_exh, 'current-exh-grid', 'current');
+    appendExhibitionsToContainer(future_exh, 'future-exh-grid', 'future');
+
+    const first_exh = document.querySelector('#current-exh-grid');
     first_exh.querySelectorAll('.exh').forEach((exh1) => {
-
-        //set the background color of each exh1 to #d9f2b8
         exh1.style.backgroundColor = '#dff2c7';
-
     });
 </script>

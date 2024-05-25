@@ -10,14 +10,14 @@
                     Αυτή είναι και η περίοδος κατά την οποία ξεκινά να σχεδιάζει μικρά έργα και πιθανόν αποφασίζει να ασχοληθεί με την τέχνη.</p>
             </div>
             <div class="image1">
-                <img src="http://www.vggallery.com/painting/f_0001.jpg">
+                <img id="image1-img" src="http://www.vggallery.com/painting/f_0001.jpg">
                 <h5>Το πρώτο του έργο,Still Life with Cabbage and Clogs(1881)</h5>
             </div>
         </div>
 
         <div class="early">
             <div class="early_img">
-                <img src="http://www.vggallery.com/drawings/f_1072.jpg">
+                <img id="early-img2" src="http://www.vggallery.com/drawings/f_1072.jpg">
                 <h5>Sien, Sitting on a Basket, with a Girl(1883)</h5>
             </div>
 
@@ -49,5 +49,34 @@
     right.addEventListener('click',function(event){
         window.location.href="/biography/nuenen";
     })
+
+    ocument.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/painting/f_0001.jpg",
+        "http://www.vggallery.com/drawings/f_1072.jpg"
+
+
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+
+    });
+
 </script>
 

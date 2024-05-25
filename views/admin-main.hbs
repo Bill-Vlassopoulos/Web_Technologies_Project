@@ -6,7 +6,7 @@
     let erga = {{{ erga }}}
     let current_exhibition = {{{ ektheseis }}}
     console.log(erga.filter(ergo => ergo.arithmos_ergou == "s0019V1962"));
-    current_exhibition.push({ id_ekthesis: 1, onoma_ekthesis: "Μόνιμη Έκθεση" });
+    current_exhibition.unshift({ id_ekthesis: 1, onoma_ekthesis: "Μόνιμη Έκθεση" });
     current_exhibition.push({ id_ekthesis: null, onoma_ekthesis: "Αποθήκη" });
 
     function createExhibitionContainer(exhibition) {

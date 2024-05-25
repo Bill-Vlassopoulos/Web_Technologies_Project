@@ -14,18 +14,18 @@
 
                 <div class="topio-img">
                     <img id="palia-photo" src="http://www.vggallery.com/drawings/f_1499.jpg" title="Landscape with Path and Pollard Trees">
-                    <img src="http://www.vggallery.com/painting/f_0407.jpg" title="Path Through a Field with Willows (one month later)">
+                    <img id="nea-photo" src="http://www.vggallery.com/painting/f_0407.jpg" title="Path Through a Field with Willows (one month later)">
                 </div>
             </div>
 
             <div class="yellow-house">
                 <div class="arles-house">
                     <div class="yellow-house-img">
-                        <img src="http://www.vggallery.com/painting/f_0464.jpg">
+                        <img id="yellow-img" src="http://www.vggallery.com/painting/f_0464.jpg">
                         <h5>Vincent's House in Arles (The Yellow House),1888</h5>
                     </div>
                     <div class="arles-atnight">
-                        <img src="http://www.vggallery.com/painting/f_0467.jpg">
+                        <img id="arles-img" src="http://www.vggallery.com/painting/f_0467.jpg">
                         <h5>Cafe Terrace on the Place du Forum, Arles, at Night(1888)</h5>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
 
             <div class="sunflowers">
                 <div class="sunflowers-img">
-                    <img src="http://www.vggallery.com/painting/f_0458.jpg">
+                    <img id="sun-img" src="http://www.vggallery.com/painting/f_0458.jpg">
                     <h5>Still Life: Vase with Fifteen Sunflowers,1889</h5>
                 </div>
 
@@ -94,6 +94,37 @@
     left.addEventListener('click',function(event){
         window.location.href="/biography/paris";
     })
+
+    document.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/drawings/f_1499.jpg",
+        "http://www.vggallery.com/painting/f_0407.jpg",
+        "http://www.vggallery.com/painting/f_0464.jpg",
+        "http://www.vggallery.com/painting/f_0467.jpg",
+        "http://www.vggallery.com/painting/f_0458.jpg"
+
+
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+
+    });
 
 
 </script>

@@ -245,13 +245,23 @@ router.get("/admin/Exhibitions", logInController.checkAuthenticated, (req, res) 
     res.render('admin-exhibitions', { layout: 'admin', css: cssFilePath, future_exh: JSON.stringify(future_exh), current_exh: JSON.stringify(current_exh) });
 })
 
-//Επεξεργασία έκθεσης
-router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
+//Προβολή τωρινής έκθεσης
+router.get("/admin/viewExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/admin-exh.css'
     let ekthes = model.getEkthesiById(req.params.id_ekthesis);
     let aithousa = model.getScheduleAithousas(ekthes.id_aithousas);
     //console.log(aithousa);
-    res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, aithousa: JSON.stringify(aithousa), css: cssFilePath });
+    res.render('admin-view-exh', { layout: 'admin', ekthes: ekthes, aithousa: JSON.stringify(aithousa), css: cssFilePath });
+})
+
+//Επεξεργασία μελλοντικής έκθεσης
+router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
+    const cssFilePath = '/admin-exh.css'
+    let ekthes = model.getEkthesiById(req.params.id_ekthesis);
+    let aithousa = model.getScheduleAithousas(ekthes.id_aithousas);
+    let erga_exh = model.gettheEkthesisErga(req.params.id_ekthesis);
+    //console.log(aithousa);
+    res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, erga_exh: erga_exh, aithousa: JSON.stringify(aithousa), css: cssFilePath });
 })
 
 //Προσθήκη Νέας Έκθεσης

@@ -3,7 +3,7 @@
  <section>
         <div class="sec_pag">
             <div class="farmers-plant">
-                <img src="http://www.vggallery.com/painting/f_0041.jpg" title="Farmers Planting Potatoes">
+                <img id="farmer-img" src="http://www.vggallery.com/painting/f_0041.jpg" title="Farmers Planting Potatoes">
                 <p>Το 1883 ήταν άλλη μια χρονιά μετάβασης για τον Βαν Γκογκ: τόσο στην προσωπική του ζωή όσο και στον ρόλο του ως καλλιτέχνη. Ο Vincent άρχισε να πειραματίζεται με τις λαδομπογιές το 1882,
                     αλλά μόλις το 1883 δούλευε με αυτό το υλικό όλο και πιο συχνά. Καθώς οι δεξιότητές του στο σχέδιο και στη ζωγραφική προχωρούσαν, η σχέση του με τη Σιέν επιδεινώθηκε και οι δρόμοι τους χώρισαν τον Σεπτέμβριο.
                     Όπως και με την αποτυχία του στο The Borinage, ο Vincent περνούσε το χρόνο του αναρρώνοντας από αυτήν την αποτυχημένη σχέση σε απομόνωση. Με πολλή λύπη, ιδιαίτερα λόγω των συναισθημάτων του για τα παιδιά της Σιέν,
@@ -23,17 +23,17 @@
 
                 <div class="potato-progress">
                     <div class="study">
-                        <img src="http://www.vggallery.com/painting/f_0077r.jpg">
+                        <img id="potato1" src="http://www.vggallery.com/painting/f_0077r.jpg">
                         <h5>Study for 'The Potato Eaters'</h5>
                     </div>
 
                     <div class="potato-1">
-                        <img src="http://www.vggallery.com/painting/f_0078.jpg">
+                        <img id="potato2" src="http://www.vggallery.com/painting/f_0078.jpg">
                         <h5>The Potato Eaters</h5>
                     </div>
 
                     <div class="potato-2">
-                        <img src="http://www.vggallery.com/painting/f_0082.jpg">
+                        <img id="potato3" src="http://www.vggallery.com/painting/f_0082.jpg">
                         <h5>The Potato Eaters</h5>
                     </div>
                 </div>
@@ -55,6 +55,35 @@
     left.addEventListener('click',function(event){
         window.location.href="/biography/earliest-paintings";
     })
+
+    document.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/painting/f_0041.jpg",
+        "http://www.vggallery.com/painting/f_0077r.jpg",
+        "http://www.vggallery.com/painting/f_0078.jpg",
+        "http://www.vggallery.com/painting/f_0082.jpg"
+
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+
+    });
 
 
 </script>
