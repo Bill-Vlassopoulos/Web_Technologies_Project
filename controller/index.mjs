@@ -250,9 +250,10 @@ router.get("/admin/viewExhibition/:id_ekthesis", logInController.checkAuthentica
     const cssFilePath = '/admin-exh.css'
     let ekthes = model.getEkthesiById(req.params.id_ekthesis);
     let aithousa = model.getScheduleAithousas(ekthes.id_aithousas);
-    console.log(ekthes);
-    console.log(aithousa);
-    res.render('admin-view-exh', { layout: 'admin', ekthes: ekthes, aithousa: aithousa, css: cssFilePath });
+    let erga_exh = model.gettheEkthesisErga(req.params.id_ekthesis);
+    //console.log(ekthes);
+    //console.log(aithousa);
+    res.render('admin-view-exh', { layout: 'admin', ekthes: ekthes, erga_exh: erga_exh, aithousa: aithousa, css: cssFilePath });
 })
 
 //Επεξεργασία μελλοντικής έκθεσης
