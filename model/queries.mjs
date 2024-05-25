@@ -450,3 +450,19 @@ export function afairesiErgouapoEkthesi(arithmos_ergou, id_ekthesis) {
         throw (e);
     }
 }
+
+export function last2Ektheseis() {
+    const stmt = sql.prepare(`SELECT *
+    FROM EKTHESI
+    JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+    WHERE PARODIKI_EKTHESI.imerominia_enarxis>=CURRENT_DATE
+    ORDER BY PARODIKI_EKTHESI.imerominia_enarxis,PARODIKI_EKTHESI.imerominia_lixis
+    LIMIT 2;`);
+    let ektheseis;
+    try {
+        return ektheseis = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
