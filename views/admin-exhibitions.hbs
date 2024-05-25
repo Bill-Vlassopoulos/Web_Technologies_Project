@@ -25,6 +25,12 @@
         window.location.href = "/admin/addExhibition";
     }
 
+    function deleteExhibition(id_ekthesis){
+         if (confirm('Είστε σίγουρος ότι θέλετε να διαγράψετε αυτή την έκθεση;')) {
+            window.location.href = `/admin/deleteExhibition/${id_ekthesis}`;
+        }
+    }
+
     const current_exh = {{{current_exh}}};
     const future_exh = {{{future_exh}}};
 
@@ -67,6 +73,7 @@
              const deleteButton = document.createElement('button');
             deleteButton.className = 'diag';
             deleteButton.innerText = 'Διαγραφή';
+            deleteButton.onclick =() => deleteExhibition(exhibition.id_ekthesis);
             buttonsDiv.appendChild(deleteButton);
         }
 
