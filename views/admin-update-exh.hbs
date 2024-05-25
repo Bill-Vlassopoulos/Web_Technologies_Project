@@ -1,4 +1,4 @@
- <form class="update-form">
+<form class="update-form" method="post" action="/admin/updateExhibition/{{ekthes.id_ekthesis}}/submit">
     <div class="plirofories">
         <div class="titlos">
             <label for="titlos">Tίτλος</label>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="aithousa">
-         <label for="aithousa">Επιλέξτε Αίθουσα</label>
+            <label for="aithousa">Επιλέξτε Αίθουσα</label>
             <select name="aithousa" id="aithousa" required>
                 <option value="1">Αίθουσα 1</option>
                 <option value="2">Αίθουσα 2</option>
@@ -19,62 +19,48 @@
             </select>
         </div>
 
-            <div class="imerom">
-                <label for="datePicker">Διάρκεια Έκθεσης:</label>
-                <input type="text" id="datePicker" placeholder="Επιλέξτε Ημερομηνία" required>
-            </div>
-
+        <div class="imerom">
+            <label for="datePicker">Διάρκεια Έκθεσης:</label>
+            <input type="text" name="imerom" id="datePicker" placeholder="Επιλέξτε Ημερομηνία" required>
+        </div>
 
         <div class="buttons">
             <button class="submit-btn" type="submit">Αποθήκευση</button>
             <a href="/admin/Exhibitions">Ακύρωση</a>
         </div>
-
-     
-
     </div>
 
     <div class="image-link">
-        <img src={{ekthes.link}} class="edit-image">
+        <img src="{{ekthes.link}}" class="edit-image">
         <label for="link">Link Εικόνας</label>
         <input type="text" id="link" name="link" value="{{ekthes.link}}">
     </div>
 </form>
 
- <h2>Έργα που περιέχονται</h2>
+<h2>Έργα που περιέχονται</h2>
 
 <div class="erga-container">
-   
     {{#each erga_exh}}
         <div class="ergo-exh">
             <h3>{{this.onoma}}</h3>
             <img src="{{this.link}}">
             <h4>Κωδικός έργου: {{this.arithmos_ergou}}</h4>
-            <button class="diag">Αφαίρεση</button>
+            <button class="diag" onclick="deletePainting({{ekthes.id_ekthesis}}, '{{this.arithmos_ergou}}')">Αφαίρεση</button>
         </div>
-
     {{/each}}
 </div>
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
-        const dateRanges = {{{ aithousa }}};
+        const dateRanges = {{{aithousa}}};
 
-        //console.log('Parsed dateRanges:', dateRanges);
+        const defaultStartDate = "{{ekthes.imerominia_enarxis}}";
+        const defaultEndDate = "{{ekthes.imerominia_lixis}}";
 
-        const defaultStartDate = "{{ ekthes.imerominia_enarxis }}";
-        const defaultEndDate = "{{ ekthes.imerominia_lixis }}";
-
-        //console.log('defaultStartDate:', defaultStartDate);
-        //console.log('defaultEndDate:', defaultEndDate);
-
-        // Transform the array of objects to Flatpickr disable format
         const disabledDates = dateRanges.map(range => ({
             from: range.imerominia_enarxis_modified,
             to: range.imerominia_lixis
         })).filter(range => {
-            // Check if the range overlaps with the default date range
             const defaultStart = new Date(defaultStartDate);
             const defaultEnd = new Date(defaultEndDate);
             const rangeStart = new Date(range.from);
@@ -82,8 +68,6 @@
 
             return (rangeEnd < defaultStart || rangeStart > defaultEnd);
         });
-
-        //console.log('Filtered Disabled Dates:', disabledDates);
 
         flatpickr("#datePicker", {
             enableTime: false,
@@ -93,8 +77,14 @@
             dateFormat: "Y-m-d",
             disable: disabledDates
         });
+
+        document.getElementById('aithousa').value = "{{ekthes.id_aithousas}}";
     });
 
-     document.getElementById('aithousa').value={{ekthes.id_aithousas}};
-
+    function deletePainting(id_ekthesis, arithmos_ergou) {
+        console.log(id_ekthesis,arithmos_ergou);
+        //if (confirm('Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το έργο από αυτή την έκθεση;')) {
+            //window.location.href = `/admin/deletePaintingFromExhibition/${id_ekthesis}/${arithmos_ergou}`;
+        //}
+    }
 </script>

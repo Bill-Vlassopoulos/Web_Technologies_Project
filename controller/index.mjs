@@ -266,6 +266,36 @@ router.get("/admin/updateExhibition/:id_ekthesis", logInController.checkAuthenti
     res.render('admin-update-exh', { layout: 'admin', ekthes: ekthes, erga_exh: erga_exh, aithousa: JSON.stringify(aithousa), css: cssFilePath });
 })
 
+//Αποθήκευση επεξεργασίας έκθεσης
+router.post("/admin/updateExhibition/:id_ekthesis/submit", logInController.checkAuthenticated, (req,res)=>{
+    let info = req.body;
+    //console.log(info);
+
+    let dates = info.imerom.split(' to ');
+
+    // Assign the dates to separate variables
+    let imer_enarx = dates[0].trim();
+    let imer_lixis = dates[1].trim();
+    info.imer_enarx = imer_enarx;
+    info.imer_lixis = imer_lixis;
+    model.updateEkthesi(req.params.id_ekthesis,info.title,info.content,info.imer_enarx,info.imer_lixis,info.link);
+
+    res.redirect("/admin/Exhibitions");
+})
+
+//Διαγραφή Έκθεσης
+router.get("/admin/deleteExhibition/:id_ekthesis", logInController.checkAuthenticated, (req, res) => {
+    model.deleteEkthesi(req.params.id_ekthesis);
+    res.redirect('/admin/Exhibitions');
+});
+
+//Διαγραφή έργου από έκθεση
+router.get("/admin/deletePaintingFromExhibition/:id_ekthesis/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
+    model.afairesiErgouapoEkthesi(req.params.arithmos_ergou,req.params.id_ekthesis);
+    console.log(req.params.arithmos_ergou,req.params.id_ekthesis);
+    //res.redirect('/admin/Exhibitions');
+});
+
 //Προσθήκη Νέας Έκθεσης
 router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res) => {
     const cssFilePath = '/add-exhibition.css'
