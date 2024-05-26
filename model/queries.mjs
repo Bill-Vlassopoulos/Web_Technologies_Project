@@ -466,3 +466,53 @@ export function last2Ektheseis() {
         throw (e);
     }
 }
+
+export function checkAvailableIdErgou(arithmos_ergou) {
+    const stmt = sql.prepare(`SELECT *
+    FROM ERGO
+    WHERE arithmos_ergou = ?`);
+    let ergo;
+    try {
+        return ergo = stmt.get(arithmos_ergou);
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function getCurrentAndFutureEktheseis() {
+    const stmt = sql.prepare(`SELECT EKTHESI.id_ekthesis,EKTHESI.onoma_ekthesis,imerominia_enarxis,imerominia_lixis
+    FROM EKTHESI
+    JOIN PARODIKI_EKTHESI ON EKTHESI.id_ekthesis=PARODIKI_EKTHESI.id_ekthesis
+    WHERE PARODIKI_EKTHESI.imerominia_lixis>=CURRENT_DATE
+    ORDER BY imerominia_enarxis,imerominia_lixis;`);
+    let ektheseis;
+    try {
+        return ektheseis = stmt.all();
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function getLastiticketids(i) {
+    const stmt = sql.prepare(`SELECT id_eisitiriou FROM EISITIRIO ORDER BY id_eisitiriou DESC LIMIT ?;`);
+    let ids;
+    try {
+        return ids = stmt.all(i);
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+export function insertAntistoixei(id_eisitiriou, id_ekthesis) {
+    const stmt = sql.prepare("INSERT INTO ANTISTOIXEI (id_eisitiriou,id_ekthesis) VALUES (?,?)");
+    try {
+        stmt.run(id_eisitiriou, id_ekthesis);
+        return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}

@@ -96,21 +96,22 @@
 </section>
 
 <script>
+    const periodikes_ektheseis = {{{ ektheseis }}}
 
-     // JavaScript to set the minimum date
-        const datePickers = document.querySelectorAll(".imerominia input[type='date']");
-        const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
-        const year = today.getFullYear();
+    // JavaScript to set the minimum date
+    const datePickers = document.querySelectorAll(".imerominia input[type='date']");
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+    const year = today.getFullYear();
 
-        // Set the min attribute to today's date in YYYY-MM-DD format
-        const minDate = `${year}-${month}-${day}`;
-         datePickers.forEach(picker => {
-            picker.setAttribute('min', minDate);
-        });
+    // Set the min attribute to today's date in YYYY-MM-DD format
+    const minDate = `${year}-${month}-${day}`;
+    datePickers.forEach(picker => {
+        picker.setAttribute('min', minDate);
+    });
 
-        function editTickets() {
+    function editTickets() {
         let quantity = document.getElementById('quantity').value;
         let ticketContainer = document.querySelector('.kratisi');
         let firstTicket = document.querySelector('.ksechoristo-ticket');
@@ -138,7 +139,7 @@
 
         let kratisi = document.querySelector(".episkeptis");
         kratisi.style.display = 'flex';
-
+        DateEventListener();
         editPeriodeikes();
         calculateFinalCost();
     }
@@ -187,6 +188,16 @@
         document.getElementById('kostos-eis1').innerHTML = 10;
         document.querySelector('.agora-ticket').reset();
         document.getElementById('kostos-teliko').innerHTML = 10;
+    }
+
+    function findActiveExhibitions(date) {
+        let activeExhibitions = [];
+        periodikes_ektheseis.forEach(ekthesi => {
+            if (new Date(ekthesi.imerominia_enarxis) <= date && new Date(ekthesi.imerominia_lixis) >= date) {
+                activeExhibitions.push(ekthesi);
+            }
+        });
+        return activeExhibitions;
     }
 
     function calculate_cost(selectElement) {
@@ -242,23 +253,20 @@
                 inputs.forEach(input => {
                     if (input.name !== "onoma" && input.name !== "mail" && input.name !== "phone") {
                         formValues[input.name.slice(0, -1)] = input.value;
-                    }
-                    else {
+                    } else {
                         formValues[input.name] = input.value;
                     }
                 });
                 if (form.querySelector(".ektheseis") !== null) {
-                    periodikes_ektheseis = form.querySelectorAll('.ektheseis .selected p');
+                    let selectedExhibitions = form.querySelectorAll('.ektheseis .selected p');
                     formValues['periodikes_ektheseis'] = [];
-                    periodikes_ektheseis.forEach(ekthesi => {
-                        formValues['periodikes_ektheseis'].push(ekthesi.textContent);
+                    selectedExhibitions.forEach(ekthesi => {
+                        formValues['periodikes_ektheseis'].push(periodikes_ektheseis.find(ek => ek.onoma_ekthesis === ekthesi.innerHTML).id_ekthesis);
                     });
                 }
 
                 formData.push(formValues);
             });
-
-
 
             fetch('/submit', {
                 method: 'POST',
@@ -279,5 +287,29 @@
                     console.error('Error:', error);
                 });
         }
+    }
+
+    function DateEventListener() {
+        let datePickers = document.querySelectorAll('.imerominia input[type="date"]');
+        datePickers.forEach(datePicker => {
+            datePicker.addEventListener('change', function (event) {
+                let date = new Date(event.target.value);
+                let activeExhibitions = findActiveExhibitions(date);
+                let ticket = event.target.closest('.ksechoristo-ticket');
+                let exhibitionsDivs = ticket.querySelectorAll('.ektheseis div');
+
+                exhibitionsDivs.forEach(exhibitionDiv => {
+                    exhibitionDiv.remove();
+                });
+
+                activeExhibitions.forEach(ekthesi => {
+                    let div = document.createElement('div');
+                    div.innerHTML = `<p>${ekthesi.onoma_ekthesis}</p>`;
+                    ticket.querySelector('.ektheseis').appendChild(div);
+                });
+
+                editPeriodeikes();
+            });
+        });
     }
 </script>

@@ -41,18 +41,20 @@
 
 <div class="erga-container">
     {{#each erga_exh}}
-        <div class="ergo-exh">
-            <h3>{{this.onoma}}</h3>
-            <img src="{{this.link}}">
-            <h4>Κωδικός έργου: {{this.arithmos_ergou}}</h4>
-            <button class="diag" onclick="deletePainting({{ekthes.id_ekthesis}}, '{{this.arithmos_ergou}}')">Αφαίρεση</button>
-        </div>
+    <div class="ergo-exh">
+        <h3>{{this.onoma}}</h3>
+        <img src="{{this.link}}">
+        <h4>Κωδικός έργου: {{this.arithmos_ergou}}</h4>
+        <button class="diag">Αφαίρεση</button>
+    </div>
     {{/each}}
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dateRanges = {{{aithousa}}};
+    const dateRanges = {{{ aithousa }}};
+    document.addEventListener('DOMContentLoaded', function () {
+
+
 
         const defaultStartDate = "{{ekthes.imerominia_enarxis}}";
         const defaultEndDate = "{{ekthes.imerominia_lixis}}";
@@ -81,10 +83,11 @@
         document.getElementById('aithousa').value = "{{ekthes.id_aithousas}}";
     });
 
-    function deletePainting(id_ekthesis, arithmos_ergou) {
-        console.log(id_ekthesis,arithmos_ergou);
-        //if (confirm('Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το έργο από αυτή την έκθεση;')) {
-            //window.location.href = `/admin/deletePaintingFromExhibition/${id_ekthesis}/${arithmos_ergou}`;
-        //}
-    }
+    document.querySelectorAll('.diag').forEach(button => {
+        button.addEventListener('click', () => {
+            if (confirm('Είστε σίγουρος ότι θέλετε να αφαιρέσετε το έργο;')) {
+                window.location.href = `/admin/deletePaintingFromExhibition/{{ekthes.id_ekthesis}}/${button.previousElementSibling.innerText.split(' ')[2]}`;
+            }
+        });
+    });
 </script>

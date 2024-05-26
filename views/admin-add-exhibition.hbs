@@ -23,8 +23,8 @@
         </select>
 
         <div class="imerom">
-                <label for="datePicker">Διάρκεια Έκθεσης:</label>
-                <input type="text" id="datePicker" name="imerom" placeholder="Επιλέξτε Ημερομηνία" required>
+            <label for="datePicker">Διάρκεια Έκθεσης:</label>
+            <input type="text" id="datePicker" name="imerom" placeholder="Επιλέξτε Ημερομηνία" required>
         </div>
 
         <div class="buttons">
@@ -44,9 +44,9 @@
         return false; // Prevent default form submission if invalid
     }
 
-   
-     document.addEventListener('DOMContentLoaded', function() {
-        const dateRanges = {{{ sched }}};
+    const dateRanges = {{{ sched }}};
+    document.addEventListener('DOMContentLoaded', function () {
+
 
         // Initialize Flatpickr instance
         const flatpickrInstance = flatpickr("#datePicker", {
@@ -58,7 +58,7 @@
 
         function chooseDate(selectElement) {
             const selectedAithousa = parseInt(selectElement.value);
-            
+
             const disabledRanges = dateRanges
                 .filter(item => item.id_aithousas === selectedAithousa)
                 .map(item => ({
@@ -72,7 +72,7 @@
 
         // Attach onchange event listener to the select element
         const selectElement = document.getElementById('aithousa');
-        selectElement.addEventListener('change', function() {
+        selectElement.addEventListener('change', function () {
             chooseDate(this);
         });
 
