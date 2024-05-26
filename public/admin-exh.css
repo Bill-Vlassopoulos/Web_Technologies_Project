@@ -95,6 +95,10 @@
     background-color: #df1212;
 }
 
+.main-exh{
+    margin:6% auto;
+}
+
 @media screen and (max-width: 650px) {
     .exh img{
         max-height: 200px;
@@ -135,7 +139,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 80%;
-    margin:3% auto;
+    margin:4% auto;
 }
 
 .plirofories{
@@ -236,6 +240,8 @@ select#aithousa{
 @media screen and (max-width: 800px){
     .update-form{
         flex-direction: column;
+        width: 90%;
+        margin: 18% auto;
     }
 
     .plirofories .enarxi input, .plirofories .liksi input{
@@ -250,7 +256,18 @@ select#aithousa{
         width: 80%;
         margin-bottom: 5%;
     }
+
+    .update-form div{
+        width: 100%;
+    } 
 }
+
+@media screen and (min-width: 800px) and (min-width:900px){
+    .update-form{
+        margin:10% auto;
+    }
+}
+
 
 h2{
     width: 80%;
