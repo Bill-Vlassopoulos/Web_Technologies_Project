@@ -731,6 +731,7 @@ img#palia-photo{
 
 .last img{
     height: 50vh;
+    width: 100%;
 } 
 
 .last h5{
@@ -772,7 +773,7 @@ img#palia-photo{
     margin-bottom: 3%;
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 850px){
 
     .last{
         height: 780vh;
@@ -791,12 +792,14 @@ img#palia-photo{
     }
 
     .garden img{
-        height: 30vh;
+        height: 40vh;
+        object-fit: contain;
+        width: 100%;
     }
 
 }
 
-@media screen and (max-width: 1350px) and (min-width:701px){
+@media screen and (max-width: 1350px) and (min-width:851px){
 
     .last{
         height: 480vh;

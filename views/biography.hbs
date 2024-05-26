@@ -1,7 +1,7 @@
 
    <section class="bio_main">
         <div class="early_art">
-            <img src="http://www.vggallery.com/painting/f_0015a.jpg">
+            <img id="early" src="http://www.vggallery.com/painting/f_0015a.jpg">
             <div class="overlay-text">
                 <h2><strong>Earliest Paintings</strong></h2>
                 <h3><strong>(1881-1883)</strong></h3>
@@ -10,7 +10,7 @@
         </div>
 
         <div class="nuenen">
-            <img src="http://www.vggallery.com/painting/f_0048a.jpg" >
+            <img id="nuen" src="http://www.vggallery.com/painting/f_0048a.jpg" >
             <div class="overlay-text">
                 <h2><strong>Nuenen / Antwerp</strong></h2>
                 <h3><strong>(1883-1886)</strong></h3>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="paris">
-            <img src="http://www.vggallery.com/painting/f_0365v.jpg">
+            <img id="paris" src="http://www.vggallery.com/painting/f_0365v.jpg">
             <div class="overlay-text">
                 <h2><strong>Paris</strong></h2>
                 <h3><strong>(1886-1888)</strong></h3>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="arles">
-            <img src="http://www.vggallery.com/painting/f_0565.jpg">
+            <img id="arles" src="http://www.vggallery.com/painting/f_0565.jpg">
             <div class="overlay-text">
                 <h2><strong>Arles</strong></h2>
                 <h3><strong>(1888-1889)</strong></h3>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="saint-remy">
-            <img src="http://www.vggallery.com/painting/f_0678.jpg">
+            <img id="saint" src="http://www.vggallery.com/painting/f_0678.jpg">
             <div class="overlay-text">
                 <h2><strong>Saint-Remy</strong></h2>
                 <h3><strong>(1889-1890)</strong></h3>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="auvers">
-            <img src="http://www.vggallery.com/painting/f_0805.jpg">
+            <img id="auvers" src="http://www.vggallery.com/painting/f_0805.jpg">
             <div class="overlay-text">
                 <h2><strong>Auvers-sur-Oise</strong></h2>
                 <h3><strong>(1890)</strong></h3>
@@ -85,6 +85,36 @@
         auvers.addEventListener('click',function(event){
             window.location.href="/biography/auvers-sur-oise";
         })
+
+        document.addEventListener('DOMContentLoaded', async function() {
+    const imageUrls = [
+        "http://www.vggallery.com/painting/f_0015a.jpg",
+        "http://www.vggallery.com/painting/f_0048a.jpg",
+        "http://www.vggallery.com/painting/f_0365v.jpg",
+        "http://www.vggallery.com/painting/f_0565.jpg",
+        "http://www.vggallery.com/painting/f_0678.jpg",
+        "http://www.vggallery.com/painting/f_0805.jpg"
+        
+    ];
+
+    async function preloadImages(urls) {
+        const promises = urls.map(async url => {
+            const img = new Image();
+            img.src = url;
+            await img.decode();
+            return url;
+        });
+
+        try {
+            await Promise.all(promises);
+            //console.log('All images preloaded');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    await preloadImages(imageUrls);
+});
 
     </script>
 

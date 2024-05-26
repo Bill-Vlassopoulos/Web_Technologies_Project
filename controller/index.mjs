@@ -255,8 +255,8 @@ router.get("/admin/addPainting", logInController.checkAuthenticated, (req, res) 
 //Submit για την προσθήκη του έργου
 router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
-    //console.log(info);
-    if (model.checkAvailableIdErgou(info.code) === null) {
+    console.log(info);
+    if (model.checkAvailableIdErgou(info.code) === undefined) {
         model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist);
         res.redirect('/admin/edit');
     }
@@ -265,6 +265,7 @@ router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (re
 
 
     }
+
 });
 
 //Διαδρομή για την διαγραφή του έργου

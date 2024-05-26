@@ -81,3 +81,13 @@ body {
 #prosexws {
     margin-top: 3%;
 }
+
+@media screen and (max-width:600px){
+    .aithousa{
+        width: 80%;
+    }
+
+    .protes-aithouses{
+        width: 80%;
+    }
+}

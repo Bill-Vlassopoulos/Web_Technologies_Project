@@ -1,123 +1,15 @@
 <section>
 
     <div class="filter-menu">
-        <input type="button" value="Φίλτρα" class="filter" onclick="openNav()">
         <input type="text" class="search" placeholder="Αναζητήστε κωδικό έργου...">
     </div>
 
-    <form action="/collection/" class="collection-filter">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-        <div class="radio" id="radioDiv">
-            <div class="main-radio">
-                <input type="radio" name="collection" value="mainInput" onclick="showInput('mainInput')">
-                <label for="main">Μόνιμη Έκθεση</label>
-            </div>
-            <div class="periodiko-radio">
-                <input type="radio" name="collection" value="periodiki" onclick="showInput('periodiki')">
-                <label for="periodiki">Περιοδικές Εκθέσεις</label>
-            </div>
-        </div>
-
-        <select name="xronologiki-periodos" class="hidden" id="mainInput" style="display:none;">
-            <option value="">Χρονολογική Περίοδος</option>
-            <option value="early">Earliest Paintings(1881-1883)</option>
-            <option value="nuenen">Nuenen/Antwerp(1883-1886)</option>
-            <option value="paris">Paris(1886-1888)</option>
-            <option value="arles">Arles(1888-1889)</option>
-            <option value="saint">Saint-Remy(1889-1890)</option>
-            <option value="auvers">Auvers-sur-Oise(1890)</option>
-        </select>
-
-        <div class="hidden" id="periodiki" style="display:none;">
-            <select name="aithousa">
-                <option value="">Αίθουσα Διεξαγωγής</option>
-                <option value="one">1</option>
-                <option value="two">2</option>
-                <option value="three">3</option>
-            </select>
-            <input type="text" class="search" id="kallitexnis" placeholder="Αναζητήστε καλλιτέχνη...">
-        </div>
-
-        <div class="hidden" id="additionalPeriodiki" style="display:none;">
-            <label id="xronologiki" for="time">Χρονολογική περίοδος</label>
-            <div class="range">
-                <span class="txt">1900</span>
-                <input type="range" id="time" name="time" min="1900" max="2020">
-                <span class="txt">2020</span>
-            </div>
-            <span class="value">Επιλογή: <span id="value"></span></span>
-        </div>
-
-        <input type="button" value="Καθαρισμός Φίλτρων" class="clear-filter" onclick="clearFilter()">
-        <input type="submit" value="Εφαρμογή" class="search-button">
-    </form>
-
-</section>
 
 <section class="collection" id="collection">
     <!-- Images will be loaded here asynchronously -->
 </section>
 
 <script>
-    function showInput(inputId) {
-        let input = document.getElementById(inputId);
-        let inputs = document.querySelectorAll('.hidden');
-        inputs.forEach(function (inputElement) {
-            inputElement.style.display = 'none';
-        });
-        if (input) {
-            input.style.display = 'flex';
-        }
-        if (inputId === 'mainInput') {
-            document.querySelector(".radio").style.gridArea = 'mb';
-        }
-        if (inputId === 'periodiki') {
-            let additionalInput = document.getElementById('additionalPeriodiki');
-            if (additionalInput) {
-                additionalInput.style.display = 'flex';
-                document.querySelector(".radio").style.gridArea = 'ma';
-                document.querySelector(".radio").style.alignSelf = 'flex-end';
-            }
-        }
-    }
-
-    let slider = document.getElementById("time");
-    let output = document.getElementById("value");
-    output.innerHTML = slider.value;
-    slider.oninput = function () {
-        output.innerHTML = this.value;
-    }
-
-    function openNav() {
-        document.querySelector(".collection-filter").style.display = 'grid';
-        document.querySelector(".filter").style.display = 'none';
-    }
-
-    function closeNav() {
-        document.querySelector(".collection-filter").style.display = 'none';
-        document.querySelector(".filter").style.display = 'grid';
-        clearFilter()
-    }
-
-    function clearFilter() {
-        let radioButtons = document.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach(function (radioButton) {
-            radioButton.checked = false;
-            let inputs = document.querySelectorAll('.hidden');
-            inputs.forEach(function (inputElement) {
-                inputElement.style.display = 'none';
-            });
-            document.querySelector('select[name="xronologiki-periodos"]').value = "";
-            document.querySelector('select[name="aithousa"]').value = "";
-            document.querySelector('#kallitexnis').value = "";
-            document.getElementById("time").value = 1960;
-            document.getElementById("value").innerHTML = 1960;
-            document.querySelector(".radio").style.gridArea = 'mb';
-            document.querySelector(".radio").style.justifySelf = 'flex-start';
-            document.querySelector(".radio").style.alignSelf = 'flex-start';
-        });
-    }
 
     // Function to load images asynchronously
     async function loadImages() {
