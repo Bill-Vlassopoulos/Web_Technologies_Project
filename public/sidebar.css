@@ -10,10 +10,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position:fixed;
-  z-index: 0.8;
-  width: 100%;
-  top:0;
 }
 
 span {
@@ -65,7 +61,7 @@ span {
   }
 }
 
-.logout{
+.logout {
   font-size: 1.5em;
   color: #000;
   font-family: Georgia, 'Times New Roman', Times, serif;

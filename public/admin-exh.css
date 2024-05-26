@@ -7,56 +7,56 @@
     font-size: 10px;
 }
 
-.exhibitions-main.container{
-    width:90%;
-    margin:0 auto;
+.exhibitions-main.container {
+    width: 90%;
+    margin: 0 auto;
     margin-bottom: 3%;
 }
 
-.grid-exh{
+.grid-exh {
     margin-top: 4em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 4rem;
 }
 
-.exh{
+.exh {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 2px solid #000;
     padding: 1em;
-    background-color:rgb(243, 222, 199);
+    background-color: rgb(243, 222, 199);
     box-shadow: 11px 29px 67px -40px rgba(0, 0, 0, 0.75);
 }
 
-.exh img{
+.exh img {
     max-width: 100%;
-    max-height:300px;
+    max-height: 300px;
     object-fit: contain;
     margin-bottom: 2%;
 }
 
-.exh h4{
+.exh h4 {
     font-weight: 700;
     font-style: italic;
     text-decoration: underline;
     margin-bottom: 1%;
 }
 
-.exh #title{
+.exh #title {
     color: black;
     font-size: 1em;
     font-weight: 700;
 }
 
-.exh h5{
+.exh h5 {
     width: 32%;
     margin-bottom: 1%;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -67,21 +67,22 @@
 }
 
 .epex,
-.diag,.view {
+.diag,
+.view {
     height: 4em;
     border: 1px solid #000;
     border-radius: 1em;
     color: white;
     font-size: 1.2em;
-    padding:0 4%;
+    padding: 0 4%;
 }
 
-.epex{
+.epex {
     background-color: #0b6b02;
     margin-right: 3%;
 }
 
-.view{
+.view {
     background-color: #076fb4;
 }
 
@@ -91,66 +92,67 @@
     margin-top: 0;
 }
 
-.diag{
+.diag {
     background-color: #df1212;
 }
 
-.main-exh{
-    margin:6% auto;
+.main-exh {
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 650px) {
-    .exh img{
+    .exh img {
         max-height: 200px;
         object-fit: contain;
     }
 
-    .grid-exh{
+    .grid-exh {
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     }
 
-    .buttons{
+    .buttons {
         width: 60%;
     }
 
-    .exh h5{
-        width:60%;
+    .exh h5 {
+        width: 60%;
     }
 
 
 }
-@media screen and (min-width: 651px) and (max-width:1300px){
-    .grid-exh{
+
+@media screen and (min-width: 651px) and (max-width:1300px) {
+    .grid-exh {
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     }
 }
 
-@media screen and (min-width: 1301px){
-    .grid-exh{
+@media screen and (min-width: 1301px) {
+    .grid-exh {
         grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     }
 }
 
 /*admin update*/
 
-.update-form{
+.update-form {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width: 80%;
-    margin:4% auto;
+    margin: 4% auto;
 }
 
-.plirofories{
+.plirofories {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    flex:50%
+    flex: 50%
 }
 
-.plirofories div{
+.plirofories div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -159,26 +161,32 @@
     margin-bottom: 2%;
 }
 
-.plirofories div label{
+.aithousa p,
+.imerom p {
+    font-size: 1.5em;
+}
+
+.plirofories div label {
     font-size: 2em;
     font-weight: 700;
 }
 
-.plirofories textarea{
+.plirofories textarea {
     width: 60%;
     font-size: 1.5em;
 }
 
-.plirofories input{
+.plirofories input {
     width: 60%;
     font-size: 1.5em;
 }
 
-.plirofories .enarxi input, .plirofories .liksi input{
+.plirofories .enarxi input,
+.plirofories .liksi input {
     width: 30%;
 }
 
-.plirofories .buttons{
+.plirofories .buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -187,95 +195,92 @@
     align-self: flex-start;
 }
 
-.submit-btn,a{
+.submit-btn,
+a {
     font-size: 1.5em;
 }
 
-.image-link{
+.image-link {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex:50%;
+    flex: 50%;
 }
 
-.image-link img{
+.image-link img {
     width: 100%;
     max-height: 400px;
     object-fit: contain;
     margin-bottom: 2%;
 }
 
-.image-link label{
+.image-link label {
     font-size: 2em;
     font-weight: 700;
     align-self: flex-start;
 }
 
-.image-link input{
+.image-link input {
     width: 100%;
     font-size: 1.5em;
 }
 
-.prosthiki{
+.prosthiki {
     margin-top: 3%;
     align-self: flex-end;
     margin-right: 8%;
     font-size: 1.5em;
 }
 
-.main-exh{
+.main-exh {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-select#aithousa{
+select#aithousa {
     font-size: 1.5em;
 }
 
 
 
-@media screen and (max-width: 800px){
-    .update-form{
+@media screen and (max-width: 800px) {
+    .update-form {
         flex-direction: column;
         width: 90%;
-        margin: 18% auto;
+        margin: 4% auto;
     }
 
-    .plirofories .enarxi input, .plirofories .liksi input{
+    .plirofories .enarxi input,
+    .plirofories .liksi input {
         width: 50%;
     }
 
-    .plirofories input, .plirofories textarea{
+    .plirofories input,
+    .plirofories textarea {
         width: 90%;
     }
 
-    .plirofories .buttons{
+    .plirofories .buttons {
         width: 80%;
         margin-bottom: 5%;
     }
 
-    .update-form div{
+    .update-form div {
         width: 100%;
-    } 
-}
-
-@media screen and (min-width: 800px) and (min-width:900px){
-    .update-form{
-        margin:10% auto;
     }
 }
 
 
-h2{
+h2 {
     width: 80%;
-    margin:0 auto;
+    margin: 0 auto;
     border-bottom: 0.1em solid black;
 }
 
-.erga-container{
+.erga-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 4rem;
@@ -283,32 +288,32 @@ h2{
     margin: 3% auto;
 }
 
-.ergo-exh{
+.ergo-exh {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border:0.1em solid black;
-    padding:1em;
+    border: 0.1em solid black;
+    padding: 1em;
     padding-top: 2em;
 }
 
-.ergo-exh img{
+.ergo-exh img {
     max-height: 40vh;
     width: 100%;
     object-fit: contain;
     margin-bottom: 2%;
 }
 
-.diag{
+.diag {
     margin-top: 2%;
 }
 
-.ergo-exh h3{
+.ergo-exh h3 {
     font-weight: 700;
 }
 
-span.show{
+span.show {
     color: black;
     font-size: 2em;
     font-weight: 700;
@@ -317,13 +322,13 @@ span.show{
     margin-left: 0;
 }
 
-span.show2{
+span.show2 {
     color: black;
     font-size: 1.5em;
     font-weight: 300;
     margin-left: 0;
 }
 
-.aithousa span.show2{
+.aithousa span.show2 {
     font-size: 1em;
 }

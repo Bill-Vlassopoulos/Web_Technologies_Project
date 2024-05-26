@@ -7,11 +7,9 @@ body {
 }
 
 /*eisitiria*/
-
 .eisitiria {
     display: flex;
     flex-direction: column;
-
 }
 
 img {
@@ -20,7 +18,6 @@ img {
     align-self: center;
     margin: 0 auto;
     border-radius: 25%;
-
 }
 
 .tickets {
@@ -32,9 +29,9 @@ img {
     align-items: center;
 }
 
-
 .kratisi h2,
-.orario h2,.episkeptis h2 {
+.orario h2,
+.episkeptis h2 {
     color: white;
     font-weight: 200;
     font-style: italic;
@@ -47,7 +44,7 @@ img {
     width: 50%;
 }
 
-.episkeptis{
+.episkeptis {
     width: 50%;
     display: none;
     flex-wrap: nowrap;
@@ -55,9 +52,9 @@ img {
     justify-content: center;
     align-items: center;
     padding-top: 1.2%;
-} 
+}
 
-.episkeptis h2{
+.episkeptis h2 {
     align-self: flex-start;
     margin-left: 25%;
     border-bottom: none;
@@ -65,11 +62,10 @@ img {
     margin-bottom: 0;
 }
 
-.episkeptis p{
+.episkeptis p {
     width: 50%;
     margin-top: 2%;
 }
-
 
 .orario {
     width: 50%;
@@ -83,11 +79,12 @@ img {
     color: white;
 }
 
-.orario h4.timi{
+.orario h4.timi {
     margin-top: 5%;
 }
 
-.orario h4.timi,.orario h4.timi2{
+.orario h4.timi,
+.orario h4.timi2 {
     font-weight: 300;
 }
 
@@ -141,10 +138,9 @@ img {
 
 #elegxos:hover {
     background-color: #dc614c;
-
 }
 
-.ksechoristo-ticket{
+.ksechoristo-ticket {
     display: none;
     flex-direction: column;
     flex-wrap: wrap;
@@ -156,19 +152,28 @@ img {
     width: 80%;
 }
 
-.ektheseis p{
-    font-size: 1em;
-    margin-left: 1.5%;
+.ektheseis div {
+    width: 100%;
+    margin: 1% 0;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
-.ksechoristo-ticket div, .episkeptis div {
+.ektheseis p {
+    font-size: 1em;
+    margin-left: 1.5%;
+    width: 100%;
+}
+
+.ksechoristo-ticket div,
+.episkeptis div {
     width: 90%;
     margin: 3% 0%;
 }
 
 .final_cost {
     margin-top: 2%;
-
 }
 
 .sticky-button {
@@ -189,15 +194,13 @@ img {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 80%;
-
-
 }
 
-.ektheseis h4{
+.ektheseis h4 {
     color: white;
 }
 
-.finalCost{
+.finalCost {
     color: white;
     font-size: 1.5em;
     font-weight: 500;
@@ -212,7 +215,7 @@ img {
         margin-top: 12%;
     }
 
-    #elegxos{
+    #elegxos {
         width: 100%;
     }
 
@@ -221,39 +224,38 @@ img {
         grid-template: 1fr 1fr/1fr;
     }
 
-    .ksechoristo-ticket{
+    .ksechoristo-ticket {
         margin-top: 15%;
         width: 100%;
     }
 
-    .ektheseis div{
+    .ektheseis div {
         width: 100% !important;
     }
 
-    .episkeptis{
+    .episkeptis {
         margin-top: 12%;
         margin-left: 5%;
         align-items: flex-start;
     }
 
-    form.agora-ticket{
+    form.agora-ticket {
         width: 100%;
     }
 
-    .episkeptis p{
+    .episkeptis p {
         width: 100%;
     }
 
-    @media screen and (max-width: 650px){
-        img{
+    @media screen and (max-width: 650px) {
+        img {
             max-height: 30vh;
         }
     }
-
 }
 
 @media screen and (min-width: 901px) and (max-width: 1100px) {
-    .episkeptis p{
+    .episkeptis p {
         width: 80%;
     }
 
@@ -262,39 +264,34 @@ img {
         grid-template: 1fr 1fr/1fr;
     }
 
-    .ektheseis div{
+    .ektheseis div {
         width: 100% !important;
     }
 
-    .episkeptis div{
+    .episkeptis div {
         width: 100%;
     }
 
-    #elegxos{
+    #elegxos {
         width: 60%;
     }
 }
 
-@media screen and (min-width: 1101px) and (max-width: 1300px){
-
-    #elegxos{
+@media screen and (min-width: 1101px) and (max-width: 1300px) {
+    #elegxos {
         width: 80%;
     }
 
-    .episkeptis p{
+    .episkeptis p {
         width: 60%;
     }
-
 }
 
-@media screen and (min-width: 1301px) and (max-width: 1380px){
-
-    #elegxos{
+@media screen and (min-width: 1301px) and (max-width: 1380px) {
+    #elegxos {
         width: 80%;
     }
 }
-
-
 
 /*BUY-TICKETS*/
 
@@ -308,7 +305,6 @@ img {
     flex-direction: column;
     width: 50%;
 }
-
 
 .agora h2 {
     color: white;
@@ -346,10 +342,9 @@ img {
     background-color: black;
     color: white;
     border: 0.01em solid white;
-     width: 100%;
+    width: 100%;
     padding: 0.1em;
 }
-
 
 .eidiki #katigoria {
     width: 60%;
@@ -362,12 +357,12 @@ img {
 .ektheseis div {
     border: 1px solid white;
     margin: 1% 0;
-    width: 50%;
-    height: 2em;
-}
-
-.ektheseis div input[type="checkbox"] {
-    opacity: 1;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
 }
 
 .selected {
@@ -383,7 +378,6 @@ img {
     border: 0.01em solid white;
     width: 50%;
     padding: 0.1em;
-
 }
 
 .eidiki select {
@@ -397,7 +391,6 @@ img {
     margin-top: 3%;
     margin-bottom: 1%;
 }
-
 
 #kratisi {
     width: 30%;
@@ -421,4 +414,10 @@ p {
     font-size: 1.2em;
     color: white;
     margin-top: 3%;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
 }

@@ -106,10 +106,20 @@ export function getAithouses() {
     }
 }
 
-export function insertNewErgo(arithmos_ergou, link, xronologia, diastaseis, typos_kamva, onoma, perigrafi, kallitexnis) {
+export function insertNewErgo(arithmos_ergou, link, xronologia, diastaseis, typos_kamva, onoma, perigrafi, kallitexnis, ekthesi) {
     const stmt = sql.prepare("INSERT INTO ERGO (arithmos_ergou,link,xronologia,diastaseis,typos_kamva,onoma,perigrafi,kallitexnis) VALUES (?,?,?,?,?,?,?,?)");
     try {
         stmt.run(arithmos_ergou, link, xronologia, diastaseis, typos_kamva, onoma, perigrafi, kallitexnis);
+        if (ekthesi == "monimi") {
+            const stmt2 = sql.prepare("INSERT INTO PERILAMBANETAI (arithmos_ergou,id_ekthesis) VALUES (?,?)");
+            try {
+                stmt2.run(arithmos_ergou, 1);
+                return true;
+            }
+            catch (e) {
+                throw (e);
+            }
+        }
         return true;
     }
     catch (e) {
@@ -511,6 +521,23 @@ export function insertAntistoixei(id_eisitiriou, id_ekthesis) {
     try {
         stmt.run(id_eisitiriou, id_ekthesis);
         return true;
+    }
+    catch (e) {
+        throw (e);
+    }
+}
+
+
+export function getAtomaforEachAithousa(date) {
+    const stmt = sql.prepare(`SELECT COUNT(*) AS atoma,DIEXAGETAI.id_aithousas
+    FROM EISITIRIO
+    JOIN ANTISTOIXEI ON EISITIRIO.id_eisitiriou=ANTISTOIXEI.id_eisitiriou
+    JOIN DIEXAGETAI ON ANTISTOIXEI.id_ekthesis=DIEXAGETAI.id_ekthesis
+    WHERE EISITIRIO.imerominia=?
+    GROUP BY DIEXAGETAI.id_aithousas;`);
+    let atoma;
+    try {
+        return atoma = stmt.all(date);
     }
     catch (e) {
         throw (e);

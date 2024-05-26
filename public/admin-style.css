@@ -63,7 +63,7 @@ h5 {
     color: white;
 }
 
-.buttons{
+.buttons {
     width: 40%;
     display: flex;
     flex-direction: row;
@@ -87,7 +87,7 @@ h5 {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 8% auto;
+    margin: 2% auto;
     flex: 50%;
 
 }
@@ -159,7 +159,7 @@ textarea#content {
 .prosthiki {
     width: 12%;
     font-size: 1.2em;
-    top:7em;
+    top: 7em;
     right: 8em;
     position: absolute;
     padding: 0.3em;
@@ -168,14 +168,14 @@ textarea#content {
     border: 0.2em solid rgb(65, 131, 212);
 }
 
-.button-add-ergo{
+.button-add-ergo {
     width: 100%;
     height: 9vh;
 }
 
 .edit-form.prosthiki-form {
     width: 90%;
-    margin: 6% auto;
+    margin: 2% auto;
 }
 
 .edit-form.prosthiki-form div {
@@ -300,25 +300,27 @@ p {
 }
 
 /*admin login*/
-.log{
+.log {
     margin-top: 7%;
 }
-.log-admin{
+
+.log-admin {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 75%;
-    margin:3% auto;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 3% auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-h1{
+h1 {
     font-family: inherit;
     font-weight: 900;
 }
 
-.log-onoma,.log-pass{
+.log-onoma,
+.log-pass {
     font-size: 2em;
     margin-bottom: 3%;
     font-family: inherit;
@@ -326,58 +328,58 @@ h1{
     align-self: center;
 }
 
-.log-onoma{
+.log-onoma {
     margin-top: 1%;
 }
 
-.log-admin input{
+.log-admin input {
     width: 30%;
 }
 
-.log-admin .button{
+.log-admin .button {
     width: 15%;
     font-size: 1.5em;
     background-color: rgb(34, 152, 199);
-    color:black;
-    border:0.1em solid black;
+    color: black;
+    border: 0.1em solid black;
 }
 
-.mess-alert{
+.mess-alert {
     background-color: rgb(164, 171, 203);
-    color:black;
+    color: black;
     border: 0.1em solid black;
     border-radius: 5%;
     font-size: 1.5em;
     margin-bottom: 2%;
-    padding:0.2em;
+    padding: 0.2em;
     font-family: inherit;
     width: 30%;
     padding-left: 7.5%;
 }
 
-@media screen and (max-width: 800px){
-    .log-admin input{
+@media screen and (max-width: 800px) {
+    .log-admin input {
         width: 70%;
     }
 
-    .mess-alert{
+    .mess-alert {
         width: 70%;
     }
 
-    .log-admin .button{
+    .log-admin .button {
         width: 50%;
     }
 
-    .edit-container{
+    .edit-container {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-bottom: 5%;
     }
 
-    .edit-form{
+    .edit-form {
         width: 90%;
-        margin:16% auto;
+        margin: 3% auto;
     }
 
     .edit-container img {
@@ -388,16 +390,12 @@ h1{
         align-self: flex-start;
     }
 
-    .edit-form.prosthiki-form{
-        margin: 16% auto;
+    .edit-form.prosthiki-form {
+        margin: 3% auto;
     }
 
-    .edit-form.prosthiki-form div{
+    .edit-form.prosthiki-form div {
         width: 100%;
 
     }
-} 
-
-
-
-
+}

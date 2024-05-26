@@ -71,7 +71,7 @@ router.get('/', (req, res) => {
         item.enarxisDay = enarxisDay;
         item.enarxisMonth = enarxisMonth;
         item.enarxisYear = enarxisYear;
-      
+
         // Μετατροπή ημερομηνίας λήξης
         const lixisDate = new Date(item.imerominia_lixis);
         const lixisDay = lixisDate.getDate();
@@ -80,9 +80,9 @@ router.get('/', (req, res) => {
         item.lixisDay = lixisDay;
         item.lixisMonth = lixisMonth;
         item.lixisYear = lixisYear;
-      });
+    });
 
-  //console.log(ektheseis);
+    //console.log(ektheseis);
 
     // Render the 'main' template with the CSS file path
     res.render('main', { layout: 'index', ektheseis: ektheseis, css: cssFilePath });
@@ -256,14 +256,13 @@ router.get("/admin/addPainting", logInController.checkAuthenticated, (req, res) 
 router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
     console.log(info);
+
     if (model.checkAvailableIdErgou(info.code) === undefined) {
-        model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist);
+        model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist, info.ekthesi);
         res.redirect('/admin/edit');
     }
     else {
         res.redirect('/admin/addPainting');
-
-
     }
 
 });

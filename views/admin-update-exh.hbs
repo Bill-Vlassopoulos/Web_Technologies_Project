@@ -11,17 +11,21 @@
         </div>
 
         <div class="aithousa">
-            <label for="aithousa">Επιλέξτε Αίθουσα</label>
+            {{!-- <label for="aithousa">Επιλέξτε Αίθουσα</label>
             <select name="aithousa" id="aithousa" required>
                 <option value="1">Αίθουσα 1</option>
                 <option value="2">Αίθουσα 2</option>
                 <option value="3">Αίθουσα 3</option>
-            </select>
+            </select> --}}
+            <label for="">Αιθουσα Διεξάγωγης:</label>
+            <p>{{ekthes.id_aithousas}}</p>
+
         </div>
 
         <div class="imerom">
-            <label for="datePicker">Διάρκεια Έκθεσης:</label>
-            <input type="text" name="imerom" id="datePicker" placeholder="Επιλέξτε Ημερομηνία" required>
+            <label class="label">Διάρκεια Έκθεσης:</label>
+            {{!-- <input type="text" name="imerom" id="datePicker" placeholder="Επιλέξτε Ημερομηνία" required> --}}
+            <p>{{ekthes.imerominia_enarxis}} έως {{ekthes.imerominia_lixis}}</p>
         </div>
 
         <div class="buttons">
@@ -33,7 +37,7 @@
     <div class="image-link">
         <img src="{{ekthes.link}}" class="edit-image">
         <label for="link">Link Εικόνας</label>
-        <input type="text" id="link" name="link" value="{{ekthes.link}}">
+        <input type="link" id="link" name="link" value="{{ekthes.link}}">
     </div>
 </form>
 
@@ -80,7 +84,6 @@
             disable: disabledDates
         });
 
-        document.getElementById('aithousa').value = "{{ekthes.id_aithousas}}";
     });
 
     document.querySelectorAll('.diag').forEach(button => {
