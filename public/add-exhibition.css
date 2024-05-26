@@ -86,8 +86,12 @@ label {
 }
 
 
-.img-ekthesis input[type="text"],.img-ekthesis input[type="url"] {
+.img-ekthesis input[type="text"],.img-ekthesis input[type="link"] {
     width: 100%;
+}
+
+.img-ekthesis input[type="link"] {
+    font-size: 1.5em;
 }
 
 
