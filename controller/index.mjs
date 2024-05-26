@@ -6,6 +6,7 @@ import path from 'path'
 import bodyParser from 'body-parser'
 import taskListSession from '../app-setup/app-setup-session.mjs';
 import * as logInController from '../controller/login-controller.mjs';
+import { log } from 'console';
 
 const model = await import('../model/queries.mjs')
 
@@ -59,9 +60,32 @@ app.use(router);
 router.get('/', (req, res) => {
     // Determine the CSS file path based on the route
     const cssFilePath = '/style.css'; // Adjust the path as needed
+    let ektheseis = model.last2Ektheseis();
+    //Μετατροπή ημερομηνίας
+    ektheseis.forEach(item => {
+        // Μετατροπή ημερομηνίας εναρξης
+        const enarxisDate = new Date(item.imerominia_enarxis);
+        const enarxisDay = enarxisDate.getDate();
+        const enarxisMonth = enarxisDate.toLocaleDateString('el-GR', { month: 'long' });
+        const enarxisYear = enarxisDate.getFullYear();
+        item.enarxisDay = enarxisDay;
+        item.enarxisMonth = enarxisMonth;
+        item.enarxisYear = enarxisYear;
+      
+        // Μετατροπή ημερομηνίας λήξης
+        const lixisDate = new Date(item.imerominia_lixis);
+        const lixisDay = lixisDate.getDate();
+        const lixisMonth = lixisDate.toLocaleDateString('el-GR', { month: 'long' });
+        const lixisYear = lixisDate.getFullYear();
+        item.lixisDay = lixisDay;
+        item.lixisMonth = lixisMonth;
+        item.lixisYear = lixisYear;
+      });
+
+  //console.log(ektheseis);
 
     // Render the 'main' template with the CSS file path
-    res.render('main', { layout: 'index', css: cssFilePath });
+    res.render('main', { layout: 'index', ektheseis: ektheseis, css: cssFilePath });
 });
 
 //Δημιουργώ διαδρομή για την βιογραφία
