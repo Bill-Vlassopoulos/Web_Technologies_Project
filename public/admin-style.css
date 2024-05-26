@@ -170,7 +170,7 @@ textarea#content {
 
 .button-add-ergo{
     width: 100%;
-    height: 10vh;
+    height: 9vh;
 }
 
 .edit-form.prosthiki-form {
@@ -300,6 +300,9 @@ p {
 }
 
 /*admin login*/
+.log{
+    margin-top: 7%;
+}
 .log-admin{
     display: flex;
     flex-direction: column;
@@ -365,4 +368,5 @@ h1{
         width: 50%;
     }
 } 
+
 

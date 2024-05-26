@@ -6,7 +6,7 @@ body {
     font-size: 10px;
 }
 
-.protes-aithouses {
+.protes-aithouses{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 4rem;
@@ -42,7 +42,7 @@ body {
 .aithousa:hover {
     /* background-color: #7a3023; */
     transform: scale(1.05);
-    border: 1px solid rgb(247, 137, 53);
+    border: 1px solid #dc614c;
 }
 
 .aithousa h3 {
