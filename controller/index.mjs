@@ -179,7 +179,7 @@ router.post("/submit", (req, res) => {
     // Handle form submission
 
     let info = req.body;
-    console.log(info);
+    //console.log(info);
     // console.log(info[info.length - 1]);
     model.insertNewEpiskeptis(info[info.length - 1].onoma, info[info.length - 1].mail, info[info.length - 1].phone);
     let id_episkepti = model.getIdofLastEpiskeptis();
@@ -188,7 +188,7 @@ router.post("/submit", (req, res) => {
     }
     let id_eisitirion = model.getLastiticketids(info.length - 1);
     id_eisitirion.reverse();
-    console.log(id_eisitirion);
+    //console.log(id_eisitirion);
     for (let i = 0; i < info.length - 1; i++) {
         for (let j = 0; j < info[i].periodikes_ektheseis.length; j++) {
             model.insertAntistoixei(id_eisitirion[i].id_eisitiriou, info[i].periodikes_ektheseis[j]);
@@ -240,7 +240,7 @@ router.get("/admin/edit/:arithmos_ergou", logInController.checkAuthenticated, (r
 
 router.post("/admin/edit/:arithmos_ergou/submit", logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
-    console.log(info);
+    //console.log(info);
     model.updateErgo(info.code, info.content, info.type, info.title, info.artist, info.size, info.date);
     res.redirect('/admin/edit');
 });
@@ -255,7 +255,7 @@ router.get("/admin/addPainting", logInController.checkAuthenticated, (req, res) 
 //Submit για την προσθήκη του έργου
 router.post("/admin/addPainting/submit", logInController.checkAuthenticated, (req, res) => {
     let info = req.body;
-    console.log(info);
+    //console.log(info);
 
     if (model.checkAvailableIdErgou(info.code) === undefined) {
         model.insertNewErgo(info.code, info.link, info.date, info.size, info.type, info.title, info.content, info.artist, info.ekthesi);
@@ -332,7 +332,7 @@ router.get("/admin/deleteExhibition/:id_ekthesis", logInController.checkAuthenti
 //Διαγραφή έργου από έκθεση
 router.get("/admin/deletePaintingFromExhibition/:id_ekthesis/:arithmos_ergou", logInController.checkAuthenticated, (req, res) => {
     model.afairesiErgouapoEkthesi(req.params.arithmos_ergou, req.params.id_ekthesis);
-    console.log(req.params.arithmos_ergou, req.params.id_ekthesis);
+    //console.log(req.params.arithmos_ergou, req.params.id_ekthesis);
     res.redirect('/admin/Exhibitions');
 });
 
@@ -349,7 +349,7 @@ router.get("/admin/addExhibition", logInController.checkAuthenticated, (req, res
 //Submit της πρώτης φάσης της προσθήκης
 router.post("/admin/addExhibition/submit", logInController.checkAuthenticated, (req, res) => {
     ex_info = req.body;
-    console.log(ex_info);
+    //console.log(ex_info);
     let dates = ex_info.imerom.split(' to ');
 
     // Assign the dates to separate variables

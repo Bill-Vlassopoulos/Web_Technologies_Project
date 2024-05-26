@@ -5,11 +5,12 @@ import bcrypt
 
 
 def main():
+    i = 0
     conn = sqlite3.connect("model/ArtGallery.sqlite")
     cursor = conn.cursor()
     DataFrame = pd.read_csv("vangogh.csv")
     DataFrame_exhibition = pd.read_csv("exhibitions.csv")
-    for x in range(len(DataFrame)):
+    for x in range(int(len(DataFrame) / 2)):
         cursor.execute(
             "INSERT INTO ERGO (arithmos_ergou, link, xronologia, diastaseis,  typos_kamva, onoma, perigrafi, kallitexnis) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             (
@@ -72,6 +73,18 @@ def main():
             ),
         )
         conn.commit()
+        for y in range(5):
+            cursor.execute(
+                "INSERT INTO PERILAMBANETAI(id_ekthesis, arithmos_ergou, imerominia_enarxsis, imerominia_lixis) VALUES (?, ?, ?, ?)",
+                (
+                    id,
+                    DataFrame["Art_ID"][i],
+                    DataFrame_exhibition["imerominia_enarxis"][x],
+                    DataFrame_exhibition["imerominia_liksis"][x],
+                ),
+            )
+            i = i + 1
+            conn.commit()
         cursor.execute(
             "INSERT INTO DIEXAGETAI(id_ekthesis, id_aithousas) VALUES (?, ?)",
             (id, int(DataFrame_exhibition["aithousa"][x])),
@@ -82,7 +95,7 @@ def main():
         ("admin", bcrypt.hashpw("admin".encode("utf-8"), bcrypt.gensalt())),
     )
     conn.commit()
-    for x in range(int(len(DataFrame) / 2)):
+    for x in range(int(len(DataFrame) / 4)):
         cursor.execute(
             "INSERT INTO PERILAMBANETAI(id_ekthesis,arithmos_ergou,imerominia_enarxsis,imerominia_lixis) VALUES (?, ?, ?, ?)",
             (1, DataFrame["Art_ID"][x], None, None),
